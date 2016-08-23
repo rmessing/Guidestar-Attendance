@@ -1,6 +1,24 @@
 Rails.application.routes.draw do
 
- 
+  get "/parent-log-in" => "sessions#new_parent", as: :parent_log_in
+
+  post "/parent-log-in" => "sessions#create_parent"
+
+  delete "/parent-log-out" => "sessions#destroy_parent", as: :parent_log_out
+
+  get "/teacher-log-in" => "sessions#new_teacher", as: :teacher_log_in
+
+  post "/teacher-log-in" => "sessions#create_teacher"
+
+  delete "/teacher-log-out" => "sessions#destroy_teacher", as: :teacher_log_out
+
+  get "/center-log-in" => "sessions#new_center", as: :center_log_in
+
+  post "/center-log-in" => "sessions#create_center"
+
+  delete "/center-log-out" => "sessions#destroy_center", as: :center_log_out
+
+
   root 'application#hello'
 
   resources :centers

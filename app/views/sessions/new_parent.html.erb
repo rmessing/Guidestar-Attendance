@@ -1,0 +1,18 @@
+
+<div class="login_form">
+
+	<% if session[:parent_id] != nil %>
+		<% session[:parent_id] = nil %>
+	<% end %>
+
+<h1 class="user_login"> Parent </h1>
+<br>
+	<%= form_for(:session, url: parent_log_in_path) do |f| %>
+		<%= f.label :email %>
+		<%= f.search_field :email %>
+		<%= f.label :password %>
+		<%= f.password_field :password %>
+		<%= f.submit "Log in", :class => 'f_submit'  %>
+	<% end %>
+	
+</div>
