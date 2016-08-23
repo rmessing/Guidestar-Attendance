@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'info_pages/home'
+
+  get 'info_pages/help'
+
+  get 'info_pages/about'
+
+  get 'info_pages/contact'
+
   get "/parent-log-in" => "sessions#new_parent", as: :parent_log_in
 
   post "/parent-log-in" => "sessions#create_parent"
@@ -19,7 +27,7 @@ Rails.application.routes.draw do
   delete "/center-log-out" => "sessions#destroy_center", as: :center_log_out
 
 
-  root 'application#hello'
+  root 'info_pages#home'
 
   resources :centers
   # The priority is based upon order of creation: first created -> highest priority.
