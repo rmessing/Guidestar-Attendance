@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
-  get 'info_pages/home'
+  get 'info_pages/home', as: :home
 
-  get 'info_pages/help'
+  get 'info_pages/help', as: :help
 
-  get 'info_pages/about'
+  get 'info_pages/about', as: :about
 
-  get 'info_pages/contact'
+  get 'info_pages/contact', as: :contact
+
+  get 'info_pages/news', as: :news
 
   get "/parent-log-in" => "sessions#new_parent", as: :parent_log_in
 
@@ -26,10 +28,12 @@ Rails.application.routes.draw do
 
   delete "/center-log-out" => "sessions#destroy_center", as: :center_log_out
 
-
-  root 'info_pages#home'
+  root 'sessions#new_teacher'
 
   resources :centers
+  resources :parents
+  resources :teachers
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

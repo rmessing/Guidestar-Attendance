@@ -1,1 +1,22 @@
 <% provide(:title, "Home") %>
+
+<h1> Welcome to Handoffs </h1>
+<small><h1> a child care attendance tracker </h1></small>
+<h2> by Guidestar Forms </h2>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:session, url: teacher_log_in_path) do |f| %>
+
+      <%= f.label :fname %>
+      <%= f.text_field :fname, class: 'form-control' %>
+      <%= f.label :lname %>
+      <%= f.text_field :lname, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

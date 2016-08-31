@@ -8,10 +8,12 @@ class CentersController < ApplicationController
 
   def new
     @center = Center.new
+    @user = @center
   end
 
   def create
-        @center = Center.new(center_params)
+    @center = Center.new(center_params)
+    @user = @center
     if @center.save
       flash[:success] = "Welcome #{@center.name}!"
       redirect_to @center

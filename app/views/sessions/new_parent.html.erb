@@ -1,18 +1,23 @@
 
-<div class="login_form">
+<% provide(:title, "Parent Log in") %>
+<h1>Parent Log in</h1>
 
-	<% if session[:parent_id] != nil %>
-		<% session[:parent_id] = nil %>
-	<% end %>
+<% center = Center.find(current_teacher.center_id) %>
+<h1><%= "Welcome to #{center.name}" %></h1>
+<h2><strong> a child care attendance tracker </strong></h2>
+<h2> by Guidestar Forms </h2>
 
-<h1 class="user_login"> Parent </h1>
-<br>
-	<%= form_for(:session, url: parent_log_in_path) do |f| %>
-		<%= f.label :email %>
-		<%= f.search_field :email %>
-		<%= f.label :password %>
-		<%= f.password_field :password %>
-		<%= f.submit "Log in", :class => 'f_submit'  %>
-	<% end %>
-	
-</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:session, url: parent_log_in_path) do |f| %>
+
+      <%= f.label :username %>
+      <%= f.text_field :username, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>	
