@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def new_parent
       @parent = Parent.new
-      
+      @center = Center.find(current_teacher.center_id)
   end
 
   def create_parent
@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
          session[:parent_id] = @parent.id 
   	     redirect_to @parent
       else
-  		   flash.now[:danger] = 'Invalid username/password combination.'
+  		   flash[:danger] = 'Invalid username/password combination.'
   		   redirect_to parent_log_in_path
       end 
   end
@@ -59,7 +59,7 @@ class SessionsController < ApplicationController
          session[:center_id] = @center.id
          redirect_to @center
       else
-         flash.now[:danger] = "Invalid username/password combination."
+         flash[:danger] = "Invalid username/password combination."
          redirect_to center_log_in_path
       end 
   end
