@@ -11,6 +11,10 @@ class CentersController < ApplicationController
     @user = @center
   end
 
+  def admin
+    @center = Center.find(params[:id])
+  end
+
   def create
     @center = Center.new(center_params)
     @user = @center

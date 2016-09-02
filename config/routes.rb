@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get "/centers/admin", as: :admin
+
   get 'info_pages/home', as: :home
 
   get 'info_pages/help', as: :help

@@ -20,7 +20,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def edit
-    @user = @center
+    
   end
 
   def update
@@ -28,7 +28,8 @@ class PasswordResetsController < ApplicationController
       @center.errors.add(:password, "can't be empty")
       render 'edit'
     elsif @center.update_attributes(center_params)           
-      session[:center_id] = center.id
+      session[:center_id] = @center.id
+      @center.update_attribute(:reset_digest, nil)
       flash[:success] = "Password has been reset."
       redirect_to @center
     else
@@ -45,7 +46,8 @@ class PasswordResetsController < ApplicationController
   # Before filters
 
   def get_center
-    @user = Center.find_by(email: params[:email])
+    @center = Center.find_by(email: params[:email])
+    @user = @center
   end
 
   # Confirms a valid center.
