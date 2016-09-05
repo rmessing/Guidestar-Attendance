@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160831175923) do
+ActiveRecord::Schema.define(version: 20160904230421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,36 @@ ActiveRecord::Schema.define(version: 20160831175923) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "birthday"
+  end
+
+  create_table "families", force: :cascade do |t|
+    t.integer  "parent_id"
+    t.integer  "child_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "center_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "teacher_id"
+    t.integer  "center_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "handoffs", force: :cascade do |t|
+    t.string   "attend"
+    t.integer  "child_id"
+    t.string   "child_fname"
+    t.string   "child_mname"
+    t.string   "child_lname"
+    t.integer  "center_id"
+    t.string   "escort_fname"
+    t.string   "escort_lname"
+    t.string   "group_name"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "parents", force: :cascade do |t|

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  attend: MyString
+  child_id: 1
+  child_fname: MyString
+  child_mname: MyString
+  child_lname: MyString
+  center_id: 1
+  escort_fname: MyString
+  escort_lname: MyString
+  group_name: MyString
+
+two:
+  attend: MyString
+  child_id: 1
+  child_fname: MyString
+  child_mname: MyString
+  child_lname: MyString
+  center_id: 1
+  escort_fname: MyString
+  escort_lname: MyString
+  group_name: MyString
