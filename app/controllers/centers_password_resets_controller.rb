@@ -1,4 +1,4 @@
-class PasswordResetsController < ApplicationController
+class CentersPasswordResetsController < ApplicationController
   before_action :get_center,   only: [:edit, :update]
   before_action :valid_center, only: [:edit, :update]
   before_action :check_expiration, only: [:edit, :update]
@@ -20,7 +20,6 @@ class PasswordResetsController < ApplicationController
   end
 
   def edit
-    
   end
 
   def update
@@ -61,7 +60,7 @@ class PasswordResetsController < ApplicationController
   def check_expiration
     if @center.password_reset_expired?
       flash[:danger] = "Password reset has expired."
-      redirect_to new_password_reset_url
+      redirect_to new_centers_password_reset_url
     end
   end
 end

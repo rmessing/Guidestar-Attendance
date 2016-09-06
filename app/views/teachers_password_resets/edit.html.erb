@@ -3,10 +3,10 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@center, url: password_reset_path(params[:id])) do |f| %>
+    <%= form_for(@teacher, url: teachers_password_reset_path(params[:id])) do |f| %>
       <%= render 'shared/error_messages' %>
 
-      <%= hidden_field_tag :email, @center.email %>
+      <%= hidden_field_tag :email, @teacher.email %>
 
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>

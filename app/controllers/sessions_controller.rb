@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
   def new_parent
-      @parent = Parent.new
       @center = Center.find(current_teacher.center_id)
   end
 
@@ -25,7 +24,6 @@ class SessionsController < ApplicationController
   end
 
   def new_teacher
-      @teacher = Teacher.new
   end
 
   def create_teacher
@@ -49,7 +47,6 @@ class SessionsController < ApplicationController
   end
 
   def new_center
-      @center = Center.new
   end
 
   def create_center

@@ -35,7 +35,13 @@ Rails.application.routes.draw do
   resources :centers
   resources :parents
   resources :teachers
-  resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :families
+  resources :children
+  resources :groups
+  resources :locations
+  resources :centers_password_resets, only: [:new, :create, :edit, :update]
+  resources :parents_password_resets, only: [:new, :create, :edit, :update]
+  resources :teachers_password_resets, only: [:new, :create, :edit, :update]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

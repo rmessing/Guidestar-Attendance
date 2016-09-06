@@ -3,6 +3,7 @@ class TeachersController < ApplicationController
   end
 
   def show
+    @teacher = Teacher.find(params[:id])
   end
 
   def new
@@ -32,6 +33,6 @@ class TeachersController < ApplicationController
   end
 
   def teacher_params
-      params.require(:teacher).permit(:fname, :lname, :username, :email, :center_id, :password, :password_confirmation)
+      params.require(:teacher).permit(:fname, :lname, :username, :email, :center_id, :password, :password_confirmation, :reset_digest, :reset_sent_at)
   end
 end
