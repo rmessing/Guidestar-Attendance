@@ -6,12 +6,6 @@ Rails.application.routes.draw do
 
   get 'info_pages/help', as: :help
 
-  get 'info_pages/about', as: :about
-
-  get 'info_pages/contact', as: :contact
-
-  get 'info_pages/news', as: :news
-
   get "/parent-log-in" => "sessions#new_parent", as: :parent_log_in
 
   post "/parent-log-in" => "sessions#create_parent"

@@ -1,5 +1,5 @@
 <% provide(:title, 'Register Parent') %>
-<h1>Sign up Parent</h1>
+<h1>Parent Registration</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -9,6 +9,7 @@
     
       <%= f.label :first_name %>
       <%= f.text_field :fname, class: 'form-control' %>
+      
       <%= f.label :last_name %>
       <%= f.text_field :lname, class: 'form-control' %>
 
@@ -23,7 +24,7 @@
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.label :password_confirmation, "Confirm Password" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 
       <%= f.submit "Register Parent", class: "btn btn-primary" %>

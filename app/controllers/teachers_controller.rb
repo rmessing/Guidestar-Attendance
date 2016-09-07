@@ -33,6 +33,6 @@ class TeachersController < ApplicationController
   end
 
   def teacher_params
-      params.require(:teacher).permit(:fname, :lname, :username, :email, :center_id, :password, :password_confirmation, :reset_digest, :reset_sent_at)
+      params.require(:teacher).permit(:fname, :lname, :username, :email, :center_id, :password, :password_confirmation)
   end
 end

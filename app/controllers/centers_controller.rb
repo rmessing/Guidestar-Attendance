@@ -12,7 +12,6 @@ class CentersController < ApplicationController
   end
 
   def admin
-    @center = Center.find(params[:id])
   end
 
   def create
