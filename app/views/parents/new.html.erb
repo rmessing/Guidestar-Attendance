@@ -1,33 +1,5 @@
 <% provide(:title, 'Register Parent') %>
-<h1>Parent Registration</h1>
+<% provide(:button_text, 'Register Parent') %>
+<h1>Update Parent Profile</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@parent) do |f| %>
-
-    <%= render 'shared/error_messages' %>
-    
-      <%= f.label :first_name %>
-      <%= f.text_field :fname, class: 'form-control' %>
-      
-      <%= f.label :last_name %>
-      <%= f.text_field :lname, class: 'form-control' %>
-
-      <%= f.label :username %>
-      <%= f.text_field :username, class: 'form-control' %>
-
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
-
-      <%  f.hidden_field :center_id, :value => current_center.id %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-
-      <%= f.label :password_confirmation, "Confirm Password" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-
-      <%= f.submit "Register Parent", class: "btn btn-primary" %>
-    <% end %>
-  </div>
-</div>
+<%= render 'form' %>

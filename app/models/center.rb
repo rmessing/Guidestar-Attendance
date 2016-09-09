@@ -1,7 +1,7 @@
 class Center < ActiveRecord::Base
   attr_accessor :reset_token
   before_save :downcase_email
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: false }
   validates :username, presence: true, length: { minimum: 6 }, uniqueness: true
   VALID_EMAIL_REGEX =  /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
@@ -9,6 +9,15 @@ class Center < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+
+  has_many :teachers
+  has_many :locations
+  has_many :parents
+  has_many :children
+  has_many :groups
+  has_many :handoffs
+  has_many :families
+  has_many :group_teachers
 
   # Sets the password reset attributes.
   def create_reset_digest

@@ -11,6 +11,10 @@ class Parent < ActiveRecord::Base
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
+  has_many :families
+  has_many :children, through: :families, dependent: :destroy
+  belongs_to :center
+ 
     # Sets the password reset attributes.
   def create_reset_digest
     self.reset_token = Parent.new_token

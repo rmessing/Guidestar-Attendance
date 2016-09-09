@@ -11,7 +11,11 @@ class Teacher < ActiveRecord::Base
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
-  def full_name
+  has_many :groups
+  has_many :meals
+  belongs_to :center
+
+  def teacher_full_name
     "#{fname} #{lname}"
   end
     # Sets the password reset attributes.

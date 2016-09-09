@@ -1,4 +1,7 @@
 class ChildrenController < ApplicationController
+  before_action :logged_in_center, only: [:edit, :update]
+  before_action :correct_center,   only: [:edit, :update]
+
   def index
   end
 
@@ -6,32 +9,52 @@ class ChildrenController < ApplicationController
   end
 
   def new
-    @child = Child.new
-    @user = @child
+      @child = Child.new
   end
 
   def edit
   end
 
   def update
+      if child.update_attributes(child_params)
+         flash[:success] = "Child #{child.fname} #{child.mname} #{child.lname} is registered"
+         redirect_to @child
+      else
+         render 'edit'
+      end
   end
 
   def create
-         @child = Child.new(child_params)
-      if @child.save
-         flash.now[:success] = "Child #{@child.fname} #{@child.mname} #{@child.lname} is registered!"
-      else
-         flash.now[:danger] = "The child is not registered. First & last names are required."
+      if child.save
+         flash.now[:success] = "Child #{child.fname} #{child.mname} #{child.lname} is registered!"
+      else 
+         render "new"
       end
-      render "new"
+      
   end
 
   def destroy
+      Child.find(params[:id]).destroy
   end
 
-    private
+  private
+  def child_params
+  params.require(:child).permit(:fname, :mname, :lname, :center_id, :group_id, :birth_date)
+  end
 
-   def child_params
-    params.require(:child).permit(:fname, :mname, :lname, :center_id, :group_id, :birth_date)
-   end
+      # Before filters
+
+    # Confirms a logged-in center.
+    def logged_in_center
+      unless center_logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to center_log_in_path
+      end
+    end
+
+    # Confirms the correct center.
+    def correct_center
+      @center = Center.find(params[:id])
+      redirect_to(root_url) unless current_center?(@center)
+    end
 end

@@ -1,22 +1,5 @@
 <% provide(:title, 'Register Class') %>
+<% provide(:button_text, 'Register Class') %>
 <h1>Class Registration</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-	<%= form_for(@group) do |f| %>
-
-	<%= render 'shared/error_messages' %>
-
-	<%= f.label :Class_Name %>
-	<%= f.text_field :name, class: 'form-control' %>
-	<%	f.hidden_field :center_id, :value => current_center.id %>
-	<%= f.label :Teacher %>
-	<%= f.collection_select :teacher_id, @teachers, :id, :full_name, prompt: true%>
-	<%= f.label :Location %>
-	<%= f.collection_select :location_id, @locations, :id, :name, prompt: true %>
-
-	<%= f.submit "Register Class", :class => 'f_submit'  %>
-	<% end %>
-
-  </div>
-</div>
+<%= render 'form' %>
