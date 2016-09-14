@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+  get 'handoffs/index'
+
+  get 'handoffs/show'
+
+  get 'handoffs/new'
+
+  get 'handoffs/edit'
+
+  get 'handoffs/update'
+
+  get 'handoffs/create'
+
+  get 'handoffs/destroy'
+
   get "/centers/admin", as: :admin
 
   get 'info_pages/home', as: :home
@@ -28,10 +42,11 @@ Rails.application.routes.draw do
 
   resources :centers
   resources :parents
-  resources :teachers
-  resources :families
   resources :children
+  resources :families
   resources :groups
+  resources :teachers
+  resources :group_teachers
   resources :locations
   resources :centers_password_resets, only: [:new, :create, :edit, :update]
   resources :parents_password_resets, only: [:new, :create, :edit, :update]

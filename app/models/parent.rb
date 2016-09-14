@@ -12,7 +12,7 @@ class Parent < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   has_many :families
-  has_many :children, through: :families, dependent: :destroy
+  has_many :children, through: :families
   belongs_to :center
  
     # Sets the password reset attributes.

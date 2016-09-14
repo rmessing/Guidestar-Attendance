@@ -1,11 +1,13 @@
 class ChildrenController < ApplicationController
-  before_action :logged_in_center, only: [:edit, :update]
-  before_action :correct_center,   only: [:edit, :update]
+  before_action :logged_in_center, only: [:new, :index, :create, :edit, :update, :destroy]
+  # before_action :correct_center,   only: [:new, :index, :create, :edit, :update, :destroy]
 
   def index
+     @children = Child.paginate(page: params[:page]).order("lname", "fname").where(:center_id => current_center.id)
   end
 
   def show
+    
   end
 
   def new
@@ -13,11 +15,13 @@ class ChildrenController < ApplicationController
   end
 
   def edit
+      @child = Child.find(params[:id])
   end
 
   def update
-      if child.update_attributes(child_params)
-         flash[:success] = "Child #{child.fname} #{child.mname} #{child.lname} is registered"
+      @child = Child.find(params[:id])
+      if @child.update_attributes(child_params)
+         flash[:success] = "Child #{@child.fname} #{@child.mname} #{@child.lname} is updated"
          redirect_to @child
       else
          render 'edit'
@@ -25,8 +29,10 @@ class ChildrenController < ApplicationController
   end
 
   def create
-      if child.save
-         flash.now[:success] = "Child #{child.fname} #{child.mname} #{child.lname} is registered!"
+      @child = Child.new(child_params)
+      if @child.save
+         flash.now[:success] = "Child #{@child.fname} #{@child.mname} #{@child.lname} is registerer."
+         redirect_to @child
       else 
          render "new"
       end
@@ -35,6 +41,8 @@ class ChildrenController < ApplicationController
 
   def destroy
       Child.find(params[:id]).destroy
+      flash[:success] = "Child deleted."
+      redirect_to (:back)
   end
 
   private
@@ -52,9 +60,9 @@ class ChildrenController < ApplicationController
       end
     end
 
-    # Confirms the correct center.
-    def correct_center
-      @center = Center.find(params[:id])
-      redirect_to(root_url) unless current_center?(@center)
-    end
+    # # Confirms the correct center.
+    # def correct_center
+    #   @center = Center.find(params[:id])
+    #   redirect_to(root_url) unless current_center?(@center)
+    # end
 end

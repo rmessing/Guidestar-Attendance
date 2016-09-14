@@ -1,2 +1,15 @@
-<h1>Centers#index</h1>
-<p>Find me in app/views/centers/index.html.erb</p>
+<% provide(:title, 'All Centers') %>
+<h1>All Centers</h1>
+
+<%= will_paginate %>
+
+<ul class="objects">
+  <% @centers.each do |center| %>
+    <li>
+		<a href="<%= edit_center_path(center.id) %>">
+		<h4><%= center.name %></h4>
+		</a>
+    </li>
+  <% end %>
+</ul>
+

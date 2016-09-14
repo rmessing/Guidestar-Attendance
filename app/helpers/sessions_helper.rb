@@ -11,8 +11,8 @@ module SessionsHelper
   end
 
    # Returns true if the given center is the current_center.
-  def current_center?(center)
-      center == current_center
+  def current_center?(user)
+      user == current_center
   end
 
  # Returns the current logged-in users (if any):

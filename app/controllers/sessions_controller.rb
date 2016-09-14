@@ -1,7 +1,10 @@
 class SessionsController < ApplicationController
+
   def new_parent
       if current_teacher
          @center = Center.find(current_teacher.center_id)
+      else
+         @center = current_center 
       end
   end
 
@@ -10,7 +13,7 @@ class SessionsController < ApplicationController
       if user && user.authenticate(params[:session][:password])
          flash[:success] = "Welcome #{user.fname} #{user.lname}!"
          log_in user
-  	     redirect_to user
+  	     redirect_to handoffs_new_path
       else
   		   flash[:danger] = 'Invalid username/password combination.'
   		   redirect_to parent_log_in_path
@@ -49,10 +52,10 @@ class SessionsController < ApplicationController
   end
 
   def create_center
-      center = Center.find_by(username: params[:session][:username])
-      if center && @center.authenticate(params[:session][:password])
+      user = Center.find_by(username: params[:session][:username])
+      if user && user.authenticate(params[:session][:password])
          log_in user
-         redirect_to center
+         redirect_to user
       else
          flash[:danger] = "Invalid username/password combination."
          redirect_to center_log_in_path

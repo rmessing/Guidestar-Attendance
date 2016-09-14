@@ -1,2 +1,32 @@
-<h1>Families#new</h1>
-<p>Find me in app/views/families/new.html.erb</p>
+<!-- The admin selects the child's parent which enters the parent_id and child_id into the family join table. -->
+
+<% provide(:title, "Create Family") %>
+<h1>Create Family</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+<!-- If child has no parents in the db yet, "Registered parents for..." is not displayed. -->
+	<br>
+	<% if @child.parents.length != 0 %>
+		<h3> Registered Parents for 
+		<%= @child.fname %> 
+		<%= @child.mname %> 
+		<%= @child.lname %>:</h3>
+	<% end %>
+
+	<% @child.parents.each do |parent| %>
+		<%= parent.name %><br>
+	<% end %>
+	<br>
+
+	<h1> <%= "Add a parent to" %> <%= @child.fname %><%= "'s family." %> </h1>
+
+	<%= form_for (@family) do |f| %>
+		<%= f.hidden_field :child_id, :value => @child.id %>
+		<%= f.hidden_field :center_id, :value => current.center.id %>
+		<%= f.collection_select :parent_id, @parents, :id, :parent_full_name, prompt: false %>
+		<%= f.submit "Select a Parent", class: 'form-control'  %>
+	<% end %>
+	
+	</div>
+</div>

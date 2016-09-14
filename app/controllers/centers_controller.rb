@@ -1,5 +1,6 @@
 class CentersController < ApplicationController
   def index
+      @centers = Center.paginate(page: params[:page]).order("name")
   end
 
   def show
@@ -14,9 +15,9 @@ class CentersController < ApplicationController
   end
 
   def create
-      center = Center.new(center_params)
-      if center.save
-         flash.now[:success] = "The new center #{center.name} is now registered."
+      @center = Center.new(center_params)
+      if @center.save
+         flash.now[:success] = "The new center #{@center.name} is now registered."
          redirect_to center
       else
          render 'new'
@@ -39,6 +40,8 @@ class CentersController < ApplicationController
 
   def destroy
       Center.find(params[:id]).destroy
+      flash[:success] = "Center deleted."
+      redirect_to (:back)
   end
 
   private

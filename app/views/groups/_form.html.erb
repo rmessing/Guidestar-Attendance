@@ -4,12 +4,10 @@
 		<%= render 'shared/error_messages', object: @group %>
 		<%= f.label :Class_Name %>
 		<%= f.text_field :name, class: 'form-control' %>
-		<%	f.hidden_field :center_id, :value => current_center.id %>
-		<%= f.label :Teacher %>
-		<%= f.collection_select :teacher_id, @teachers, :id, :teacher_full_name, prompt: true%>
+		<%= f.hidden_field :center_id, :value => current_center.id %>
 		<%= f.label :Location %>
 		<%= f.collection_select :location_id, @locations, :id, :name, prompt: true %>
-		<%= f.submit yield(:button_text), :class => 'f_submit'  %>
+		<%= f.submit yield(:button_text), class: "btn btn-primary"  %>
 	<% end %>
   <div>
 </div>

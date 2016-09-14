@@ -1,5 +1,3 @@
-class Family < ActiveRecord::
-	belongs_to :child
-	belongs_to :parent
+class Family < ActiveRecord::Base
 	belongs_to :center
 end

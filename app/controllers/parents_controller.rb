@@ -1,8 +1,9 @@
 class ParentsController < ApplicationController
-  before_action :logged_in_center, only: [:edit, :update]
-  before_action :correct_center,   only: [:edit, :update]
+  before_action :logged_in_center, only: [:new, :index, :create, :edit, :update, :destroy]
+  # before_action :correct_center,   only: [:new, :index, :create, :edit, :update, :destroy]
 
   def index
+      @parents = Parent.paginate(page: params[:page]).order("lname", "fname").where(:center_id => current_center.id)
   end
 
   def show
@@ -14,22 +15,24 @@ class ParentsController < ApplicationController
   end
 
   def edit
+      @parent = Parent.find(params[:id])
   end
 
   def create
-      parent = Parent.new(parent_params)
-      if parent.save
-        flash[:success] = "Welcome #{parent.fname} #{parent.lname}"
-        redirect_to parent
+      @parent = Parent.new(parent_params)
+      if @parent.save
+        flash[:success] = "Welcome #{@parent.fname} #{@parent.lname}"
+        redirect_to @parent
       else
         render "new"
       end
   end
 
   def update
-      if parent.update_attributes(parent_params)
-         flash[:success] = "Parent #{parent.fname} #{parent.lname} is updated."
-         redirect_to parent
+      @parent = Parent.find(params[:id])
+      if @parent.update_attributes(parent_params)
+         flash[:success] = "Parent #{@parent.fname} #{@parent.lname} is updated."
+         redirect_to @parent
       else
          render 'edit'
       end
@@ -37,11 +40,13 @@ class ParentsController < ApplicationController
 
   def destroy
       Parent.find(params[:id]).destroy
+      flash[:success] = "Parent deleted."
+      redirect_to (:back)
   end
 
   private
   def parent_params
-    params.require(:parent).permit(:fname, :lname, :parentname, :email, :center_id, :password, :password_confirmation)
+    params.require(:parent).permit(:fname, :lname, :username, :email, :center_id, :password, :password_confirmation)
   end
 
       # Before filters
@@ -54,9 +59,9 @@ class ParentsController < ApplicationController
       end
     end
 
-    # Confirms the correct user.
-    def correct_center
-      @center = Center.find(params[:id])
-      redirect_to(root_url) unless current_center?(@center)
-    end
+    # # Confirms the correct user.
+    # def correct_center
+    #   @center = Center.find(params[:id])
+    #   redirect_to(root_url) unless current_center?(@center)
+    # end
 end
