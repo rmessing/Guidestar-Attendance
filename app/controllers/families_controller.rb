@@ -3,7 +3,7 @@ class FamiliesController < ApplicationController
   # before_action :correct_center
 
   def index
-    @children = Child.order("lname", "fname")
+    @children = Child.order("lname", "fname").where(center_id => current_center.id)
   end
 
   def show
@@ -22,10 +22,10 @@ class FamiliesController < ApplicationController
   def create
       @family = Family.new(family_params)
       if @family.save
-        flash[:notice] = "Adult and child are now connected!"
-        redirect_to families_path
+        flash[:notice] = "New child-escort registration succeeded."
+        redirect_to (:back)
       else
-        flash[:alert] = "The adult-child connection failed. Please try again."
+        flash[:alert] = "New child-registration failed. Please try again."
         redirect_to (:back)
       end
   end

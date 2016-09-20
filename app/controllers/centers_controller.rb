@@ -1,4 +1,6 @@
 class CentersController < ApplicationController
+  before_action :superadmin
+
   def index
       @centers = Center.paginate(page: params[:page]).order("name")
   end
@@ -12,6 +14,7 @@ class CentersController < ApplicationController
   end
 
   def admin
+    @nav = "center"
   end
 
   def create
@@ -49,4 +52,9 @@ class CentersController < ApplicationController
     params.require(:center).permit(:name, :username, :email, :password,
                                  :password_confirmation)
   end
+    # Confirms an admin user.
+  def superadmin
+    redirect_to(root_url) unless current_center.admin?
+  end
+
 end

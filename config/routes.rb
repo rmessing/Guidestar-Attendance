@@ -49,7 +49,6 @@ Rails.application.routes.draw do
   resources :group_teachers
   resources :locations
   resources :centers_password_resets, only: [:new, :create, :edit, :update]
-  resources :parents_password_resets, only: [:new, :create, :edit, :update]
   resources :teachers_password_resets, only: [:new, :create, :edit, :update]
 
 

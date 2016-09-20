@@ -1,6 +1,5 @@
 class GroupsController < ApplicationController
   before_action :logged_in_center, only: [:new, :index, :create, :edit, :update, :destroy]
-  # before_action :correct_center,   only: [:new, :index, :create, :edit, :update, :destroy]
 
   def index
       @groups = Group.paginate(page: params[:page]).order("name").where(:center_id => current_center.id)
@@ -60,10 +59,4 @@ class GroupsController < ApplicationController
         redirect_to center_log_in_path
       end
     end
-
-    # # Confirms the correct center.
-    # def correct_center
-    #   @center = Center.find(params[:id])
-    #   redirect_to(root_url) unless current_center?(@center)
-    # end
 end

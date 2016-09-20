@@ -21,12 +21,16 @@
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
         <%= link_to "Guidestar Attendance", '#', id: "logo" %>
-        <% if @current_user = current_center %>
-            <%= render 'layouts/center' %>
-        <% else %>
-            <%= render 'layouts/other' %>
+        <% if @nav == "b4_parent_login" || @nav == "b4_center_login" %>
+            <%= render 'layouts/no_nav' %>
+        <% elsif @nav == "parent" %>
+            <%= render 'layouts/parent' %>
+        <% elsif @nav == "center" %>
+            <%= render  'layouts/center' %>
+        <% elsif @nav == "home" %>
+            <%= render 'layouts/home' %>
         <% end %>
-      </div>
+      </div> 
     </header>
     
 <div class="container">

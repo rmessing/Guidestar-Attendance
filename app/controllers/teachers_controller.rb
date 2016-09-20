@@ -1,6 +1,5 @@
 class TeachersController < ApplicationController
   before_action :logged_in_center, only: [:new, :index, :create, :edit, :update, :destroy]
-  # before_action :correct_center,   only: [:new, :index, :create, :edit, :update, :destroy]
 
   def index
       @teachers = Teacher.paginate(page: params[:page]).order("lname", "fname").where(:center_id => current_center.id)
@@ -21,7 +20,7 @@ class TeachersController < ApplicationController
   def create 
       @teacher = Teacher.new(teacher_params)
       if @teacher.save
-         flash[:success] = "Welcome #{@teacher.fname} #{@teacher.lname}!"
+         flash[:success] = "Teacher #{@teacher.fname} #{@teacher.lname} is registered."
          redirect_to @teacher
       else
         render "new"
@@ -58,10 +57,4 @@ class TeachersController < ApplicationController
         redirect_to center_log_in_path
       end
     end
-
-    # # Confirms the correct user.
-    # def correct_center
-    #   @center = Center.find(params[:id])
-    #   redirect_to(root_url) unless current_center?(@center)
-    # end
 end

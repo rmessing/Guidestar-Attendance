@@ -1,7 +1,7 @@
 <!-- The admin selects the child's parent which enters the parent_id and child_id into the family join table. -->
 
-<% provide(:title, "Create Family") %>
-<h1>Create Family</h1>
+<% provide(:title, "Child-Escort") %>
+<h1>Child-Escort Registration</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -19,13 +19,13 @@
 	<% end %>
 	<br>
 
-	<h1> <%= "Add a parent to" %> <%= @child.fname %><%= "'s family." %> </h1>
+	<h1> <%= "Register an escort for" %> <%= @child.fname %></h1>
 
 	<%= form_for (@family) do |f| %>
 		<%= f.hidden_field :child_id, :value => @child.id %>
 		<%= f.hidden_field :center_id, :value => current.center.id %>
-		<%= f.collection_select :parent_id, @parents, :id, :parent_full_name, prompt: false %>
-		<%= f.submit "Select a Parent", class: 'form-control'  %>
+		<%= f.collection_select :parent_id, @parents, :id, :parent_full_name, prompt: true %>
+		<%= f.submit "Register Escort", class: 'form-control'  %>
 	<% end %>
 	
 	</div>

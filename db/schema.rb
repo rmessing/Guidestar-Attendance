@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160913223422) do
+ActiveRecord::Schema.define(version: 20160920005319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,11 +20,12 @@ ActiveRecord::Schema.define(version: 20160913223422) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "username"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
+    t.boolean  "admin",           default: false
   end
 
   create_table "children", force: :cascade do |t|
@@ -87,13 +88,11 @@ ActiveRecord::Schema.define(version: 20160913223422) do
     t.string   "fname"
     t.string   "lname"
     t.string   "email"
-    t.string   "username"
-    t.string   "password_digest"
     t.integer  "center_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "reset_digest"
-    t.datetime "reset_sent_at"
+    t.string   "username"
+    t.string   "password_digest"
   end
 
   create_table "teachers", force: :cascade do |t|

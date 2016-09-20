@@ -1,15 +1,15 @@
 class Teacher < ActiveRecord::Base
   attr_accessor :reset_token
-  before_save { self.email = email.downcase }
+  before_save :downcase_email
   validates :fname, presence: true, length: { maximum: 30 }
   validates :lname, presence: true, length: { maximum: 30 }
-  validates :username, presence: true, uniqueness: { case_sensitive: true }, length: { minimum: 6 }
+  validates :username, presence: true, uniqueness: true, length: { minimum: 6 }
   VALID_EMAIL_REGEX =  /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
 
   has_many :groups, :through => :group_teachers
   belongs_to :center

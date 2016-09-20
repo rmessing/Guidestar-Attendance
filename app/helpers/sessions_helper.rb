@@ -5,18 +5,43 @@ module SessionsHelper
       session[:user_id] = user.id
   end
 
-   # Returns true if a center is logged in, false otherwise.
+  # Logs out the current_center.
+  def log_out_center
+      session.delete(:center_id)
+      @current_center = nil
+  end
+
+  # Logs out the current_parent.
+  def log_out_parent
+      session.delete(:parent_id)
+      @current_parent = nil
+  end
+
+  # Logs out the current_teacher.
+  def log_out_teacher
+      session.delete(:teacher_id)
+      @current_teacher = nil
+  end
+
+  # Returns true if a users are logged in, false otherwise.
   def center_logged_in?
       !current_center.nil?
   end
 
-   # Returns true if the given center is the current_center.
+  def parent_logged_in?
+      !current_parent.nil?
+  end
+
+  def teacher_logged_in?
+      !current_teacher.nil?
+  end
+
+  # Returns true if the given center is the current_center.
   def current_center?(user)
       user == current_center
   end
 
- # Returns the current logged-in users (if any):
-
+  # Returns the current logged-in users (if any):
   def current_parent
 	  @current_parent ||= Parent.find_by(id: session[:parent_id])
   end

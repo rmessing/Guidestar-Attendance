@@ -1,6 +1,5 @@
 class ParentsController < ApplicationController
   before_action :logged_in_center, only: [:new, :index, :create, :edit, :update, :destroy]
-  # before_action :correct_center,   only: [:new, :index, :create, :edit, :update, :destroy]
 
   def index
       @parents = Parent.paginate(page: params[:page]).order("lname", "fname").where(:center_id => current_center.id)
@@ -19,9 +18,11 @@ class ParentsController < ApplicationController
   end
 
   def create
+     # raise params.inspect
+   
       @parent = Parent.new(parent_params)
       if @parent.save
-        flash[:success] = "Welcome #{@parent.fname} #{@parent.lname}"
+        flash[:success] = "Parent #{@parent.fname} #{@parent.lname} is registered"
         redirect_to @parent
       else
         render "new"
@@ -58,10 +59,4 @@ class ParentsController < ApplicationController
         redirect_to center_log_in_path
       end
     end
-
-    # # Confirms the correct user.
-    # def correct_center
-    #   @center = Center.find(params[:id])
-    #   redirect_to(root_url) unless current_center?(@center)
-    # end
 end

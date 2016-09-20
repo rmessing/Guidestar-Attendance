@@ -1,13 +1,12 @@
 class ChildrenController < ApplicationController
   before_action :logged_in_center, only: [:new, :index, :create, :edit, :update, :destroy]
-  # before_action :correct_center,   only: [:new, :index, :create, :edit, :update, :destroy]
 
   def index
-     @children = Child.paginate(page: params[:page]).order("lname", "fname").where(:center_id => current_center.id)
+      @children = Child.paginate(page: params[:page]).order("lname", "fname").where(:center_id => current_center.id)
   end
 
   def show
-    
+      @child = Child.find(params[:id])
   end
 
   def new
@@ -21,7 +20,7 @@ class ChildrenController < ApplicationController
   def update
       @child = Child.find(params[:id])
       if @child.update_attributes(child_params)
-         flash[:success] = "Child #{@child.fname} #{@child.mname} #{@child.lname} is updated"
+         flash[:success] = "Child #{@child.fname} #{@child.mname} #{@child.lname} is updated."
          redirect_to @child
       else
          render 'edit'
@@ -31,7 +30,7 @@ class ChildrenController < ApplicationController
   def create
       @child = Child.new(child_params)
       if @child.save
-         flash.now[:success] = "Child #{@child.fname} #{@child.mname} #{@child.lname} is registerer."
+         flash.now[:success] = "Child #{@child.fname} #{@child.mname} #{@child.lname} is registered."
          redirect_to @child
       else 
          render "new"
@@ -59,10 +58,4 @@ class ChildrenController < ApplicationController
         redirect_to center_log_in_path
       end
     end
-
-    # # Confirms the correct center.
-    # def correct_center
-    #   @center = Center.find(params[:id])
-    #   redirect_to(root_url) unless current_center?(@center)
-    # end
 end
