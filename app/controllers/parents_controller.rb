@@ -2,7 +2,11 @@ class ParentsController < ApplicationController
   before_action :logged_in_center, only: [:new, :index, :create, :edit, :update, :destroy]
 
   def index
-      @parents = Parent.paginate(page: params[:page]).order("lname", "fname").where(:center_id => current_center.id)
+      if current_center.admin?
+         @parents = Parent.paginate(page: params[:page]).order("center_id","lname", "fname")
+      else
+         @parents = Parent.paginate(page: params[:page]).order("lname", "fname").where(:center_id => current_center.id)
+      end
   end
 
   def show
@@ -52,11 +56,12 @@ class ParentsController < ApplicationController
 
       # Before filters
 
-    # Confirms a logged-in center.
-    def logged_in_center
-      unless center_logged_in?
-        flash[:danger] = "Please log in."
-        redirect_to center_log_in_path
-      end
+  # Confirms a logged-in center.
+  def logged_in_center
+    unless center_logged_in?
+      flash[:danger] = "Please log in."
+      redirect_to center_log_in_path
     end
+  end
+
 end

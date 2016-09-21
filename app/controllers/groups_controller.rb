@@ -52,11 +52,12 @@ class GroupsController < ApplicationController
 
     # Before filters
 
-    # Confirms a logged-in center.
-    def logged_in_center
-      unless center_logged_in?
-        flash[:danger] = "Please log in."
-        redirect_to center_log_in_path
-      end
+  # Confirms a logged-in center.
+  def logged_in_center
+    unless center_logged_in?
+      flash[:danger] = "Please log in."
+      redirect_to center_log_in_path
     end
+  end
+
 end

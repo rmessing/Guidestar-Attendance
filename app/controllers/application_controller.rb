@@ -8,5 +8,7 @@ class ApplicationController < ActionController::Base
   WillPaginate.per_page = 7
 
   @nav = nil
+
+
   
 end

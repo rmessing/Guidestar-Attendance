@@ -1,5 +1,5 @@
 class CentersController < ApplicationController
-  before_action :superadmin
+  before_action :superadmin, only: [:new, :index, :edit, :update, :create, :destroy]
 
   def index
       @centers = Center.paginate(page: params[:page]).order("name")
@@ -52,9 +52,23 @@ class CentersController < ApplicationController
     params.require(:center).permit(:name, :username, :email, :password,
                                  :password_confirmation)
   end
+
+        # Before filters
+
+    # Confirms a logged-in center.
+    def logged_in_center
+      unless center_logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to center_log_in_path
+      end
+    end
+
     # Confirms an admin user.
   def superadmin
-    redirect_to(root_url) unless current_center.admin?
+    unless current_center.admin?
+      Flash[:danger] = "This page is not available to you."
+      redirect_to(root_url) 
+    end
   end
 
 end

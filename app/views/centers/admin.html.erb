@@ -1,3 +1,38 @@
-<% provide(:title, 'Admin Home') %>
+<% provide(:title, 'Center Admin') %>
 
-<h1> Center Administration </h1>
+<div class="container-fluid">
+		<h1 class="page_title"> Center Administration </h1>
+		<br>
+		<h1> Family </h1>
+		<h2> Add/Remove Child-Adult Relationship </h2>
+	<div>
+		<div class="row">		
+				<h1 class="col-md-2 col-md-offset-1"> Children </h1>
+				<h1 class="col-md-2"> Adults </h1>
+				<h1 class="col-md-2"> Teachers </h1>
+				<h1 class="col-md-2"> Classes </h1>
+				<h1 class="col-md-2"> Locations </h1>
+		</div>
+		<div class="row">
+				<h2 class="col-md-2 col-md-offset-1"><%= link_to "Register New Child", new_child_path %></h2>
+				<h2 class="col-md-2"><%= link_to "Register New Adult", new_parent_path %></h2>
+				<h2 class="col-md-2"><%= link_to "Register New Teacher", new_teacher_path %></h2>
+				<h2 class="col-md-2"><%= link_to "Register New Classes", new_group_path %></h2>
+				<h2 class="col-md-2"><%= link_to "Register New Locations", new_location_path %></h2>
+		</div>
+		<div class="row">
+				<h2 class="col-md-2 col-md-offset-1"><%= link_to "Update Child Profile", children_path, method: :get %></h2>
+				<h2 class="col-md-2"><%= link_to "Update Adult Profile", parents_path, method: :get %></h2>
+				<h2 class="col-md-2"><%= link_to "Update Teacher Profile", teachers_path, method: :get %></h2>
+				<h2 class="col-md-2"><%= link_to "Update Class Profile", groups_path, method: :get %></h2>
+				<h2 class="col-md-2"><%= link_to "Update Location Profile", locations_path, method: :get %></h2>
+		</div>	
+		<div class="row">
+				<h2 class="col-md-2 col-md-offset-1"><%= link_to "Delete Child", children_path, method: :get %></h2>
+				<h2 class="col-md-2"><%= link_to "Delete Adult", parents_path, method: :get %></h2>
+				<h2 class="col-md-2"><%= link_to "Delete Teacher", teachers_path, method: :get %></h2>
+				<h2 class="col-md-2"><%= link_to "Delete Class", groups_path, method: :get %></h2>
+				<h2 class="col-md-2"><%= link_to "Delete Location", locations_path, method: :get %></h2>
+		</div>
+	</div>
+</div>

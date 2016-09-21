@@ -1,8 +1,13 @@
 class ChildrenController < ApplicationController
   before_action :logged_in_center, only: [:new, :index, :create, :edit, :update, :destroy]
+  
 
   def index
-      @children = Child.paginate(page: params[:page]).order("lname", "fname").where(:center_id => current_center.id)
+      if current_center.admin?
+         @children = Child.paginate(page: params[:page]).order("center_id","lname", "fname")
+      else
+         @children = Child.paginate(page: params[:page]).order("lname", "fname").where(:center_id => current_center.id)
+      end
   end
 
   def show
@@ -58,4 +63,5 @@ class ChildrenController < ApplicationController
         redirect_to center_log_in_path
       end
     end
+
 end

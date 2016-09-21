@@ -154,3 +154,21 @@ h1 {
     border-bottom: 1px solid $gray-lighter;
   }
 }
+.center_admin {
+  /*width: 15vw;*/
+  position: relative;
+  display: inline-block;
+}
+.center_align {
+  width: 84vw;
+  text-align: center;
+}
+/*#CA1 {
+  margin-left: 5vw;
+}
+#CA3 {
+  margin-right: 5vw;
+}*/
+.page_title {
+  font-size: 4em;
+}
