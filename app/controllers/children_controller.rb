@@ -1,6 +1,5 @@
 class ChildrenController < ApplicationController
   before_action :logged_in_center, only: [:new, :index, :create, :edit, :update, :destroy]
-  
 
   def index
       if current_center.admin?
@@ -11,7 +10,9 @@ class ChildrenController < ApplicationController
   end
 
   def show
+      @family = Family.new
       @child = Child.find(params[:id])
+      @parents = Parent.order("lname", "fname").where(:center_id => current_center.id)
   end
 
   def new

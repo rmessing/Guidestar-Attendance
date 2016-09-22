@@ -12,8 +12,12 @@ class Parent < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
 
   has_many :families
-  has_many :children, through: :families
+  has_many :children, :through => :families
   belongs_to :center
+
+  def parent_full_name
+    "#{fname} #{lname}"
+  end
  
     # Sets the password reset attributes.
   def create_reset_digest

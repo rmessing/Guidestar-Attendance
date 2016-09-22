@@ -21,21 +21,25 @@
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
         <%= link_to "Guidestar Attendance", '#', id: "logo" %>
-        <% if @nav == "b4_parent_login" || @nav == "b4_center_login" %>
-            <%= render 'layouts/no_nav' %>
-        <% elsif @nav == "parent" %>
-            <%= render 'layouts/parent' %>
-        <% elsif @nav == "center" %>
-            <%= render  'layouts/center' %>
-        <% elsif @nav == "home" %>
-            <%= render 'layouts/home' %>
-        <% end %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if @nav == "parent" %>
+              <%  @nav = nil %>
+            <% elsif @nav == "root" %>
+              <%  @nav = nil %>
+              <%= render "layouts/root" %>
+            <% elsif parent_logged_in? %>
+              <%= render "layouts/parent" %>
+            <% elsif center_logged_in? %>
+              <%= render "layouts/center" %>
+            <% end %>
+          </ul>
+        </nav>
       </div> 
-    </header>
-    
+    </header>   
 <div class="container">
   <% flash.each do |message_type, message| %>
-  <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <div class="alert alert-<%= message_type %>"><%= message %></div>
   <% end %>
 
   <%= yield %>

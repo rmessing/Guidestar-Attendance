@@ -11,6 +11,8 @@ class GroupsController < ApplicationController
 
   def new
       @group = Group.new
+      @locations = Location.order("name").where(:center_id => current_center.id)
+      @teachers = Teacher.order("lname", "fname").where(:center_id => current_center.id)
   end
 
   def edit

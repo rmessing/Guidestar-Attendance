@@ -12,7 +12,7 @@ class Center < ActiveRecord::Base
 
   has_many :teachers
   has_many :locations
-  has_many :parents
+  has_many :parents 
   has_many :children
   has_many :groups
   has_many :handoffs

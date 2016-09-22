@@ -1,5 +1,4 @@
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
+
 	<%= form_for(@location) do |f| %>
 		<%= render 'shared/error_messages', object: @location %>
 		<%= f.label :location_name %>
@@ -7,5 +6,3 @@
 		<%= f.hidden_field :center_id, :value => current_center.id %>
 		<%= f.submit yield(:button_text), class: "btn btn-primary"  %>
 	<% end %>  
- </div>
-</div>

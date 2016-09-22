@@ -1,2 +1,34 @@
-<h1>Children#show</h1>
-<p>Find me in app/views/children/show.html.erb</p>
+<!-- The admin selects the child's parent which enters the parent_id and child_id into the family join table. -->
+
+<% provide(:title, "Child-Adult") %>
+<div class="container">
+<h1>Manage Child-Adult Relationships</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+<!-- If child has no parents in the db yet, "Registered parents for..." is not displayed. -->
+	
+	<% if @child.parents.length != 0 %>
+		<h3> Registered adults for 
+		<%= @child.fname %> 
+		<%= @child.lname %>:</h3>
+	<% end %>
+
+	<% @child.parents.each do |parent| %>
+		<h4><%= parent.fname %> <%= parent.lname %></h4><br>
+	<% end %>
+	<br>
+
+	<h2 class="half_size"> <%= "Add an Adult to" %> <%= @child.fname %>'s Account</h2>
+
+	<%= form_for (@family) do |f| %>
+		<%= f.hidden_field :child_id, :value => @child.id %>
+		<%= f.hidden_field :center_id, :value => current_center.id %>
+		<%= f.collection_select :parent_id, @parents, :id, :parent_full_name, prompt: true, class: 'form_control' %>
+		<%= f.submit "Register Child-Adult", class: "btn btn-primary"  %>
+	<% end %>
+	
+	</div>
+</div>
+</div>

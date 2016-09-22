@@ -3,11 +3,13 @@ class SessionsController < ApplicationController
   def new_parent
       if teacher_logged_in?
          @center = Center.find(current_teacher.center_id)
-      else
+      elsif center_logged_in?
          @center = current_center
+      else
+         flash[:info] = "Teacher or Admin login required."
+         redirect_to root_path
       end
-      @nav = "b4_parent_login"
-
+      @nav = "parent"
   end
 
   def create_parent
@@ -39,7 +41,7 @@ class SessionsController < ApplicationController
       if teacher_logged_in? 
          log_out_teacher 
       end
-      @nav = "home"
+      @nav = "root"
   end
 
   def create_teacher
@@ -62,7 +64,7 @@ class SessionsController < ApplicationController
   end
 
   def new_center
-    @nav = "b4_center_login"
+    # @nav = "b4_center_login"
   end
 
   def create_center
@@ -77,7 +79,6 @@ class SessionsController < ApplicationController
       end 
   end
 
- private
   def destroy_center
     	log_out_center
       flash[:success] = "Center is logged off."

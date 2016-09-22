@@ -1,14 +1,14 @@
 class FamiliesController < ApplicationController
   before_action :logged_in_center
-  # before_action :correct_center
+ 
 
   def index
-    @children = Child.order("lname", "fname").where(center_id => current_center.id)
+    @children = Child.order("lname", "fname").where(:center_id => current_center.id)
   end
 
   def show
-  end
 
+  end
   def new
       @family = Family.new
   end
@@ -22,11 +22,11 @@ class FamiliesController < ApplicationController
   def create
       @family = Family.new(family_params)
       if @family.save
-        flash[:notice] = "New child-escort registration succeeded."
-        redirect_to (:back)
+         flash[:notice] = "New child-adult registration succeeded."
+         redirect_to (:back)
       else
-        flash[:alert] = "New child-registration failed. Please try again."
-        redirect_to (:back)
+         flash[:alert] = "New child-adult registration failed. Please try again."
+         redirect_to (:back)
       end
   end
 
@@ -48,9 +48,4 @@ class FamiliesController < ApplicationController
     end
   end
 
-    # # Confirms the correct center.
-    # def correct_center
-    #   @center = Center.find(params[:id])
-    #   redirect_to(root_url) unless current_center?(@center)
-    # end
 end

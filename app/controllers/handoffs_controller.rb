@@ -8,7 +8,6 @@ class HandoffsController < ApplicationController
   end
 
   def new
-    @nav = "parent"
   end
 
   def edit
@@ -22,17 +21,17 @@ class HandoffsController < ApplicationController
 
   def destroy
   end
-end
+
 
 private
         # Before filters
 
-    Confirms a logged-in parent.
-    def logged_in_parent
-      unless parent_logged_in?
-        flash[:danger] = "Please log in."
-        redirect_to parent_log_in_path
-      end
+  # Confirms a logged-in parent.
+  def logged_in_parent
+    unless parent_logged_in?
+      flash[:danger] = "Please log in."
+      redirect_to parent_log_in_path
     end
+  end
 
 end
