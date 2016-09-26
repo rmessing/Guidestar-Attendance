@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   post "/groups/new" => "center#index"
   post "/locations/new" => "center#index"
 
+  delete "/families/destroy" => "family#show"
+
+
   get "/centers/admin", as: :admin
 
   get "/centers/index", as: :superadmin

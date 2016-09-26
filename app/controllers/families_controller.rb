@@ -13,6 +13,7 @@ class FamiliesController < ApplicationController
 
   def show
       @family = Family.new
+      @families = Family.all
       @child = Child.find(params[:id])
       @center = Center.find(@child.center_id)
       if current_center.admin?
@@ -45,12 +46,9 @@ class FamiliesController < ApplicationController
   end
 
   def destroy
-      @child = Child.find(params[:child][:id])
-      @parent = @child.parents.find(params[:parent][:id])
-
-     if @family
-        @child.parents.delete(parent)
-     end
+      Family.find(params[:id]).destroy
+      flash[:success] = "Adult de-activated."
+      redirect_to (:back)
   end
 
   private
