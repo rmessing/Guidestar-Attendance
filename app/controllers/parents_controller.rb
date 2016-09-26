@@ -3,7 +3,8 @@ class ParentsController < ApplicationController
 
   def index
       if current_center.admin?
-         @parents = Parent.paginate(page: params[:page]).order("center_id","lname", "fname")
+         @center = Center.find(params[:id])
+         @parents = Parent.paginate(page: params[:page]).order("lname", "fname").where(:center_id => @center.id)  
       else
          @parents = Parent.paginate(page: params[:page]).order("lname", "fname").where(:center_id => current_center.id)
       end
@@ -15,6 +16,9 @@ class ParentsController < ApplicationController
 
   def new
       @parent = Parent.new
+      if current_center.admin?
+         @center = Center.find(params[:id])
+      end
   end
 
   def edit
@@ -23,12 +27,12 @@ class ParentsController < ApplicationController
 
   def create
      # raise params.inspect
-   
       @parent = Parent.new(parent_params)
       if @parent.save
         flash[:success] = "Parent #{@parent.fname} #{@parent.lname} is registered"
         redirect_to @parent
       else
+        flash[:danger] = "Name is not unique."
         render "new"
       end
   end

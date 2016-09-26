@@ -9,7 +9,11 @@
       <%= f.text_field :username, class: 'form-control' %>
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
-      <%= f.hidden_field :center_id, :value => current_center.id %>
+      <% if !@center.nil  %>  
+        <%= f.hidden_field :center_id, :value => @center.id %>
+      <% else %>
+        <%= f.hidden_field :center_id, :value => current_center.id %>
+      <% end %>
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
       <%= f.label :password_confirmation, "Retype Password" %>

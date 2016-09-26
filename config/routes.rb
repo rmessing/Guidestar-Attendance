@@ -1,20 +1,20 @@
 Rails.application.routes.draw do
 
-  get 'handoffs/index'
+  post "/children/index" => "center#index"
+  post "/parents/index" => "center#index"
+  post "/teachers/index"  => "center#index"
+  post "/groups/index"  => "center#index"
+  post "/locations/index"  => "center#index"
 
-  get 'handoffs/show'
-
-  get 'handoffs/new'
-
-  get 'handoffs/edit'
-
-  get 'handoffs/update'
-
-  get 'handoffs/create'
-
-  get 'handoffs/destroy'
+  post "/children/new" => "center#index"
+  post "/parents/new" => "center#index"
+  post "/teachers/new" => "center#index"
+  post "/groups/new" => "center#index"
+  post "/locations/new" => "center#index"
 
   get "/centers/admin", as: :admin
+
+  get "/centers/index", as: :superadmin
 
   get 'info_pages/home', as: :home
 
@@ -38,8 +38,11 @@ Rails.application.routes.draw do
 
   delete "/center-log-out" => "sessions#destroy_center", as: :center_log_out
 
+  get "/superadmin" => "sessions#new_center"
+
   root 'sessions#new_teacher'
 
+  resources :handoffs
   resources :centers
   resources :parents
   resources :children

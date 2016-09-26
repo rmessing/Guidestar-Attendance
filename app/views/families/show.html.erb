@@ -1,0 +1,45 @@
+<!-- The admin selects the child's parent which enters the parent_id and child_id into the family join table. -->
+
+<% provide(:title, "Child-Adult") %>
+<div class="container">
+<h1>Manage Child-Adult Relationships</h1>
+
+	<div class="row">
+	  <div class="col-md-6 col-md-offset-3">
+
+	<!-- If child has no parents in the db yet, "Registered parents for..." is not displayed. -->
+		
+		<% if @child.parents.length != 0 %>
+			<h3> Active adults for <%= @child.fname %> <%= @child.lname %>:</h3>
+		<% end %>
+		
+		<% @child.parents.each do |parent| %>
+			<h5> <%= parent.fname %> <%= parent.lname %></h5>
+		<% end %>
+		<hr>
+
+		<h2 class="half_size"> <%= "Activate an adult in" %> <%= @child.fname %>'s account.</h2>
+
+		<%= form_for(@family) do |f| %>
+		<%= render 'shared/error_messages', object: @family %>
+			<%= f.hidden_field :child_id, :value => @child.id %>
+			<% if !current_center.admin? %>
+				<%= f.hidden_field :center_id, :value => current_center.id %>
+			<% else %>
+				<%= f.collection_select :center_id, @centers, :id, :name, prompt: true, class: 'form_control' %>
+			<% end %>
+			<%= f.collection_select :parent_id, @parents, :id, :parent_full_name, prompt: true, class: 'form_control' %>
+			<%= f.submit "Activate Adult", class: "btn btn-primary"  %>
+		<% end %>
+		<hr>
+		<!-- <h2 class="half_size"> --> <%#= "De-activate an adult from" %> <%#= @child.fname %><!-- 's account.</h2> -->
+			<%#= form_tag do %>
+			 	<%#= collection_select(:parent, @parents, :id, :parent_full_name, :prompt => false) %>
+			 	<%#= button_to "submit class", class: "btn btn-primary" %>
+			<%# end %>
+
+		<%#= button_to "De-activate Adult", class: "btn btn-primary" %>
+		
+	   </div>
+	 </div>
+</div>

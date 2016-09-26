@@ -13,15 +13,26 @@ class CentersController < ApplicationController
       @center = Center.new
   end
 
+  def select
+      # raise params.inspect
+      if params[:center][:id] == ""
+         flash[:info] = "First select the center."
+      end
+      redirect_to (:back)
+  end
+
   def admin
-    @nav = "center"
+      @nav = "center"
+  end
+
+  def superadmin
   end
 
   def create
       @center = Center.new(center_params)
       if @center.save
          flash.now[:success] = "The new center #{@center.name} is now registered."
-         redirect_to center
+         redirect_to @center
       else
          render 'new'
       end
@@ -66,7 +77,7 @@ class CentersController < ApplicationController
     # Confirms an admin user.
   def superadmin
     unless current_center.admin?
-      Flash[:danger] = "This page is not available to you."
+      flash[:danger] = "Request to access previous page was declined."
       redirect_to(root_url) 
     end
   end

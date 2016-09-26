@@ -3,14 +3,27 @@ class FamiliesController < ApplicationController
  
 
   def index
-    @children = Child.order("lname", "fname").where(:center_id => current_center.id)
+      if current_center.admin?
+         @center = Center.find(params[:id])
+         @children = Child.paginate(page: params[:page]).order("lname", "fname").where(:center_id => @center.id)  
+      else
+         @children = Child.paginate(page: params[:page]).order("lname", "fname").where(:center_id => current_center.id)
+      end
   end
 
   def show
-
-  end
-  def new
       @family = Family.new
+      @child = Child.find(params[:id])
+      @center = Center.find(@child.center_id)
+      if current_center.admin?
+         @parents = Parent.order("lname", "fname").where(:center_id => @center.id)
+      else
+         @parents = Parent.order("lname", "fname").where(:center_id => current_center.id)
+      end
+  end
+
+  def new
+
   end
 
   def edit
@@ -21,16 +34,23 @@ class FamiliesController < ApplicationController
 
   def create
       @family = Family.new(family_params)
+      parent = Parent.find(@family.parent_id)
       if @family.save
-         flash[:notice] = "New child-adult registration succeeded."
+         flash[:success] = "Adult #{parent.fname} #{parent.lname} is activated."
          redirect_to (:back)
       else
-         flash[:alert] = "New child-adult registration failed. Please try again."
+         flash[:info] = "Adult #{parent.fname} #{parent.lname} is already activated."
          redirect_to (:back)
       end
   end
 
   def destroy
+      @child = Child.find(params[:child][:id])
+      @parent = @child.parents.find(params[:parent][:id])
+
+     if @family
+        @child.parents.delete(parent)
+     end
   end
 
   private

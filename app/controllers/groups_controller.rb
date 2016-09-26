@@ -2,7 +2,12 @@ class GroupsController < ApplicationController
   before_action :logged_in_center, only: [:new, :index, :create, :edit, :update, :destroy]
 
   def index
-      @groups = Group.paginate(page: params[:page]).order("name").where(:center_id => current_center.id)
+      if current_center.admin?
+         @center = Center.find(params[:id])
+         @groups = Group.paginate(page: params[:page]).order("name").where(:center_id => @center.id)  
+      else
+         @groups = Group.paginate(page: params[:page]).order("name").where(:center_id => current_center.id)
+      end
   end
 
   def show
@@ -11,13 +16,26 @@ class GroupsController < ApplicationController
 
   def new
       @group = Group.new
-      @locations = Location.order("name").where(:center_id => current_center.id)
-      @teachers = Teacher.order("lname", "fname").where(:center_id => current_center.id)
+      if current_center.admin?
+         @center = Center.find(params[:id])
+         @locations = Location.order("name").where(:center_id => @center.id)
+         @teachers = Teacher.order("lname", "fname").where(:center_id => @center.id)
+      else
+         @locations = Location.order("name").where(:center_id => current_center.id)
+         @teachers = Teacher.order("lname", "fname").where(:center_id => current_center.id)
+      end
   end
 
   def edit
       @group = Group.find(params[:id])
-      @locations = Location.order("name")
+      if current_center.admin?
+         @center = Center.find(@group.center_id)
+         @locations = Location.order("name").where(:center_id => @center.id)
+         @teachers = Teacher.order("lname", "fname").where(:center_id => @center.id)
+      else
+         @locations = Location.order("name").where(:center_id => current_center.id)
+         @teachers = Teacher.order("lname", "fname").where(:center_id => current_center.id)
+      end
   end
 
   def update
@@ -36,7 +54,8 @@ class GroupsController < ApplicationController
          flash.now[:success] = "Class #{@group.name} is registered."
          redirect_to @group
       else
-         render "new"
+         flash[:danger] = "Class name is required."
+         redirect_to new_group_path
       end
       
   end

@@ -4,9 +4,8 @@
 <ul class="objects">
   <% @children.each do |child| %>
     <li>
-		<a href="<%= child_path(child.id) %>">
+		<a href="<%= family_path(child.id) %>">
 		<h4><%= child.fname %>
-			<%= child.mname %>
 			<%= child.lname %></h4>
 		</a>
     </li>

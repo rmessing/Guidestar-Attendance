@@ -1,15 +1,33 @@
-<% provide(:title, 'All Centers') %>
-<h1>All Centers</h1>
+<% provide(:title, 'Superadmin') %>
 
-<%= will_paginate %>
+<div class="container">
+	<h1 class="page_title"> Super Administration </h1>
+ 	<h2><%= link_to "Register New Center", new_center_path, class: "half_size" %></h2>
 
-<ul class="objects">
-  <% @centers.each do |center| %>
-    <li>
-		<a href="<%= edit_center_path(center.id) %>">
-		<h4><%= center.name %></h4>
-		</a>
-    </li>
-  <% end %>
-</ul>
+	<%= will_paginate %>
 
+	<ul class="objects">
+	  <% @centers.each do |center| %>
+	    <li>
+			<h4><%= center.name %></h4>
+			<% if center.id == current_center.id %>
+				<a href="<%= edit_center_path(center.id) %>">Update Profile</a>
+			<% else %>
+				<a href="<%= edit_center_path(center.id) %>">Update/Delete Center</a><br>
+
+				<%= link_to "Register: Child | ", controller: "children", action: "new", id: center.id %>
+				<%= link_to "Adult | ", controller: "parents", action: "new", id: center.id %>
+				<%= link_to "Teacher | ", controller: "teachers", action: "new", id: center.id %>
+				<%= link_to "Class | ", controller: "groups", action: "new", id: center.id %>
+				<%= link_to "Location", controller: "locations", action: "new", id: center.id %><br>
+
+				<%= link_to "Manage: Child | ", controller: "children", action: "index", id: center.id %>
+				<%= link_to "Adult | ", controller: "parents", action: "index", id: center.id %>
+				<%= link_to "Teacher | ", controller: "teachers", action: "index", id: center.id %>
+				<%= link_to "Class | ", controller: "groups", action: "index", id: center.id %>
+				<%= link_to "Location", controller: "locations", action: "index", id: center.id %>
+			<% end %>
+	    </li>
+	  <% end %>
+	</ul>
+</div>

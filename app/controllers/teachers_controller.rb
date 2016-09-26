@@ -3,7 +3,8 @@ class TeachersController < ApplicationController
 
   def index
       if current_center.admin?
-         @teachers = Teacher.paginate(page: params[:page]).order("center_id","lname", "fname")
+         @center = Center.find(params[:id])
+         @teachers = Teacher.paginate(page: params[:page]).order("lname", "fname").where(:center_id => @center.id)  
       else
          @teachers = Teacher.paginate(page: params[:page]).order("lname", "fname").where(:center_id => current_center.id)
       end
@@ -15,6 +16,9 @@ class TeachersController < ApplicationController
 
   def new
       @teacher = Teacher.new
+      if current_center.admin?
+         @center = Center.find(params[:id])
+      end
   end
 
   def edit
@@ -27,7 +31,7 @@ class TeachersController < ApplicationController
          flash[:success] = "Teacher #{@teacher.fname} #{@teacher.lname} is registered."
          redirect_to @teacher
       else
-        render "new"
+        redirect_to new_teacher_path
       end
   end
 

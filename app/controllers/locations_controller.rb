@@ -2,7 +2,12 @@ class LocationsController < ApplicationController
   before_action :logged_in_center, only: [:new, :index, :create, :edit, :update, :destroy]
 
   def index
-      @locations = Location.paginate(page: params[:page]).order("name").where(:center_id => current_center.id)
+      if current_center.admin?
+         @center = Center.find(params[:id])
+         @locations = Location.paginate(page: params[:page]).order("name").where(:center_id => @center.id)  
+      else
+         @locations = Location.paginate(page: params[:page]).order("name").where(:center_id => current_center.id)
+      end
   end
 
   def show
@@ -11,6 +16,9 @@ class LocationsController < ApplicationController
 
   def new
       @location = Location.new
+      if current_center.admin?
+         @center = Center.find(params[:id])
+      end
   end
 
   def edit
@@ -33,7 +41,7 @@ class LocationsController < ApplicationController
          flash[:success] = "Location #{@location.name} is registered."
          redirect_to @location
       else
-         render 'new'
+         redirect_to new_location_path
       end
   end
 

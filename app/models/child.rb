@@ -1,6 +1,6 @@
 class Child < ActiveRecord::Base
-	validates_presence_of :fname, :lname, on: :create, presence: true, length: { maximum: 30 }
-
+	validates :fname, :lname, presence: true, length: { maximum: 30 }
+	
 	has_many :handoffs
 	has_many :families
 	has_many :parents, :through => :families

@@ -64,7 +64,7 @@ class SessionsController < ApplicationController
   end
 
   def new_center
-    # @nav = "b4_center_login"
+    
   end
 
   def create_center
@@ -72,10 +72,14 @@ class SessionsController < ApplicationController
       if center && center.authenticate(params[:session][:password])
          flash[:success] = "Welcome #{center.name}."
          session[:center_id] = center.id
-         redirect_to admin_path
-      else
+      elsif 
          flash[:danger] = "Invalid username/password combination."
          redirect_to center_log_in_path
+      end
+      if current_center.admin?
+         redirect_to superadmin_path
+      else
+         redirect_to admin_path
       end 
   end
 

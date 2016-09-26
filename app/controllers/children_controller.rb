@@ -2,25 +2,36 @@ class ChildrenController < ApplicationController
   before_action :logged_in_center, only: [:new, :index, :create, :edit, :update, :destroy]
 
   def index
+    # raise params.inspect
       if current_center.admin?
-         @children = Child.paginate(page: params[:page]).order("center_id","lname", "fname")
+         @center = Center.find(params[:id])
+         @children = Child.paginate(page: params[:page]).order("lname", "fname").where(:center_id => @center.id)  
       else
          @children = Child.paginate(page: params[:page]).order("lname", "fname").where(:center_id => current_center.id)
       end
   end
 
   def show
-      @family = Family.new
       @child = Child.find(params[:id])
-      @parents = Parent.order("lname", "fname").where(:center_id => current_center.id)
   end
 
   def new
       @child = Child.new
+      @groups = Group.order("name")
+      if current_center.admin?
+         @center = Center.find(params[:id])
+      end
   end
 
   def edit
       @child = Child.find(params[:id])
+      @center = Center.find(@child.center_id)
+      if current_center.admin?
+         @center = Center.find(params[:id])
+         @groups = Group.order("name").where(:center_id => @center.id)
+      else
+         @groups = Group.order("name").where(:center_id => current_center.id)
+      end
   end
 
   def update
@@ -39,7 +50,8 @@ class ChildrenController < ApplicationController
          flash.now[:success] = "Child #{@child.fname} #{@child.mname} #{@child.lname} is registered."
          redirect_to @child
       else 
-         render "new"
+         flash[:danger] = "First and Last are not unique."
+         redirect_to new_child_path
       end
       
   end

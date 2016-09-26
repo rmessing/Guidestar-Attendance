@@ -3,7 +3,11 @@
 		<%= render 'shared/error_messages', object: @group %>
 		<%= f.label :Class_Name %>
 		<%= f.text_field :name, class: 'form-control' %>
-		<%= f.hidden_field :center_id, :value => current_center.id %>
+		<% if @center != "" %>	
+			<%= f.hidden_field :center_id, :value => @center.id %>
+		<% else %>
+			<%= f.hidden_field :center_id, :value => current_center.id %>
+		<% end %>
 		<%= f.label :Location %>
 		<%= f.collection_select :location_id, @locations, :id, :name, prompt: true %>
 		<%= f.label :Teacher %>

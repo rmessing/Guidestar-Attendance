@@ -5,13 +5,15 @@
 
 <ul class="objects">
   <% @children.each do |child| %>
-    <li>
-		<a href="<%= edit_child_path(child.id) %>">
-		<h4><%= child.fname %>
-			<%= child.mname %>
-			<%= child.lname %></h4>
-		</a>
-    </li>
+	    <li>
+			<a href="<%= edit_child_path(child.id) %>">
+			<h4><%= child.fname %>
+				<%= child.mname %>
+				<%= child.lname %></h4>
+			</a>
+			<%= link_to "Update/Delete", controller: "children", action: "edit", id: child.id %><br>
+			<%= link_to "Activate Adult", controller: "families", action: "show", id: child.id %><br>
+	    </li>
   <% end %>
 </ul>
 

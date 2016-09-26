@@ -8,9 +8,13 @@
 		<%= f.text_field :mname, class: 'form-control' %>
 		<%= f.label :child_last_name %>
 		<%= f.text_field :lname, class: 'form-control' %>
-		<%= f.hidden_field :center_id, :value => current_center.id %>
-		<%= f.label :Class_Select %>
-		<%= f.collection_select :group_id, Group.all, :id, :name, include_blank: true %>
+		<% if @center != "" %>
+			<%= f.hidden_field :center_id, :value => @center.id %>
+		<% else %>		
+			<%= f.hidden_field :center_id, :value => current_center.id %>
+		<% end %>
+		<%= f.label :Select_class %>
+		<%= f.collection_select :group_id, @groups, :id, :name, include_blank: true %>
 		<%= f.label :Birthday %>
 		<%= date_field(:child, :birth_date) %>
 		<%= f.submit yield(:button_text), class: "btn btn-primary" %>
