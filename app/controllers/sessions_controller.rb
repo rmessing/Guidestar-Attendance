@@ -80,7 +80,7 @@ class SessionsController < ApplicationController
       if center && center.authenticate(params[:session][:password])
          flash[:success] = "Welcome #{center.name}."
          session[:center_id] = center.id
-      elsif 
+      else 
          flash[:danger] = "Invalid username/password combination."
          redirect_to center_log_in_path
       end
