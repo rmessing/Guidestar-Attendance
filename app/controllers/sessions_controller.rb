@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       if parent && parent.authenticate(params[:session][:password])
          flash[:success] = "Welcome #{parent.fname} #{parent.lname}."
          session[:parent_id] = parent.id
-  	     redirect_to handoffs_new_path
+  	     redirect_to new_handoff_path
       else
   		   flash[:danger] = 'Invalid username/password combination.'
   		   redirect_to parent_log_in_path
@@ -84,7 +84,7 @@ class SessionsController < ApplicationController
          flash[:danger] = "Invalid username/password combination."
          redirect_to center_log_in_path
       end
-      if current_center.admin?
+      if center.admin?
          redirect_to superadmin_path
       else
          redirect_to admin_path
