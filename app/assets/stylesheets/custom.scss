@@ -147,7 +147,9 @@ h1 {
 
 .objects {
   list-style: none;
-  margin: 0;
+  /*margin: 0;*/
+  margin-left: 7vw;
+  margin-right: -7vw;
   li {
     overflow: auto;
     padding: 10px 0;
@@ -175,3 +177,7 @@ h1 {
 .half_size {
   font-size: 2em;
 }
+/*#center_index {
+  margin-left: 6vw;
+  margin-right: -6vw;
+}*/

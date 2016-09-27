@@ -1,15 +1,22 @@
-Group<% provide(:title, 'All Groups') %>
-<h1>All Groups</h1>
+<% provide(:title, 'All Groups') %>
 
-<%= will_paginate %>
-
-<ul class="objects">
-  <% @groups.each do |group| %>
-    <li>
-		<a href="<%= edit_group_path(group.id) %>">
-		<h4><%= group.name %></h4>
-		</a>
-    </li>
-  <% end %>
-</ul>
-
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<% if current_center.admin? %>
+			   <h1><%= @center.name %></h1>
+			<% end %>
+			<h1 class="half_size">Select Class</h1>
+			<ul class="objects">
+			<%= will_paginate %>
+			  <% @groups.each do |group| %>
+			    <li>
+					<a href="<%= edit_group_path(group.id) %>">
+					<h4><%= group.name %></h4>
+					</a>
+			    </li>
+			  <% end %>
+			</ul>
+		</div>
+	</div>
+</div>

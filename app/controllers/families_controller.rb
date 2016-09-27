@@ -13,7 +13,7 @@ class FamiliesController < ApplicationController
 
   def show
       @family = Family.new
-      @families = Family.all
+      @families = Family.order("parent_id")
       @child = Child.find(params[:id])
       @center = Center.find(@child.center_id)
       if current_center.admin?

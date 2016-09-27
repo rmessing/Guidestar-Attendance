@@ -1,16 +1,25 @@
 <% provide(:title, 'All Teachers') %>
-<h1>All Teachers</h1>
 
-<%= will_paginate %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<% if current_center.admin? %>
+			   <h1><%= @center.name %></h1>
+			<% end %>
+			<h1 class="half_size">Select Teacher</h1>
+			<ul class="objects">
+			<%= will_paginate %>
+			  <% @teachers.each do |teacher| %>
+			    <li>
+					<a href="<%= edit_teacher_path(teacher.id) %>">
+					<h4><%= teacher.fname %>
+						<%= teacher.lname %></h4>
+					</a>
+			    </li>
+			  <% end %>
+			</ul>
+		</div>
+	</div>
+</div>
 
-<ul class="objects">
-  <% @teachers.each do |teacher| %>
-    <li>
-		<a href="<%= edit_teacher_path(teacher.id) %>">
-		<h4><%= teacher.fname %>
-			<%= teacher.lname %></h4>
-		</a>
-    </li>
-  <% end %>
-</ul>
 
