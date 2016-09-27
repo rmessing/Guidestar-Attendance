@@ -13,14 +13,6 @@ class CentersController < ApplicationController
       @center = Center.new
   end
 
-  def select
-      # raise params.inspect
-      if params[:center][:id] == ""
-         flash[:info] = "First select the center."
-      end
-      redirect_to (:back)
-  end
-
   def admin
       @nav = "center"
   end
@@ -60,7 +52,7 @@ class CentersController < ApplicationController
 
   private
   def center_params
-    params.require(:center).permit(:name, :username, :email, :password,
+      params.require(:center).permit(:name, :username, :email, :password,
                                  :password_confirmation)
   end
 
@@ -76,10 +68,12 @@ class CentersController < ApplicationController
 
     # Confirms an admin user.
   def superadmin
-    unless current_center.admin?
-      flash[:danger] = "Request to access previous page was declined."
-      redirect_to(root_url) 
-    end
+      if !center_logged_in?
+          flash[:danger] = "Access to previous page was declined."
+          redirect_to(root_url) 
+      elsif !current_center.admin?
+          redirect_to(root_url)
+      end
   end
 
 end
