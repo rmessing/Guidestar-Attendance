@@ -21,6 +21,7 @@ class GroupsController < ApplicationController
          @locations = Location.order("name").where(:center_id => @center.id)
          @teachers = Teacher.order("lname", "fname").where(:center_id => @center.id)
       else
+         @center = current_center
          @locations = Location.order("name").where(:center_id => current_center.id)
          @teachers = Teacher.order("lname", "fname").where(:center_id => current_center.id)
       end

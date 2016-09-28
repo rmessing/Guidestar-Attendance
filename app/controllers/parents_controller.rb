@@ -18,6 +18,8 @@ class ParentsController < ApplicationController
       @parent = Parent.new
       if current_center.admin?
          @center = Center.find(params[:id])
+      else
+         @center = current_center
       end
   end
 

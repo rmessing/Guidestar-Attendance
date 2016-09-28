@@ -18,6 +18,8 @@ class LocationsController < ApplicationController
       @location = Location.new
       if current_center.admin?
          @center = Center.find(params[:id])
+      else
+         @center = current_center
       end
   end
 

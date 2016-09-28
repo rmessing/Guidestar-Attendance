@@ -2,8 +2,8 @@ class FamiliesController < ApplicationController
   before_action :logged_in_center
  
   def index
-      @center = Center.find(params[:id])
       if current_center.admin?
+         @center = Center.find(params[:id])
          @children = Child.paginate(page: params[:page]).order("lname", "fname").where(:center_id => @center.id)  
       else
          @children = Child.paginate(page: params[:page]).order("lname", "fname").where(:center_id => current_center.id)

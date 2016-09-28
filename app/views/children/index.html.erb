@@ -13,7 +13,6 @@
 			<%= will_paginate %>
 			  <% @children.each do |child| %>
 				    <li>
-						<a href="<%= edit_child_path(child.id) %>">
 						<h4><%= child.fname %>
 							<%= child.mname %>
 							<%= child.lname %></h4>
