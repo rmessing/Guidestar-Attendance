@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post "/locations/new" => "center#index"
 
   delete "/families/destroy" => "family#show"
+  delete "/group_teachers/destroy" => "group_teacher#show"
 
 
   get "/centers/admin", as: :admin

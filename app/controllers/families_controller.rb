@@ -1,10 +1,9 @@
 class FamiliesController < ApplicationController
   before_action :logged_in_center
  
-
   def index
+      @center = Center.find(params[:id])
       if current_center.admin?
-         @center = Center.find(params[:id])
          @children = Child.paginate(page: params[:page]).order("lname", "fname").where(:center_id => @center.id)  
       else
          @children = Child.paginate(page: params[:page]).order("lname", "fname").where(:center_id => current_center.id)
@@ -23,7 +22,6 @@ class FamiliesController < ApplicationController
   end
 
   def new
-
   end
 
   def edit
@@ -33,20 +31,22 @@ class FamiliesController < ApplicationController
   end
 
   def create
-      @family = Family.new(family_params)
-      parent = Parent.find(@family.parent_id)
-      if @family.save
-         flash[:success] = "Adult #{parent.fname} #{parent.lname} is activated."
-         redirect_to (:back)
-      else
-         flash[:info] = "Adult #{parent.fname} #{parent.lname} is already activated."
-         redirect_to (:back)
+      family = Family.new(family_params)
+      if !family.save
+         flash[:info] = "Adult is already listed in child account."
       end
+      redirect_to (:back)
   end
 
   def destroy
-      Family.find(params[:id]).destroy
-      flash[:success] = "Adult de-activated."
+      family = Family.find(params[:id])
+      parent = Parent.find(family.parent_id)
+      child = Child.find(familychild_it)
+      if family.destroy
+          flash[:success] = "#{parent.fname} #{parent.lname} was delisted from #{child.fname}'s account."
+      else
+          flash[:danger] = "The request to remove #{parent.fname} #{parent.lname} from #{child.fname}'s account failed.  Notify technical support."
+      end 
       redirect_to (:back)
   end
 

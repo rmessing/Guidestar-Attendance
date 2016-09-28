@@ -18,11 +18,14 @@ class TeachersController < ApplicationController
       @teacher = Teacher.new
       if current_center.admin?
          @center = Center.find(params[:id])
+      else
+          @center = current_center
       end
   end
 
   def edit
       @teacher = Teacher.find(params[:id])
+      @center = Center.find(@teacher.center_id)
   end
 
   def create 

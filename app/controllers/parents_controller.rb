@@ -23,6 +23,7 @@ class ParentsController < ApplicationController
 
   def edit
       @parent = Parent.find(params[:id])
+      @center = Center.find(@parent.center_id)
   end
 
   def create

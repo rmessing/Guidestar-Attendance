@@ -28,8 +28,8 @@ class GroupsController < ApplicationController
 
   def edit
       @group = Group.find(params[:id])
+      @center = Center.find(@group.center_id)
       if current_center.admin?
-         @center = Center.find(@group.center_id)
          @locations = Location.order("name").where(:center_id => @center.id)
          @teachers = Teacher.order("lname", "fname").where(:center_id => @center.id)
       else
@@ -41,7 +41,7 @@ class GroupsController < ApplicationController
   def update
       @group = Group.find(params[:id])
       if @group.update_attributes(group_params)
-         flash[:success] = "Class #{@group.name} is updated."
+         flash[:success] = "#{@group.name} is updated."
          redirect_to @group
       else
          render 'edit'
@@ -51,7 +51,7 @@ class GroupsController < ApplicationController
   def create
       @group = Group.new(group_params)
       if @group.save
-         flash.now[:success] = "Class #{@group.name} is registered."
+         flash.now[:success] = "#{@group.name} is registered."
          redirect_to @group
       else
          flash[:danger] = "Class name is required."

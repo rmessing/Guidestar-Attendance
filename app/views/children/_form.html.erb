@@ -2,26 +2,20 @@
 <% if current_center.admin? %>
   <h1 class="half_size"><%= @center.name %></h1>
 <% end %> 
-<div class="row">
-	 <div class="col-md-6 col-md-offset-3">
-	    <%= form_for(@child) do |f| %>
-	      <%= render 'shared/error_messages', object: @child %>
-			<%= f.label :child_first_name %>
-			<%= f.text_field :fname, class: 'form-control' %>
-			<%= f.label :child_middle_name %>
-			<%= f.text_field :mname, class: 'form-control' %>
-			<%= f.label :child_last_name %>
-			<%= f.text_field :lname, class: 'form-control' %>
-			<% if @center != "" %>
-				<%= f.hidden_field :center_id, :value => @center.id %>
-			<% else %>		
-				<%= f.hidden_field :center_id, :value => current_center.id %>
-			<% end %>
-			<%= f.label :Select_class %>
-			<%= f.collection_select :group_id, @groups, :id, :name, include_blank: true %>
-			<%= f.label :Birthday %>
-			<%= date_field(:child, :birth_date) %>
-			<%= f.submit yield(:button_text), class: "btn btn-primary" %>
-		<% end %>
-	 <div>
-</div>
+
+<%= form_for(@child) do |f| %>
+  <%= render 'shared/error_messages', object: @child %>
+	<%= f.label :child_first_name %>
+	<%= f.text_field :fname, class: 'form-control' %>
+	<%= f.label :child_middle_name %>
+	<%= f.text_field :mname, class: 'form-control' %>
+	<%= f.label :child_last_name %>
+	<%= f.text_field :lname, class: 'form-control' %>
+	<%= f.hidden_field :center_id, :value => @center.id %>
+	<%= f.label :Select_class %>
+	<%= f.collection_select :group_id, @groups, :id, :name, include_blank: true %>
+	<%= f.label :Birthday %>
+	<%= date_field(:child, :birth_date) %>
+	<%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>
+

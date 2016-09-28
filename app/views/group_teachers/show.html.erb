@@ -1,2 +1,42 @@
-<h1>GroupTeachers#show</h1>
-<p>Find me in app/views/group_teachers/show.html.erb</p>
+<!-- The admin selects the child's parent which enters the parent_id and child_id into the family join table. -->
+
+<% provide(:title, "Manage Groups") %>
+<div class="container">
+<h1>Manage Class-Teacher Relationships</h1>
+	<% if current_center.admin? %>
+		  <h1 class="half_size"><%= @center.name %></h1>
+	<% end %>
+
+	<div class="row">
+	  <div class="col-md-6 col-md-offset-3">
+
+	<!-- If child has no parents in the db yet, "Registered parents for..." is not displayed. -->
+		
+		<% if @group.teachers.length != 0 %>
+			<h3> Click to remove teacher from <%= @group.name %></h3>
+		<% end %>
+		
+		<% @group.teachers.each do |teacher| %>
+			<% @group.group_teachers.each do |group_teacher| %>
+				<% if teacher.id == group_teacher.teacher_id %>	
+				<%= link_to("#{teacher.fname} #{teacher.lname}", group_teacher_path(group_teacher.id), method: :delete) %><br> 
+				<% end %>
+			<% end %>
+		<% end %>
+
+		<hr>
+
+		<h3><%= "Assign teacher to" %> <%= @group.name %></h3>
+
+		<%= form_for(@groupteacher) do |f| %>
+		<%= render 'shared/error_messages', object: @groupteacher %>
+			<%= f.hidden_field :group_id, :value => @group.id %>
+			<%= f.hidden_field :center_id, :value => @center.id %>
+			<%= f.collection_select :teacher_id, @teachers, :id, :teacher_full_name, prompt: true, class: 'form_control' %>
+			<%= f.submit "Assign Teacher", class: "btn btn-primary"  %>
+		<% end %>
+		<hr>
+		
+	   </div>
+	 </div>
+</div>

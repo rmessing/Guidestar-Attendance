@@ -1,15 +1,27 @@
 class GroupTeachersController < ApplicationController
   before_action :logged_in_center
-  # before_action :correct_center
 
   def index
+      @center = Center.find(params[:id])
+      if current_center.admin?
+         @groups = Group.paginate(page: params[:page]).order("name").where(:center_id => @center.id)
+      else
+         @groups = Group.paginate(page: params[:page]).order("name").where(:center_id => current_center.id)
+      end
   end
 
   def show
+      @groupteacher = GroupTeacher.new
+      @group = Group.find(params[:id])
+      @center = Center.find(@group.center_id)
+      if current_center.admin?
+         @teachers = Teacher.order("lname", "fname").where(:center_id => @center.id)
+      else
+         @teachers = Teacher.order("lname", "fname").where(:center_id => current_center.id)
+      end
   end
 
   def new
-      @group_teachers = Group_teacher.order("name")
   end
 
   def edit
@@ -18,18 +30,24 @@ class GroupTeachersController < ApplicationController
   def update
   end
 
-  def create
-      @group_teacher = Group_teacher.new(gt_params)
-      if @group_teacher.save
-         flash[:notice] = "#{teacher_full_name} is assigned to class: #{@group.name}"
-         redirect_to group_teachers_path
-      else
-         flash[:alert] = "The teacher assignment failed. Please try again."
-         redirect_to (:back)
+  def create 
+      groupteacher = GroupTeacher.new(gt_params)
+      if !groupteacher.save
+         flash[:danger] = "Teacher is already assigned to this class."
       end
+      redirect_to (:back)
   end
 
   def destroy
+      groupteacher = GroupTeacher.find(params[:id])
+      teacher = Teacher.find(groupteacher.teacher_id)
+      group = Group.find(groupteacher.group_id)
+      if group.destroy
+         flash[:success] = "#{teacher.fname} #{teacher.lname} was delisted from #{group.name}."
+      else
+          flash[:danger] = "The request to reassign teacher #{teacher.fname} #{teacher.lname} failed.  Notify technical support." 
+      end
+          redirect_to (:back)
   end
 
   private

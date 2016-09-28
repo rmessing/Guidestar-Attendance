@@ -1,20 +1,24 @@
-<% provide(:title, 'All Groups') %>
+<% provide(:title, 'All Classes') %>
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-6 col-md-offset-3">
+		<div class="col-md-6 col-md-offset-3"> 
 			<% if current_center.admin? %>
-			   <h1><%= @center.name %></h1>
+				  <h1><%= @center.name %></h1>
+				  <h1 class="half_size"> Classes </h1>
+				  <% else %>
+				  <h1> All Classes </h1>
 			<% end %>
-			<h1 class="half_size">Select Class</h1>
 			<ul class="objects">
 			<%= will_paginate %>
 			  <% @groups.each do |group| %>
-			    <li>
-					<a href="<%= edit_group_path(group.id) %>">
-					<h4><%= group.name %></h4>
-					</a>
-			    </li>
+				    <li>
+						<a href="<%= edit_group_path(group.id) %>">
+						<h4><%= group.name %></h4>
+						</a>
+						<%= link_to "Update/Delete", controller: "groups", action: "edit", id: group.id %><br>
+						<%= link_to "Manage Teacher-Class", controller: "group_teachers", action: "show", id: group.id %><br>
+				    </li>
 			  <% end %>
 			</ul>
 		</div>

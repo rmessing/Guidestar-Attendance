@@ -82,9 +82,10 @@ class SessionsController < ApplicationController
          session[:center_id] = center.id
       else 
          flash[:danger] = "Invalid username/password combination."
-         redirect_to center_log_in_path
+         render 'new_center'
+         return
       end
-      if center.admin?
+      if center.admin? 
          redirect_to superadmin_path
       else
          redirect_to admin_path

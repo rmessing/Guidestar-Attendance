@@ -17,9 +17,12 @@ class ChildrenController < ApplicationController
 
   def new
       @child = Child.new
-      @groups = Group.order("name")
       if current_center.admin?
          @center = Center.find(params[:id])
+         @groups = Group.order("name").where(:center_id => @center.id)
+      else
+         @center = current_center
+         @groups = Group.order("name").where(:center_id => current_center.id)
       end
   end
 
@@ -27,7 +30,6 @@ class ChildrenController < ApplicationController
       @child = Child.find(params[:id])
       @center = Center.find(@child.center_id)
       if current_center.admin?
-         @center = Center.find(params[:id])
          @groups = Group.order("name").where(:center_id => @center.id)
       else
          @groups = Group.order("name").where(:center_id => current_center.id)
