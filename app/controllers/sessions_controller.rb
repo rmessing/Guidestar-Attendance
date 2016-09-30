@@ -95,6 +95,6 @@ class SessionsController < ApplicationController
   def destroy_center
     	log_out_center
       flash[:success] = "Center is logged off."
-      redirect_to "/" 
+      redirect_to center_log_in_path
   end
 end

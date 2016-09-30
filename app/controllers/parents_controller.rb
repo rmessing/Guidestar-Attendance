@@ -23,20 +23,26 @@ class ParentsController < ApplicationController
       end
   end
 
-  def edit
-      @parent = Parent.find(params[:id])
-      @center = Center.find(@parent.center_id)
-  end
-
   def create
-     # raise params.inspect
       @parent = Parent.new(parent_params)
       if @parent.save
-        flash[:success] = "Parent #{@parent.fname} #{@parent.lname} is registered"
-        redirect_to @parent
+         flash.now[:success] = "#{@parent.fname} #{@parent.lname} is registered."
+         redirect_to @parent
+         return
+      elsif current_center.admin?
+         @center = Center.find(@parent.center_id)
       else
-        flash[:danger] = "Name is not unique."
-        render "new"
+         @center = current_center 
+      end
+      render :new
+  end
+
+  def edit
+      @parent = Parent.find(params[:id])
+      if current_center.admin?
+          @center = Center.find(@parent.center_id)
+      else 
+          @center = current_center
       end
   end
 
@@ -45,30 +51,38 @@ class ParentsController < ApplicationController
       if @parent.update_attributes(parent_params)
          flash[:success] = "Parent #{@parent.fname} #{@parent.lname} is updated."
          redirect_to @parent
+         return
+      elsif current_center.admin?
+         @center = Center.find(@parent.center_id)
       else
-         render 'edit'
+         @center = current_center
       end
+      render :edit
   end
 
   def destroy
-      Parent.find(params[:id]).destroy
-      flash[:success] = "Parent deleted."
-      redirect_to (:back)
+      parent = Parent.find(params[:id])
+      center = parent.center_id
+      if parent.destroy
+         flash[:success] = "Parent deleted."
+      else
+         flash[:danger] = "Parent deletion failed."
+      end
+      redirect_to parents_path(:id => center)
   end
 
   private
   def parent_params
-    params.require(:parent).permit(:fname, :lname, :username, :email, :center_id, :password, :password_confirmation)
+      params.require(:parent).permit(:fname, :lname, :username, :email, :center_id, :password, :password_confirmation)
   end
 
-      # Before filters
+  # Before filters
 
-  # Confirms a logged-in center.
+# Confirms a logged-in center.
   def logged_in_center
-    unless center_logged_in?
-      flash[:danger] = "Please log in."
-      redirect_to center_log_in_path
-    end
+      unless center_logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to center_log_in_path
+      end
   end
-
 end

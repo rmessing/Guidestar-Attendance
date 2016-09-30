@@ -17,8 +17,9 @@
 							<%= child.mname %>
 							<%= child.lname %></h4>
 						</a>
-						<%= link_to "Update/Delete", controller: "children", action: "edit", id: child.id %><br>
-						<%= link_to "Activate/De-activate Adult", controller: "families", action: "show", id: child.id %><br>
+						<%= link_to "Update", controller: "children", action: "edit", id: child.id %> |
+						<%= link_to "Delete", child_path(child.id), method: :delete, data: {confirm: "Are you sure?"} %> |
+						<%= link_to "Add/Remove Adult", controller: "families", action: "show", id: child.id %><br>
 				    </li>
 			  <% end %>
 			</ul>

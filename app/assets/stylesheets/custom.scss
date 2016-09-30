@@ -147,17 +147,29 @@ h1 {
 
 .objects {
   list-style: none;
-  /*margin: 0;*/
-  margin-left: 7vw;
-  margin-right: -7vw;
+  margin: 0;
+
   li {
     overflow: auto;
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
+
   }
 }
+.center_name {
+  text-align: left;
+  width: 15vw;
+  display: inline-block;
+}
+.center_links {
+  text-align: right;
+  width: 85vw;
+  display: inline;
+}
+.space {
+  /*width: 1vw;*/
+}
 .center_admin {
-  /*width: 15vw;*/
   position: relative;
   display: inline-block;
 }
@@ -165,19 +177,9 @@ h1 {
   width: 84vw;
   text-align: center;
 }
-/*#CA1 {
-  margin-left: 5vw;
-}
-#CA3 {
-  margin-right: 5vw;
-}*/
 .page_title {
   font-size: 4em;
 }
 .half_size {
   font-size: 2em;
 }
-/*#center_index {
-  margin-left: 6vw;
-  margin-right: -6vw;
-}*/

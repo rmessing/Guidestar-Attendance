@@ -1,18 +1,24 @@
-  
-  <%= form_for(@center) do |f| %>
-    <%= render 'shared/error_messages', object: @center %>
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control' %>
-    <%= f.label :username %>
-    <%= f.text_field :username, class: 'form-control' %>
-    <%= f.label :email %>
-    <%= f.email_field :email, class: 'form-control' %>
-    <%= f.label :password %>
-    <%= f.password_field :password, class: 'form-control' %>
-    <%= f.label :password_confirmation, "Retype Password" %>
-    <%= f.password_field :password_confirmation, class: 'form-control' %>
-    <%= f.label :superadmin %>
-    <%= f.select :admin, ['false', 'true'], class: 'form-control' %>
-    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
-  <% end %>
- 
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <%= form_for(@center) do |f| %>
+        <%= render 'shared/error_messages', object: @center %>
+        <%= f.label :center_name %>
+        <%= f.text_field :name, class: 'form-control' %>
+        <%= f.label :director_first_name %>
+        <%= f.text_field :dirfname, class: 'form-control' %>
+        <%= f.label :director_last_name %>
+        <%= f.text_field :dirlname, class: 'form-control' %>
+        <%= f.label :username %>
+        <%= f.text_field :username, class: 'form-control' %>
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control' %>
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+        <%= f.label :password_confirmation, "Retype Password" %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+        <%= f.label :superadmin %>
+        <%= f.select :admin, ['false', 'true'], class: 'form-control' %>
+        <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+      <% end %>
+    </div>
+</div>

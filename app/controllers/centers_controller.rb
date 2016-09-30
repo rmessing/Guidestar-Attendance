@@ -23,7 +23,7 @@ class CentersController < ApplicationController
   def create
       @center = Center.new(center_params)
       if @center.save
-         flash.now[:success] = "The new center #{@center.name} is now registered."
+         flash.now[:success] = "#{@center.name} is registered."
          redirect_to @center
       else
          render 'new'
@@ -35,19 +35,22 @@ class CentersController < ApplicationController
   end
 
   def update
-    @center = Center.find(params[:id])
-    if @center.update_attributes(center_params)
-       flash[:success] = "Center #{@center.name} has been updated."
-       redirect_to @center
-    else
-       render 'edit'
-    end
+      @center = Center.find(params[:id])
+      if @center.update_attributes(center_params)
+         flash[:success] = "Center #{@center.name} has been updated."
+         redirect_to @center
+      else
+         render 'edit'
+      end
   end
 
   def destroy
-      Center.find(params[:id]).destroy
-      flash[:success] = "Center deleted."
-      redirect_to (:back)
+      if Center.find(params[:id]).destroy
+         flash[:success] = "Client deleted successfully."
+      else
+         flash[:danger] = "Client deletion failed." 
+      end
+      redirect_to superadmin_path
   end
 
   private
@@ -56,24 +59,16 @@ class CentersController < ApplicationController
                                  :password_confirmation)
   end
 
-        # Before filters
+  # Before filters
 
-    # Confirms a logged-in center.
-    def logged_in_center
-      unless center_logged_in?
-        flash[:danger] = "Please log in."
-        redirect_to center_log_in_path
-      end
-    end
-
-    # Confirms an admin user.
+  # Confirms only superadmin has access to centers.
   def superadmin
       if !center_logged_in?
           flash[:danger] = "Access to previous page was declined."
-          redirect_to(root_url) 
+          redirect_to '/' 
       elsif !current_center.admin?
-          redirect_to(root_url)
+          flash[:danger] = "Access to previous page was declined."
+          redirect_to admin_path
       end
   end
-
 end

@@ -11,9 +11,9 @@
 			<%= will_paginate %>
 			  <% @locations.each do |location| %>
 			    <li>
-					<a href="<%= edit_location_path(location.id) %>">
 					<h4><%= location.name %></h4>
-					</a>
+						<%= link_to "Update", controller: "locations", action: "edit", id: location.id %> |
+						<%= link_to "Delete", location_path(location.id), method: :delete, data: {confirm: "Are you sure?"} %><br>
 			    </li>
 			  <% end %>
 			</ul>

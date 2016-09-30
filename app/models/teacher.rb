@@ -2,7 +2,7 @@ class Teacher < ActiveRecord::Base
   attr_accessor :reset_token
   before_save :downcase_email
   validates :lname, :fname, presence: true, length: { maximum: 30 }
-  validates :lname, :uniqueness => { :scope => :fname, case_sensitive: false }
+  validates :fname, :uniqueness => { :scope => :lname, case_sensitive: false }
   validates :username, presence: true, uniqueness: true, length: { minimum: 6 }
   VALID_EMAIL_REGEX =  /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },

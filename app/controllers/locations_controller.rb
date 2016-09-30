@@ -23,9 +23,27 @@ class LocationsController < ApplicationController
       end
   end
 
+  def create
+      @location = Location.new(location_params)
+      if @location.save
+         flash.now[:success] = "#{@location.name} is registered."
+         redirect_to @location
+         return
+      elsif current_center.admin?
+         @center = Center.find(@location.center_id)
+      else
+         @center = current_center 
+      end
+      render :new
+  end
+
   def edit
       @location = Location.find(params[:id])
-      @center = Center.find(@location.center_id)
+      if current_center.admin?
+         @center = Center.find(@location.center_id)
+      else 
+         @center = current_center
+      end
   end
 
   def update
@@ -33,40 +51,37 @@ class LocationsController < ApplicationController
       if @location.update_attributes(location_params)
          flash[:success] = "Location #{@location.name} is updated."
          redirect_to @location
+      elsif current_center.admin?
+         @center = Center.find(@location.center_id)
       else
-         render 'edit'
+         @center = current_center
       end
-  end
-
-  def create
-      @location = Location.new(location_params)
-      if @location.save
-         flash[:success] = "Location #{@location.name} is registered."
-         redirect_to @location
-      else
-         redirect_to new_location_path
-      end
+      render :edit
   end
 
   def destroy
-      Location.find(params[:id]).destroy
-      flash[:success] = "Location deleted."
-      redirect_to (:back)
+      location = Location.find(params[:id])
+      center = location.center_id
+      if location.destroy
+         flash[:success] = "Location deleted."
+      else
+         flash[:danger] = "Location deletion failed."
+      end
+      redirect_to locations_path(:id => center)
   end
 
   private
   def location_params
-    params.require(:location).permit(:name, :center_id)
+      params.require(:location).permit(:name, :center_id)
   end
 
-      # Before filters
+  # Before filters
 
-    # Confirms a logged-in center.
-    def logged_in_center
+  # Confirms a logged-in center.
+  def logged_in_center
       unless center_logged_in?
         flash[:danger] = "Please log in."
         redirect_to center_log_in_path
       end
-    end
-
+  end
 end

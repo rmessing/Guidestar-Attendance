@@ -14,8 +14,9 @@
 			  <% @groups.each do |group| %>
 				    <li>
 						<h3><%= group.name %></h3>
-						<%= link_to "Update/Delete", controller: "groups", action: "edit", id: group.id %><br>
-						<%= link_to "Manage Teacher-Class", controller: "group_teachers", action: "show", id: group.id %><br>
+						<%= link_to "Update", controller: "groups", action: "edit", id: group.id %> |
+						<%= link_to "Delete", group_path(group.id), method: :delete, data: {confirm: "Are you sure?"} %> |
+						<%= link_to "Add/Remove Class", controller: "group_teachers", action: "show", id: group.id %><br>
 				    </li>
 			  <% end %>
 			</ul>

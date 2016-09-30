@@ -2,11 +2,11 @@
   <ul class="nav navbar-nav navbar-right">
 
   	<% if current_center.admin? %>
-  		 <li><%= link_to "Superadmin", superadmin_path %></li>
+  		 <li><%= link_to "Super Administrator", superadmin_path %></li>
   	<% else %>
-  		 <li><%= link_to "Parent Login", parent_log_in_path %></li>
-  		 <li><%= link_to "Center Admin", admin_path %></li>
+  		 <li><%= link_to "Parent log in", parent_log_in_path %></li>
+  		 <li><%= link_to "Center Administrator", admin_path %></li>
   	<% end %>	
-    <li><%= link_to "Logoff", center_log_out_path, method: :delete %></li>
+    <li><%= link_to "Log off", center_log_out_path, method: :delete %></li>
   </ul>
 </nav>

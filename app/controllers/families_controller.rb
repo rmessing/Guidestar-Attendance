@@ -41,11 +41,11 @@ class FamiliesController < ApplicationController
   def destroy
       family = Family.find(params[:id])
       parent = Parent.find(family.parent_id)
-      child = Child.find(familychild_it)
+      child = Child.find(family.child_id)
       if family.destroy
-          flash[:success] = "#{parent.fname} #{parent.lname} was delisted from #{child.fname}'s account."
+          flash[:success] = "#{parent.fname} #{parent.lname} was delisted from #{child.fname} #{child.lname}'s account."
       else
-          flash[:danger] = "The request to remove #{parent.fname} #{parent.lname} from #{child.fname}'s account failed.  Notify technical support."
+          flash[:danger] = "The request to remove #{parent.fname} #{parent.lname} from #{child.fname} #{child.lname}'s account failed."
       end 
       redirect_to (:back)
   end

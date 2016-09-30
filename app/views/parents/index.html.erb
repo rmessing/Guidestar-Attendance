@@ -11,10 +11,10 @@
 			<%= will_paginate %>
 			  <% @parents.each do |parent| %>
 			    <li>
-					<a href="<%= edit_parent_path(parent.id) %>">
 					<h4><%= parent.fname %>
 						<%= parent.lname %></h4>
-					</a>
+						<%= link_to "Update", controller: "parents", action: "edit", id: parent.id %> |
+						<%= link_to "Delete", parent_path(parent.id), method: :delete, data: {confirm: "Are you sure?"} %><br>
 			    </li>
 			  <% end %>
 			</ul>

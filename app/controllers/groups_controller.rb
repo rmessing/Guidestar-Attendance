@@ -27,13 +27,32 @@ class GroupsController < ApplicationController
       end
   end
 
-  def edit
-      @group = Group.find(params[:id])
-      @center = Center.find(@group.center_id)
-      if current_center.admin?
+  def create
+      @group = Group.new(group_params)
+      if @group.save
+         flash.now[:success] = "#{@group.name} is registered."
+         redirect_to @group
+         return
+      elsif current_center.admin?
+         @center = Center.find(@group.center_id)
          @locations = Location.order("name").where(:center_id => @center.id)
          @teachers = Teacher.order("lname", "fname").where(:center_id => @center.id)
       else
+         @center = current_center
+         @locations = Location.order("name").where(:center_id => current_center.id)
+         @teachers = Teacher.order("lname", "fname").where(:center_id => current_center.id)  
+      end
+      render :new
+  end
+
+  def edit
+      @group = Group.find(params[:id])
+      if current_center.admin?
+         @center = Center.find(@group.center_id)
+         @locations = Location.order("name").where(:center_id => @center.id)
+         @teachers = Teacher.order("lname", "fname").where(:center_id => @center.id)
+      else
+         @center = current_center
          @locations = Location.order("name").where(:center_id => current_center.id)
          @teachers = Teacher.order("lname", "fname").where(:center_id => current_center.id)
       end
@@ -44,42 +63,42 @@ class GroupsController < ApplicationController
       if @group.update_attributes(group_params)
          flash[:success] = "#{@group.name} is updated."
          redirect_to @group
+         return
+      elsif current_center.admin?
+         @center = Center.find(@group.center_id)
+         @locations = Location.order("name").where(:center_id => current_center.id)
+         @teachers = Teacher.order("lname", "fname").where(:center_id => current_center.id)
       else
-         render 'edit'
+         @center = current_center
+         @locations = Location.order("name").where(:center_id => current_center.id)
+         @teachers = Teacher.order("lname", "fname").where(:center_id => current_center.id)
       end
-  end
-
-  def create
-      @group = Group.new(group_params)
-      if @group.save
-         flash.now[:success] = "#{@group.name} is registered."
-         redirect_to @group
-      else
-         flash[:danger] = "Class name is required."
-         redirect_to new_group_path
-      end
-      
+      render :edit
   end
 
   def destroy
-      Group.find(params[:id]).destroy
-      flash[:success] = "Group deleted."
-      redirect_to (:back)
+      group = Group.find(params[:id])
+      center = group.center_id
+      if group.destroy
+         flash[:success] = "Class deleted."
+      else
+         flash[:danger] = "Class deletion failed."
+      end
+      redirect_to groups_path(:id => center)
   end
 
   private
   def group_params
-  params.require(:group).permit(:name, :teacher_id, :center_id)
+      params.require(:group).permit(:name, :teacher_id, :center_id)
   end
 
-    # Before filters
+  # Before filters
 
   # Confirms a logged-in center.
   def logged_in_center
-    unless center_logged_in?
-      flash[:danger] = "Please log in."
-      redirect_to center_log_in_path
-    end
+      unless center_logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to center_log_in_path
+      end
   end
-
 end
