@@ -2,11 +2,12 @@ class ChildrenController < ApplicationController
   before_action :logged_in_center, only: [:new, :index, :create, :edit, :update, :destroy]
 
   def index
-      
-     @center = Center.find(params[:id])
-      
-      @children = Child.paginate(page: params[:page]).order("lname", "fname").where(:center_id => @center.id) 
-
+      if current_center.admin?
+         @child = Children.find(params[:id])
+         @children = Child.paginate(page: params[:page]).order("lname", "fname").where(:center_id => @center.id)  
+      else
+         @children = Child.paginate(page: params[:page]).order("lname", "fname").where(:center_id => current_center.id)
+      end
   end
 
   def show

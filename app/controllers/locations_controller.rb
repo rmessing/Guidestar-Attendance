@@ -51,6 +51,7 @@ class LocationsController < ApplicationController
       if @location.update_attributes(location_params)
          flash[:success] = "Location #{@location.name} is updated."
          redirect_to @location
+         return
       elsif current_center.admin?
          @center = Center.find(@location.center_id)
       else

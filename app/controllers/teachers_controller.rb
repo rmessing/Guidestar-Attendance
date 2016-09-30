@@ -68,7 +68,7 @@ class TeachersController < ApplicationController
       else
          flash[:danger] = "Teacher deletion failed."
       end
-      redirect_to teachers_path(:id => centerteacher = Teacher.find(params[:id]))
+      redirect_to teachers_path(:id => center)
   end
 
   private

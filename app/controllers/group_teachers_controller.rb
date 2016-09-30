@@ -42,7 +42,7 @@ class GroupTeachersController < ApplicationController
       groupteacher = GroupTeacher.find(params[:id])
       teacher = Teacher.find(groupteacher.teacher_id)
       group = Group.find(groupteacher.group_id)
-      if group.destroy
+      if groupteacher.destroy
          flash[:success] = "#{teacher.fname} #{teacher.lname} was delisted from #{group.name}."
       else
           flash[:danger] = "The request to reassign teacher #{teacher.fname} #{teacher.lname} failed.  Notify technical support." 
