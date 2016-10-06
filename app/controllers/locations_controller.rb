@@ -28,22 +28,15 @@ class LocationsController < ApplicationController
       if @location.save
          flash.now[:success] = "#{@location.name} is registered."
          redirect_to @location
-         return
-      elsif current_center.admin?
-         @center = Center.find(@location.center_id)
       else
-         @center = current_center 
+         @center = Center.find(@location.center_id)
+         render :new
       end
-      render :new
   end
 
   def edit
       @location = Location.find(params[:id])
-      if current_center.admin?
-         @center = Center.find(@location.center_id)
-      else 
-         @center = current_center
-      end
+      @center = Center.find(@location.center_id)
   end
 
   def update
@@ -51,13 +44,10 @@ class LocationsController < ApplicationController
       if @location.update_attributes(location_params)
          flash[:success] = "Location #{@location.name} is updated."
          redirect_to @location
-         return
-      elsif current_center.admin?
-         @center = Center.find(@location.center_id)
       else
-         @center = current_center
+         @center = Center.find(@location.center_id)
+         render :edit
       end
-      render :edit
   end
 
   def destroy

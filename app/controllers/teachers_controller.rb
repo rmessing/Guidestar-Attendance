@@ -19,7 +19,7 @@ class TeachersController < ApplicationController
       if current_center.admin?
          @center = Center.find(params[:id])
       else
-          @center = current_center
+         @center = current_center
       end
   end
 
@@ -28,22 +28,15 @@ class TeachersController < ApplicationController
       if @teacher.save
          flash.now[:success] = "#{@teacher.fname} #{@teacher.lname} is registered."
          redirect_to @teacher
-         return
-      elsif current_center.admin?
-         @center = Center.find(@teacher.center_id)
       else
-         @center = current_center 
+         @center = Center.find(@teacher.center_id)
+         render :new 
       end
-      render :new 
   end
 
   def edit
       @teacher = Teacher.find(params[:id])
-      if current_center.admin?
-          @center = Center.find(@teacher.center_id)
-      else 
-          @center = current_center
-      end
+      @center = Center.find(@teacher.center_id)
   end
 
   def update
@@ -51,13 +44,10 @@ class TeachersController < ApplicationController
       if @teacher.update_attributes(teacher_params)
          flash[:success] = "Teacher #{@teacher.fname} #{@teacher.lname} is updated."
          redirect_to @teacher
-         return
-      elsif current_center.admin?
-         @center = Center.find(@teacher.center_id)
       else
-         @center = current_center
+         @center = Center.find(@teacher.center_id)
+         render :edit
       end
-      render :edit
   end
 
   def destroy

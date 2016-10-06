@@ -15,7 +15,8 @@
 					 <% else %>
 					 	Client:
 						<%= link_to "Update", controller: "centers", action: "edit", id: center.id %> |
-						<%= link_to "Delete", center_path(center.id), method: :delete, data: {confirm: "Are you sure?"} %>  &diams; 
+						<%= link_to "Delete", center_path(center.id), method: :delete, data: {confirm: "Are you sure?"}, remote: true %>
+						      &diams; 
 
 						Register: 
 						<%= link_to "Child", controller: "children", action: "new", id: center.id %> |

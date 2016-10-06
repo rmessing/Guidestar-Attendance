@@ -32,30 +32,19 @@ class GroupsController < ApplicationController
       if @group.save
          flash.now[:success] = "#{@group.name} is registered."
          redirect_to @group
-         return
-      elsif current_center.admin?
+      else
          @center = Center.find(@group.center_id)
          @locations = Location.order("name").where(:center_id => @center.id)
          @teachers = Teacher.order("lname", "fname").where(:center_id => @center.id)
-      else
-         @center = current_center
-         @locations = Location.order("name").where(:center_id => current_center.id)
-         @teachers = Teacher.order("lname", "fname").where(:center_id => current_center.id)  
+         render :new
       end
-      render :new
   end
 
   def edit
       @group = Group.find(params[:id])
-      if current_center.admin?
-         @center = Center.find(@group.center_id)
-         @locations = Location.order("name").where(:center_id => @center.id)
-         @teachers = Teacher.order("lname", "fname").where(:center_id => @center.id)
-      else
-         @center = current_center
-         @locations = Location.order("name").where(:center_id => current_center.id)
-         @teachers = Teacher.order("lname", "fname").where(:center_id => current_center.id)
-      end
+      @center = Center.find(@group.center_id)
+      @locations = Location.order("name").where(:center_id => @center.id)
+      @teachers = Teacher.order("lname", "fname").where(:center_id => @center.id)
   end
 
   def update
@@ -63,17 +52,12 @@ class GroupsController < ApplicationController
       if @group.update_attributes(group_params)
          flash[:success] = "#{@group.name} is updated."
          redirect_to @group
-         return
-      elsif current_center.admin?
+      else
          @center = Center.find(@group.center_id)
          @locations = Location.order("name").where(:center_id => current_center.id)
          @teachers = Teacher.order("lname", "fname").where(:center_id => current_center.id)
-      else
-         @center = current_center
-         @locations = Location.order("name").where(:center_id => current_center.id)
-         @teachers = Teacher.order("lname", "fname").where(:center_id => current_center.id)
+         render :edit
       end
-      render :edit
   end
 
   def destroy

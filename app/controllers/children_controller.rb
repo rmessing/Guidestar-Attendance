@@ -3,7 +3,7 @@ class ChildrenController < ApplicationController
 
   def index
       if current_center.admin?
-         @child = Children.find(params[:id])
+         @center = Center.find(params[:id])
          @children = Child.paginate(page: params[:page]).order("lname", "fname").where(:center_id => @center.id)  
       else
          @children = Child.paginate(page: params[:page]).order("lname", "fname").where(:center_id => current_center.id)
@@ -30,26 +30,17 @@ class ChildrenController < ApplicationController
       if @child.save
          flash.now[:success] = "#{@child.fname} #{@child.mname} #{@child.lname} is registered."
          redirect_to @child
-         return
-      elsif current_center.admin?
+      else
          @center = Center.find(@child.center_id)
          @groups = Group.order("name").where(:center_id => @center.id)
-      else
-         @center = current_center
-         @groups = Group.order("name").where(:center_id => current_center.id)
-      end
-      render :new 
+         render :new
+      end 
   end
 
   def edit
       @child = Child.find(params[:id])
-      if current_center.admin?
-         @center = Center.find(@child.center_id)
-         @groups = Group.order("name").where(:center_id => @center.id)
-      else
-         @center = current_center
-         @groups = Group.order("name").where(:center_id => current_center.id)
-      end
+      @center = Center.find(@child.center_id)
+      @groups = Group.order("name").where(:center_id => @center.id)
   end
 
   def update
@@ -57,15 +48,11 @@ class ChildrenController < ApplicationController
       if @child.update_attributes(child_params)
          flash[:success] = "Child #{@child.fname} #{@child.mname} #{@child.lname} is updated."
          redirect_to @child
-         return
-      elsif current_center.admin?
+      else
          @center = Center.find(@child.center_id)
          @groups = Group.order("name").where(:center_id => @center.id)
-      else
-         @center = current_center
-         @groups = Group.order("name").where(:center_id => current_center.id)
+         render :edit
       end
-      render :edit
   end
 
   def destroy
