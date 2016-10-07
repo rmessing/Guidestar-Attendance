@@ -1,6 +1,7 @@
 class Family < ActiveRecord::Base
 
-    validates :child_id, :parent_id, :center_id, presence: true
+	# This is a join table with unique parent-child pairings.  A parent is an Adult authorized to drop-off or pick-up a child at/from the daycare center.
+
 	validates :child_id, :uniqueness => { :scope => :parent_id }
 
 	belongs_to :center

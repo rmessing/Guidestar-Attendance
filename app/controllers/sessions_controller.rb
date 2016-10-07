@@ -1,19 +1,21 @@
 class SessionsController < ApplicationController
+  before_action :confirm_logouts, only: [:new_teacher, :new_center]
 
   def new_parent
+
+    # Prevents login unless teacher or center is already logged in. Requires parent to login while on center premises, to prevent entering fraudulent attendance records remotely.
       if teacher_logged_in?
          @center = Center.find(current_teacher.center_id)
       elsif center_logged_in?
          @center = current_center
       else
-         flash[:info] = "Teacher or Admin login required."
+         flash[:info] = "Teacher or Administrator login required."
          redirect_to root_path
       end
       @nav = "parent"
   end
 
   def create_parent
-     # raise params.inspect
       parent = Parent.find_by(username: params[:session][:username])
       if parent && parent.authenticate(params[:session][:password])
          flash[:success] = "Welcome #{parent.fname} #{parent.lname}."
@@ -32,15 +34,6 @@ class SessionsController < ApplicationController
   end
 
   def new_teacher
-      if parent_logged_in?
-         log_out_parent
-      end
-      if center_logged_in?  
-         log_out_center 
-      end
-      if teacher_logged_in? 
-         log_out_teacher 
-      end
       @nav = "root"
   end
 
@@ -64,15 +57,6 @@ class SessionsController < ApplicationController
   end
 
   def new_center
-      if parent_logged_in?
-         log_out_parent
-      end
-      if center_logged_in?  
-         log_out_center 
-      end
-      if teacher_logged_in? 
-         log_out_teacher 
-      end
   end
 
   def create_center
@@ -96,5 +80,24 @@ class SessionsController < ApplicationController
     	log_out_center
       flash[:success] = "Center is logged off."
       redirect_to center_log_in_path
+  end
+
+  private
+
+  #  Before Filter
+
+  #  Layouts depend on which users are logged in.  In case user does not logout 
+  #  properly,  confirm_logouts ensures all users are logged out before app
+  #  recycles.
+  def confirm_logouts
+      if parent_logged_in?
+         log_out_parent
+      end
+      if center_logged_in?  
+         log_out_center 
+      end
+      if teacher_logged_in? 
+         log_out_teacher 
+      end
   end
 end

@@ -75,21 +75,16 @@ footer {
   border-top: 1px solid #eaeaea;
   color: #777;
   a {
-    color: #555;
+    font-family: georgia;
+    font-weight: bold;
+    font-style: italic;
+    color: rgb(0, 0, 255);
     &:hover {
       color: #222;
     }
   }
   small {
     float: left;
-  }
-  ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 15px;
-    }
   }
 }
 
@@ -153,7 +148,6 @@ h1 {
     overflow: auto;
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
-
   }
 }
 .center_name {
@@ -165,9 +159,6 @@ h1 {
   text-align: right;
   width: 85vw;
   display: inline;
-}
-.space {
-  /*width: 1vw;*/
 }
 .center_admin {
   position: relative;

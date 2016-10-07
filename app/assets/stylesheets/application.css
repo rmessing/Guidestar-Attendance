@@ -13,9 +13,4 @@
  *= require_tree .
  *= require_self
  */
-.guidestar_text {
-	font-family: georgia;
-	font-weight: bold;
-	font-style: italic;
-	color: rgb(0, 0, 255);
-}
+

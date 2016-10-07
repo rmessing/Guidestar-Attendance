@@ -4,7 +4,6 @@ class CentersPasswordResetsController < ApplicationController
   before_action :check_expiration, only: [:edit, :update]
 
   def new
-      @center = Center.new
   end
 
   def create

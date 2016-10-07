@@ -23,7 +23,7 @@ module SessionsHelper
       @current_teacher = nil
   end
 
-  # Returns true if a users are logged in, false otherwise.
+  # Returns true if users are logged in, false otherwise.
   def center_logged_in?
       !current_center.nil?
   end
@@ -43,14 +43,14 @@ module SessionsHelper
 
   # Returns the current logged-in users (if any):
   def current_parent
-	  @current_parent ||= Parent.find_by(id: session[:parent_id])
+	    @current_parent ||= Parent.find_by(id: session[:parent_id])
   end
 
   def current_teacher
-	  @current_teacher ||= Teacher.find_by(id: session[:teacher_id])
+	    @current_teacher ||= Teacher.find_by(id: session[:teacher_id])
   end
 
   def current_center
-	  @current_center ||= Center.find_by(id: session[:center_id])
+	    @current_center ||= Center.find_by(id: session[:center_id])
   end
 end

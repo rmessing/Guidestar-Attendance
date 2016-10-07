@@ -1,5 +1,9 @@
 class GroupTeachersController < ApplicationController
-  before_action :logged_in_center
+  before_action :logged_in_center, except: [:show, :create, :update]
+
+  # If superadmin(current_center.admin?) is logged in, center.id is in params, otherwise the current_center.id is used?
+  # .where prevents user from seeing data belonging to centers other than his/her own.
+  #GroupTeachers is a join table for assigning/removing teachers to/from classes (groups).
 
   def index
       if current_center.admin?

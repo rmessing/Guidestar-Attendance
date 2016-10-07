@@ -1,6 +1,7 @@
-<!-- The admin selects the child's parent which enters the parent_id and child_id into the family join table. -->
-
 <% provide(:title, "Child-Adult") %>
+
+<!-- The Admin can add/remove a parent to/from a child's account. -->
+
 <div class="container">
 <h1>Manage Child-Adult Relationships</h1>
 	<% if current_center.admin? %>
@@ -10,7 +11,7 @@
 	<div class="row">
 	  <div class="col-md-6 col-md-offset-3">
 
-	<!-- If child has no parents in the db yet, "Registered parents for..." is not displayed. -->
+	<!-- If child has no parents in the db yet, "Click to remove adult..." is not displayed and the following nested loop is skipped automatically. Otherwise, all Adults in Child's account are listed as a link for deletion. Only the parent-child relationship is deleted; the parent's profile record is retained.-->
 		
 		<% if @child.parents.length != 0 %>
 			<h3> Click to remove adult from <%= @child.fname %> <%= @child.lname %>:</h3>
@@ -26,10 +27,11 @@
 
 		<hr>
 
+ 	<!-- This is the code for adding an Adult to a Child's account. -->
+
 		<h3><%= "Add an adult to " %><%= @child.fname %>'s account:</h3>
 
 		<%= form_for(@family) do |f| %>
-		<%= render 'shared/error_messages', object: @family %>
 			<%= f.hidden_field :child_id, :value => @child.id %>
 			<% if !current_center.admin? %>
 				<%= f.hidden_field :center_id, :value => current_center.id %>

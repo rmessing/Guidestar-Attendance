@@ -1,6 +1,7 @@
-<!-- The admin selects the child's parent which enters the parent_id and child_id into the family join table. -->
-
 <% provide(:title, "Manage Groups") %>
+
+<!-- The Admin can assign/remove a teacher from a class (group). -->
+
 <div class="container">
 <h1>Manage Class-Teacher Relationships</h1>
 	<% if current_center.admin? %>
@@ -10,7 +11,7 @@
 	<div class="row">
 	  <div class="col-md-6 col-md-offset-3">
 
-	<!-- If child has no parents in the db yet, "Registered parents for..." is not displayed. -->
+	<!-- If there are no teachers assigned to the class, "Click to remove teacher..." is not displayed and the following nested loop is skipped automatically. -->
 		
 		<% if @group.teachers.length != 0 %>
 			<h3> Click to remove teacher from <%= @group.name %></h3>

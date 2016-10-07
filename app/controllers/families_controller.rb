@@ -1,5 +1,9 @@
 class FamiliesController < ApplicationController
-  before_action :logged_in_center
+  before_action :logged_in_center, except: [:show, :create, :update]
+
+  # If superadmin is logged in, center.id is in params, otherwise the current_center.id is used?
+  # .where prevents user from seeing data belonging to centers other than his/her own.
+  # Families is a join table connecting children the adults authorized to escort them to and from the daycare center.
  
   def index
       if current_center.admin?

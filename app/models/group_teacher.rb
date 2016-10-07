@@ -1,5 +1,7 @@
 class GroupTeacher < ActiveRecord::Base
-    validates :group_id, :teacher_id, :center_id, presence: true
+    
+# This is a join table pairing groups (classes) and teachers.
+
 	validates :group_id, :uniqueness => { :scope => :teacher_id }
 
 	belongs_to :teacher
