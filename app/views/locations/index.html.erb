@@ -10,11 +10,16 @@
 			<ul class="objects">
 			<%= will_paginate %>
 			  <% @locations.each do |location| %>
-			    <li>
-					<h4><%= location.name %></h4>
-						<%= link_to "Update", controller: "locations", action: "edit", id: location.id %> |
-						<%= link_to "Delete", location_path(location.id), method: :delete, data: {confirm: "Are you sure?"} %><br>
-			    </li>
+			    	<li>
+					    <div class="center_name">
+							<h4><%= location.name %></h4>
+						</div>
+						<div class="center_links">
+							<%= link_to "View", location_path(location.id), method: :get %> |
+							<%= link_to "Update", controller: "locations", action: "edit", id: location.id %> |
+							<%= link_to "Delete", location_path(location.id), method: :delete, data: {confirm: "Are you sure?"} %><br>
+						</div>
+			    	</li>
 			  <% end %>
 			</ul>
 		</div>

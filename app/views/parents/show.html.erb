@@ -1,4 +1,25 @@
 <% provide(:title, "Parent Profile") %>
-<h1>Parent</h1>
 
-<%= @parent.fname %> <%= @parent.lname %>
+<div class="container">
+	<div class="profile">
+		<h1>Parent Profile</h1>
+		<h2>NAME:  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @parent.fname %> <%= @parent.lname %></h2>
+		
+		<% if current_center.admin? %>
+			<% center = Center.find(@parent.center_id) %>
+		  	<h2>CLIENT: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= center.name %></h2>
+	    <% end %>
+
+	    <h2>USERNAME: &nbsp&nbsp&nbsp&nbsp&nbsp<%= @parent.username %></h2>
+	    <h2>EMAIL: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @parent.email %></h2>
+
+	    <h2>CHILDREN:</h2>
+		<% if @parent.children.length != 0 %>	
+			<% @parent.children.each do |child| %>
+				<a href="<%= child_path(child.id) %>"><h5><%= child.fname %> <%= child.mname %> <%= child.lname %></h5></a>
+			<% end %>
+		<% end %>
+
+	</div>
+</div>
+

@@ -13,11 +13,16 @@
 			<%= will_paginate %>
 			  <% @groups.each do |group| %>
 				    <li>
-						<h3><%= group.name %></h3>
-						<%= link_to "Update", controller: "groups", action: "edit", id: group.id %> |
-						<%= link_to "Delete", group_path(group.id), method: :delete, data: {confirm: "Are you sure?"} %> |
-						<%= link_to "Add/Remove Class", controller: "group_teachers", action: "show", id: group.id %><br>
-				    </li>
+				      	<div class="center_name">
+							<h4><%= group.name %></h4>
+					  	</div>
+						<div class="center_links">
+							<%= link_to "View", group_path(group.id), method: :get %> |
+							<%= link_to "Update", controller: "groups", action: "edit", id: group.id %> |
+							<%= link_to "Delete", group_path(group.id), method: :delete, data: {confirm: "Are you sure?"} %> |
+							<%= link_to "Add/Remove Teacher", controller: "group_teachers", action: "show", id: group.id %><br>
+						</div>
+					</li>
 			  <% end %>
 			</ul>
 		</div>

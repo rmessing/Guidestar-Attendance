@@ -10,12 +10,17 @@
 			<ul class="objects">
 			<%= will_paginate %>
 			  <% @teachers.each do |teacher| %>
-			    <li>
-					<h4><%= teacher.fname %>
-						<%= teacher.lname %></h4>
-						<%= link_to "Update", controller: "teachers", action: "edit", id: teacher.id %> |
-						<%= link_to "Delete", teacher_path(teacher.id), method: :delete, data: {confirm: "Are you sure?"} %><br>
-			    </li>
+				    <li>
+				    	<div class="center_name">
+							<h4><%= teacher.fname %>
+							<%= teacher.lname %></h4>
+						</div>
+						<div class="center_links">
+							<%= link_to "View", teacher_path(teacher.id), method: :get %> |
+							<%= link_to "Update", controller: "teachers", action: "edit", id: teacher.id %> |
+							<%= link_to "Delete", teacher_path(teacher.id), method: :delete, data: {confirm: "Are you sure?"} %><br>
+						</div>
+				    </li>
 			  <% end %>
 			</ul>
 		</div>

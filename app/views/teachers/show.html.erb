@@ -1,4 +1,25 @@
 <% provide(:title, "Teacher Profile") %>
-<h1>Teacher</h1>
 
-<%= @teacher.fname %> <%= @teacher.lname %>
+<div class="container">
+	<div class="profile">
+		<h1>Teacher Profile</h1>
+		<h2>NAME:  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @teacher.fname %> <%= @teacher.lname %></h2>
+		
+		<% if current_center.admin? %>
+			<% center = Center.find(@teacher.center_id) %>
+		  	<h2>CLIENT: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= center.name %></h2>
+	    <% end %>
+
+	    <h2>USERNAME: &nbsp&nbsp&nbsp&nbsp&nbsp<%= @teacher.username %></h2>
+	    <h2>EMAIL: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @teacher.email %></h2>
+
+	    <h2>Classes:</h2>
+	    <% if @teacher.groups.length != 0 %>
+	    	<% @teacher.groups.each do |group| %>
+	    		<a href="<%= group_path(group.id) %>"><h5><%= group.name %></h5></a>
+	    		<% end %>
+	    <% end %>
+
+
+	</div>
+</div>

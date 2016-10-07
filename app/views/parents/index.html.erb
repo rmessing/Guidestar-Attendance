@@ -10,12 +10,17 @@
 			<ul class="objects">
 			<%= will_paginate %>
 			  <% @parents.each do |parent| %>
-			    <li>
-					<h4><%= parent.fname %>
-						<%= parent.lname %></h4>
-						<%= link_to "Update", controller: "parents", action: "edit", id: parent.id %> |
-						<%= link_to "Delete", parent_path(parent.id), method: :delete, data: {confirm: "Are you sure?"} %><br>
-			    </li>
+				    <li>
+				    	<div class="center_name">
+							<h4><%= parent.fname %>
+								<%= parent.lname %></h4>
+						</div>
+						<div class="center_links">
+								<%= link_to "View", parent_path(parent.id), method: :get %> |
+								<%= link_to "Update", controller: "parents", action: "edit", id: parent.id %> |
+								<%= link_to "Delete", parent_path(parent.id), method: :delete, data: {confirm: "Are you sure?"} %><br>
+						</div>
+				    </li>
 			  <% end %>
 			</ul>
 		</div>

@@ -1,4 +1,34 @@
 <% provide(:title, "Child Profile") %>
-<h1>Child</h1>
 
-<%= @child.fname %> <%= @child.lname %>
+<div class="container">
+	<div class="profile">
+		<h1>Child Profile</h1>
+		<h2>NAME:  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @child.fname %> <%= @child.mname %> <%= @child.lname %></h2>
+
+		<% if @child.group_id %>
+           	<% @group = Group.find(@child.group_id) %>
+           	<h2>CLASS: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @group.name %>
+      	<% else %>
+         	<h2>CLASS: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<h2>
+      	<% end %>
+		
+		<% if current_center.admin? %>
+			<% center = Center.find(@child.center_id) %>
+		  	<h2>CLIENT: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= center.name %></h2>
+	    <% end %>
+
+	    <% if @child.birth_date %>
+	    	<h2>BIRTHDAY: &nbsp&nbsp<%= @child.birth_date.strftime("%B %d %Y") %></h2>
+	    <% end %>
+		
+		<h2>ADULTS:</h2>
+		<% if @child.parents.length != 0 %>	
+			<% @child.parents.each do |parent| %>
+				<a href="<%= parent_path(parent.id) %>"><h5><%= parent.fname %> <%= parent.lname %></h5></a>
+			<% end %>
+		<% end %>
+		
+	</div>
+</div>
+
+

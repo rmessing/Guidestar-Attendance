@@ -1,6 +1,8 @@
 <% provide(:title, 'Superadmin') %>
 
 <div class="container">
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
 	<h1 class="page_title"> Guidestar Administration </h1>
  	<h2><%= link_to "Register New Client", new_center_path, class: "half_size" %></h2>
 	<div  class="objects">
@@ -8,15 +10,22 @@
 		  <%= will_paginate %>
 		  <% @centers.each do |center| %>
 		    <li>
-				<div class="center_name"><%= center.name %></div>
+				<div class="center_name">
+					<%= link_to edit_center_path(center.id), method: :get do %>
+        			 	<i class="glyphicon glyphicon-pencil"></i>
+        			<% end %>
+        			<%= link_to center_path(center.id), method: :delete, data: {confirm: "Are you sure?"} do %>
+        			 	<i class="glyphicon glyphicon-trash"></i>
+        			<% end %>
+        			<%= link_to center_path(center.id), method: :get do %>
+					 	<i><%= center.name %></i>
+					<% end %>
+        			
+				</div>
 				<div class="center_links">
 					 <% if center.id == current_center.id %>
 						<a href="<%= edit_center_path(center.id) %>">Update Profile</a>
 					 <% else %>
-					 	Client:
-						<%= link_to "Update", controller: "centers", action: "edit", id: center.id %> |
-						<%= link_to "Delete", center_path(center.id), method: :delete, data: {confirm: "Are you sure?"}, remote: true %>
-						      &diams; 
 
 						Register: 
 						<%= link_to "Child", controller: "children", action: "new", id: center.id %> |
@@ -38,3 +47,6 @@
 		</ul>
 	</div>
 </div>
+	</div>
+</div>
+

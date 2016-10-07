@@ -14,8 +14,3 @@ def child_full_name
     "#{fname} #{mname} #{lname}"
 end
 
-# def full_name_uniqueness
-#      if Child.exists?(fname: fname, mname: mname, lname: lname)
-#        errors.add :base, "#{full_name} already exists" #change error key and message as you need
-#      end
-# end 

@@ -1,2 +1,35 @@
-<h1>Groups#show</h1>
-<p>Find me in app/views/groups/show.html.erb</p>
+<% provide(:title, "Class Profile") %>
+
+<div class="container">
+	<div class="profile">
+		<h1>Class Profile</h1>
+		<h2>NAME:  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @group.name %></h2>
+
+		<% if @group.location_id %>
+           	<% location = Location.find(@group.location_id) %>
+           	<h2>LOCATION: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= location.name %>
+      	<% else %>
+         	<h2>LOCATION: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<h2>
+      	<% end %>
+		
+		<% if current_center.admin? %>
+			<% center = Center.find(@group.center_id) %>
+		  	<h2>CLIENT: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= center.name %></h2>
+	    <% end %>
+
+		<h2>TEACHERS:</h2>
+	    <% if @group.teachers.length != 0 %>
+	    	<% @group.teachers.each do |teacher| %>
+	    		<a href="<%= teacher_path(teacher.id) %>"><h5><%= teacher.fname %> <%= teacher.lname %></h5></a>
+	    		<% end %>
+	    <% end %>
+		
+		<h2>CHILDREN:</h2>
+		<% if @group.children.length != 0 %>	
+			<% @group.children.each do |child| %>
+				<a href="<%= child_path(child.id) %>"><h5><%= child.fname %> <%= child.lname %></h5></a>
+				<% end %>
+		<% end %>
+		
+	</div>
+</div>

@@ -1,2 +1,21 @@
-<h1>Locations#show</h1>
-<p>Find me in app/views/locations/show.html.erb</p>
+<% provide(:title, "Location Profile") %>
+
+<div class="container">
+	<div class="profile">
+		<h1>Location Profile</h1>
+		<h2>NAME:  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @location.name %></h2>
+
+		<% if current_center.admin? %>
+			<% center = Center.find(@location.center_id) %>
+		  	<h2>CLIENT: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= center.name %></h2>
+	    <% end %>
+		
+		<h2>CLASSES:</h2>
+		<% if @location.groups.length != 0 %>	
+			<% @location.groups.each do |group| %>
+				<a href="<%= group_path(group.id) %>"><h5><%= group.fname %> <%= group.lname %></h5></a>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+
