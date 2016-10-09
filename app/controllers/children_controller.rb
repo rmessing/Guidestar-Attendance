@@ -31,7 +31,7 @@ class ChildrenController < ApplicationController
   def create
       @child = Child.new(child_params)
       if @child.save
-         flash.now[:success] = "#{@child.fname} #{@child.mname} #{@child.lname} is registered."
+         flash[:success] = "#{@child.fname} #{@child.mname} #{@child.lname} is registered."
          redirect_to @child
       else
          @center = Center.find(@child.center_id)

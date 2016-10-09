@@ -29,7 +29,7 @@ class ParentsController < ApplicationController
   def create
       @parent = Parent.new(parent_params)
       if @parent.save
-         flash.now[:success] = "#{@parent.fname} #{@parent.lname} is registered."
+         flash[:success] = "#{@parent.fname} #{@parent.lname} is registered."
          redirect_to @parent
       else
          @center = Center.find(@parent.center_id)

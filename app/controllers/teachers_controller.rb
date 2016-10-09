@@ -29,7 +29,7 @@ class TeachersController < ApplicationController
   def create
       @teacher = Teacher.new(teacher_params)
       if @teacher.save
-         flash.now[:success] = "#{@teacher.fname} #{@teacher.lname} is registered."
+         flash[:success] = "#{@teacher.fname} #{@teacher.lname} is registered."
          redirect_to @teacher
       else
          @center = Center.find(@teacher.center_id)

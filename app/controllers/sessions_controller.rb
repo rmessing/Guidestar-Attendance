@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       elsif center_logged_in?
          @center = current_center
       else
-         flash.now[:info] = "Teacher or Administrator login required."
+         flash[:info] = "Teacher or Administrator login required."
          redirect_to root_path
       end
       @nav = "parent"
@@ -18,18 +18,18 @@ class SessionsController < ApplicationController
   def create_parent
       parent = Parent.find_by(username: params[:session][:username])
       if parent && parent.authenticate(params[:session][:password])
-         flash.now[:success] = "Welcome #{parent.fname} #{parent.lname}."
+         flash[:success] = "Welcome #{parent.fname} #{parent.lname}."
          session[:parent_id] = parent.id
   	     redirect_to new_handoff_path
       else
-  		   flash.now[:danger] = 'Invalid username/password combination.'
+  		   flash[:danger] = 'Invalid username/password combination.'
   		   redirect_to parent_log_in_path
       end 
   end
 
   def destroy_parent
       log_out_parent
-  	  flash.now[:success] = "Parent is logged off."
+  	  flash[:success] = "Parent is logged off."
       redirect_to parent_log_in_path 
   end
 
@@ -41,18 +41,18 @@ class SessionsController < ApplicationController
      # raise params.inspect
       teacher = Teacher.find_by(username: params[:session][:username])
       if teacher && teacher.authenticate(params[:session][:password])
-         flash.now[:success] = "Welcome #{teacher.fname} #{teacher.lname}."
+         flash[:success] = "Welcome #{teacher.fname} #{teacher.lname}."
          session[:teacher_id] = teacher.id
          redirect_to parent_log_in_path
       else
-         flash.now[:danger] = "Invalid username/password combination."
+         flash[:danger] = "Invalid username/password combination."
          redirect_to teacher_log_in_path
       end 
   end
 
   def destroy_teacher
   	  log_out_teacher
-      flash.now[:success] = "Teacher is logged off."
+      flash[:success] = "Teacher is logged off."
       redirect_to "/"
   end
 
@@ -63,7 +63,7 @@ class SessionsController < ApplicationController
   def create_center
       center = Center.find_by(username: params[:session][:username])
       if center && center.authenticate(params[:session][:password])
-         flash.now[:success] = "Welcome #{center.name}."
+         flash[:success] = "Welcome #{center.name}."
          session[:center_id] = center.id
       else 
          flash.now[:danger] = "Invalid username/password combination."
@@ -79,7 +79,7 @@ class SessionsController < ApplicationController
 
   def destroy_center
     	log_out_center
-      flash.now[:success] = "Center is logged off."
+      flash[:success] = "Center is logged off."
       redirect_to center_log_in_path
   end
 

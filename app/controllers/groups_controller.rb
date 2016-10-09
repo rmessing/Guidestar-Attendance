@@ -34,7 +34,7 @@ class GroupsController < ApplicationController
   def create
       @group = Group.new(group_params)
       if @group.save
-         flash.now[:success] = "#{@group.name} is registered."
+         flash[:success] = "#{@group.name} is registered."
          redirect_to @group
       else
          @center = Center.find(@group.center_id)

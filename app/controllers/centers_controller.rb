@@ -10,7 +10,7 @@ class CentersController < ApplicationController
 
       # Confirms only superadmin may view the superadmin profile.
       if !current_center.admin? && @center.admin?
-         flash.now[:danger] = "Not authorized to view profile."
+         flash[:danger] = "Not authorized to view profile."
          redirect_to center_log_in_path
       end
   end
@@ -28,7 +28,7 @@ class CentersController < ApplicationController
   def create
       @center = Center.new(center_params)
       if @center.save
-         flash.now[:success] = "#{@center.name} is registered."
+         flash[:success] = "#{@center.name} is registered."
          redirect_to @center
       else
          render 'new'

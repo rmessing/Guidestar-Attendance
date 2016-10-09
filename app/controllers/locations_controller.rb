@@ -30,7 +30,7 @@ class LocationsController < ApplicationController
   def create
       @location = Location.new(location_params)
       if @location.save
-         flash.now[:success] = "#{@location.name} is registered."
+         flash[:success] = "#{@location.name} is registered."
          redirect_to @location
       else
          @center = Center.find(@location.center_id)
