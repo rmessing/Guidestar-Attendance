@@ -77,7 +77,7 @@ class GroupsController < ApplicationController
 
   private
   def group_params
-      params.require(:group).permit(:name, :teacher_id, :center_id)
+      params.require(:group).permit(:name, :teacher_id, :location_id, :center_id)
   end
 
   # Before filters

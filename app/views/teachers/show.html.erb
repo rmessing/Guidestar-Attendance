@@ -3,20 +3,20 @@
 <div class="container">
 	<div class="profile">
 		<h1>Teacher Profile</h1>
-		<h2>NAME:  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @teacher.fname %> <%= @teacher.lname %></h2>
+		<span>NAME:</span>  <%= @teacher.fname %> <%= @teacher.lname %><br><br>
 		
 		<% if current_center.admin? %>
 			<% center = Center.find(@teacher.center_id) %>
-		  	<h2>CLIENT: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= center.name %></h2>
+		  	<span>CLIENT:</span> <%= center.name %><br><br>
 	    <% end %>
 
-	    <h2>USERNAME: &nbsp&nbsp&nbsp&nbsp&nbsp<%= @teacher.username %></h2>
-	    <h2>EMAIL: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @teacher.email %></h2>
+	    <span>USERNAME:</span> <%= @teacher.username %><br><br>
+	    <span>EMAIL:</span> <%= @teacher.email %><br><br>
 
-	    <h2>Classes:</h2>
+	    <span>Classes:</span>
 	    <% if @teacher.groups.length != 0 %>
 	    	<% @teacher.groups.each do |group| %>
-	    		<a href="<%= group_path(group.id) %>"><h5><%= group.name %></h5></a>
+	    		<a href="<%= group_path(group.id) %>"><span><%= group.name %></span></a>
 	    		<% end %>
 	    <% end %>
 

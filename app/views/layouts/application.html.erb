@@ -32,6 +32,9 @@
             <% elsif @nav == "root" %>
               <%  @nav = nil %>
               <%= render "layouts/root" %>
+            <% elsif @nav == "root2" %>
+              <%  @nav = nil %>
+              <%= render "layouts/root2" %>
             <% elsif parent_logged_in? %>
               <%= render "layouts/parent" %>
             <% elsif center_logged_in? %>

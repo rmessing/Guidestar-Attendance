@@ -3,15 +3,15 @@
 <div class="container">
 	<div class="profile">
 		<h1>Client Profile</h1>
-		<h2>NAME:  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @center.name %></h2>
-		<h2>DIRECTOR:  &nbsp&nbsp<%= @center.dirfname %><%= @center.dirlname %></h2>
-		<h2>USERNAME:  &nbsp&nbsp<%= @center.username %></h2>
-		<h2>EMAIL:  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @center.email %></h2>
+		<span>NAME:</span>  <%= @center.name %><br><br>
+		<span>DIRECTOR:</span>  <%= @center.dirfname %> <%= @center.dirlname %><br><br>
+		<span>USERNAME:</span>  <%= @center.username %><br><br>
+		<span>EMAIL:</span>  <%= @center.email %><br><br>
 
-		<h2>LOCATIONS:</h2>
-		<% if @center.locations.length != 0 %>	
+		<span>LOCATIONS:</span>
+				<% if @center.locations.length != 0 %>	
 			<% @center.locations.each do |location| %>
-				<a href="<%= location_path(location.id) %>"><h5><%= location.name %></h5></a>
+				<a href="<%= location_path(location.id) %>"><span><%= location.name %></span></a>
 			<% end %>
 		<% end %>
 

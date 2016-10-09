@@ -20,7 +20,6 @@ class CentersController < ApplicationController
   end
 
   def admin
-      @nav = "center"
   end
 
   def superadmin
@@ -43,7 +42,7 @@ class CentersController < ApplicationController
   def update
       @center = Center.find(params[:id])
       if @center.update_attributes(center_params)
-         flash[:success] = "Center #{@center.name} has been updated."
+         flash[:success] = "#{@center.name} has been updated."
          redirect_to @center
       else
          render 'edit'
@@ -61,7 +60,7 @@ class CentersController < ApplicationController
 
   private
   def center_params
-      params.require(:center).permit(:name, :username, :email, :password,
+      params.require(:center).permit(:name, :username, :dirfname, :dirlname, :email, :password,
                                  :password_confirmation)
   end
 

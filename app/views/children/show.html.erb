@@ -3,28 +3,28 @@
 <div class="container">
 	<div class="profile">
 		<h1>Child Profile</h1>
-		<h2>NAME:  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @child.fname %> <%= @child.mname %> <%= @child.lname %></h2>
+		<span>NAME:</span>  <%= @child.fname %> <%= @child.mname %> <%= @child.lname %><br><br>
 
 		<% if @child.group_id %>
            	<% @group = Group.find(@child.group_id) %>
-           	<h2>CLASS: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @group.name %>
+           	<span>CLASS:</span> <%= @group.name %><br><br>
       	<% else %>
-         	<h2>CLASS: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<h2>
+         	<span>CLASS:</span>
       	<% end %>
 		
 		<% if current_center.admin? %>
 			<% center = Center.find(@child.center_id) %>
-		  	<h2>CLIENT: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= center.name %></h2>
+		  	<span>CLIENT:</span> <%= center.name %><br><br>
 	    <% end %>
 
 	    <% if @child.birth_date %>
-	    	<h2>BIRTHDAY: &nbsp&nbsp<%= @child.birth_date.strftime("%B %d %Y") %></h2>
+	    	<span>BIRTHDAY:</span> <%= @child.birth_date.strftime("%B %d, %Y") %><br><br>
 	    <% end %>
 		
-		<h2>ADULTS:</h2>
+		<span>ADULTS:</span>
 		<% if @child.parents.length != 0 %>	
 			<% @child.parents.each do |parent| %>
-				<a href="<%= parent_path(parent.id) %>"><h5><%= parent.fname %> <%= parent.lname %></h5></a>
+				<a href="<%= parent_path(parent.id) %>"><span><%= parent.fname %> <%= parent.lname %></span></a>
 			<% end %>
 		<% end %>
 		

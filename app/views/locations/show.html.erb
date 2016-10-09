@@ -3,17 +3,18 @@
 <div class="container">
 	<div class="profile">
 		<h1>Location Profile</h1>
-		<h2>NAME:  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @location.name %></h2>
+		<span>NAME:</span>  <%= @location.name %><br><br>
 
 		<% if current_center.admin? %>
 			<% center = Center.find(@location.center_id) %>
-		  	<h2>CLIENT: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= center.name %></h2>
+		  	<span>CLIENT:</span> <%= center.name %><br><br>
+
 	    <% end %>
 		
-		<h2>CLASSES:</h2>
+		<span>CLASSES:</span>
 		<% if @location.groups.length != 0 %>	
 			<% @location.groups.each do |group| %>
-				<a href="<%= group_path(group.id) %>"><h5><%= group.fname %> <%= group.lname %></h5></a>
+				<a href="<%= group_path(group.id) %>"><span><%= group.name%></span></a>
 			<% end %>
 		<% end %>
 	</div>

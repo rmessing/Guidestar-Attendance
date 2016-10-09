@@ -3,31 +3,31 @@
 <div class="container">
 	<div class="profile">
 		<h1>Class Profile</h1>
-		<h2>NAME:  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= @group.name %></h2>
+		<span>NAME:</span>  <%= @group.name %></h2><br><br>
 
 		<% if @group.location_id %>
            	<% location = Location.find(@group.location_id) %>
-           	<h2>LOCATION: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= location.name %>
+           	<span>LOCATION:</span> <%= location.name %><br><br>
       	<% else %>
-         	<h2>LOCATION: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<h2>
+         	<span>LOCATION:</span><br><br>
       	<% end %>
 		
 		<% if current_center.admin? %>
 			<% center = Center.find(@group.center_id) %>
-		  	<h2>CLIENT: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= center.name %></h2>
+		  	<span>CLIENT:</span> <%= center.name %><br><br>
 	    <% end %>
 
-		<h2>TEACHERS:</h2>
+		<span>TEACHERS:</span>
 	    <% if @group.teachers.length != 0 %>
 	    	<% @group.teachers.each do |teacher| %>
-	    		<a href="<%= teacher_path(teacher.id) %>"><h5><%= teacher.fname %> <%= teacher.lname %></h5></a>
+	    		<a href="<%= teacher_path(teacher.id) %>"><span><%= teacher.fname %> <%= teacher.lname %></span></a>
 	    		<% end %>
-	    <% end %>
+	    <% end %><br><br>
 		
-		<h2>CHILDREN:</h2>
+		<span>CHILDREN:</span>
 		<% if @group.children.length != 0 %>	
 			<% @group.children.each do |child| %>
-				<a href="<%= child_path(child.id) %>"><h5><%= child.fname %> <%= child.lname %></h5></a>
+				<a href="<%= child_path(child.id) %>"><span><%= child.fname %> <%= child.lname %></span></a>
 				<% end %>
 		<% end %>
 		
