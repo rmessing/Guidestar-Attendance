@@ -13,13 +13,11 @@
 	    <span>USERNAME:</span> <%= @teacher.username %><br><br>
 	    <span>EMAIL:</span> <%= @teacher.email %><br><br>
 
-	    <span>Classes:</span>
 	    <% if @teacher.groups.length != 0 %>
+	    	<span>CLASSES:</span>
 	    	<% @teacher.groups.each do |group| %>
 	    		<a href="<%= group_path(group.id) %>"><span><%= group.name %></span></a>
 	    		<% end %>
 	    <% end %>
-
-
 	</div>
 </div>

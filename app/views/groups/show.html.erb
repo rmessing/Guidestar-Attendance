@@ -5,16 +5,16 @@
 		<h1>Class Profile</h1>
 		<span>NAME:</span>  <%= @group.name %></h2><br><br>
 
+		<% if current_center.admin? %>
+			<% center = Center.find(@group.center_id) %>
+		 	<span>CLIENT:</span> <%= center.name %><br><br>
+	    <% end %>
+
 		<% if @group.location_id %>
            	<% location = Location.find(@group.location_id) %>
            	<span>BRANCH:</span> <%= location.name %><br><br>
       	<% end %>
 		
-		<% if current_center.admin? %>
-			<% center = Center.find(@group.center_id) %>
-		  	<span>CLIENT:</span> <%= center.name %><br><br>
-	    <% end %>
-
 	    <% if @group.teachers.length != 0 %>
 	    	<span>TEACHERS:</span>
 	    	<% @group.teachers.each do |teacher| %>

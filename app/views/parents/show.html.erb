@@ -12,14 +12,13 @@
 
 	    <span>USERNAME:</span> <%= @parent.username %><br><br>
 	    <span>EMAIL:</span> <%= @parent.email %><br><br>
-
-	    <span>CHILDREN:</span>
+   
 		<% if @parent.children.length != 0 %>	
-			<% @parent.children.each do |child| %>
+			 <span>CHILDREN:</span>
+			 <% @parent.children.each do |child| %>
 				<a href="<%= child_path(child.id) %>"><span><%= child.fname %> <%= child.mname %> <%= child.lname %></span></a>
 			<% end %>
 		<% end %>
-
 	</div>
 </div>
 

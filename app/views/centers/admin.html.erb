@@ -4,8 +4,10 @@
 
 <h1 class="page_title"><%= "#{current_center.name} Administration" %> </h1>
 <hr>
+<h2> <%= link_to "View Home Office Profile", center_path(current_center.id), method: :get %></h2>
 <h2> <%= link_to "Manage Child-Adult Relationships", families_path %></h2>
 <h2> <%= link_to "Manage Class-Teacher Relationships", group_teachers_path %></h2>
+
 
 <div class="row">		
 		<h1 class="col-md-2 col-md-offset-1"> Children </h1>
