@@ -7,9 +7,7 @@
 
 		<% if @group.location_id %>
            	<% location = Location.find(@group.location_id) %>
-           	<span>LOCATION:</span> <%= location.name %><br><br>
-      	<% else %>
-         	<span>LOCATION:</span><br><br>
+           	<span>BRANCH:</span> <%= location.name %><br><br>
       	<% end %>
 		
 		<% if current_center.admin? %>
@@ -17,19 +15,18 @@
 		  	<span>CLIENT:</span> <%= center.name %><br><br>
 	    <% end %>
 
-		<span>TEACHERS:</span>
 	    <% if @group.teachers.length != 0 %>
+	    	<span>TEACHERS:</span>
 	    	<% @group.teachers.each do |teacher| %>
 	    		<a href="<%= teacher_path(teacher.id) %>"><span><%= teacher.fname %> <%= teacher.lname %></span></a>
 	    		<% end %>
 	    <% end %><br><br>
 		
-		<span>CHILDREN:</span>
-		<% if @group.children.length != 0 %>	
+		<% if @group.children.length != 0 %>
+			<span>CHILDREN:</span>	
 			<% @group.children.each do |child| %>
 				<a href="<%= child_path(child.id) %>"><span><%= child.fname %> <%= child.lname %></span></a>
 				<% end %>
 		<% end %>
-		
 	</div>
 </div>

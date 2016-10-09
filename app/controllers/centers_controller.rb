@@ -1,5 +1,5 @@
 class CentersController < ApplicationController
-  before_action :superadmin, except: [:admin, :show, :create, :update]
+  before_action :superadmin, except: [:admin, :show]
 
   def index
       @centers = Center.paginate(page: params[:page]).order("name")

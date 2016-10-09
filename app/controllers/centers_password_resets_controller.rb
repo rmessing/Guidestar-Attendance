@@ -31,7 +31,7 @@ class CentersPasswordResetsController < ApplicationController
          session[:center_id] = @center.id
          @center.update_attribute(:reset_digest, nil)
          flash[:success] = "Password has been reset."
-         redirect_to @center
+         redirect_to admin_path
       else
         render 'edit'                                      
       end

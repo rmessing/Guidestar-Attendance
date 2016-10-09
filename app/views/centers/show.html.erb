@@ -2,7 +2,11 @@
 
 <div class="container">
 	<div class="profile">
-		<h1>Client Profile</h1>
+		<% if current_center.admin? %>
+			<h1>Client Profile</h1>
+		<% else %>
+			<h1>Home Office Profile</h1>
+		<% end %>	
 		<span>NAME:</span>  <%= @center.name %><br><br>
 		<span>DIRECTOR:</span>  <%= @center.dirfname %> <%= @center.dirlname %><br><br>
 		<span>USERNAME:</span>  <%= @center.username %><br><br>

@@ -30,7 +30,7 @@ class TeachersPasswordResetsController < ApplicationController
       session[:teacher_id] = @teacher.id
       @teacher.update_attribute(:reset_digest, nil)
       flash[:success] = "Password has been reset."
-      redirect_to @teacher
+      redirect_to parent_log_in_path
     else
       render 'edit'                                      
     end
