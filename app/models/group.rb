@@ -3,7 +3,7 @@ class Group < ActiveRecord::Base
 	# A group is a school class of several children.
 
 	
-	validates :name, presence: true, length: { maximum: 30 }, uniqueness: { scope: [:location_id], case_sensitive: false }
+	validates :name, presence: true, length: { maximum: 30 }, uniqueness: { scope: [:location_id, :center_id], case_sensitive: false }
 	# validates :location_id, presence: true
 
 	has_many :children, dependent: :nullify
