@@ -4,7 +4,7 @@ class Group < ActiveRecord::Base
 
 	
 	validates :name, presence: true, length: { maximum: 30 }, uniqueness: { scope: [:location_id], case_sensitive: false }
-	validates :location_id, presence: true
+	# validates :location_id, presence: true
 
 	has_many :children, dependent: :nullify
 	has_many :group_teachers
