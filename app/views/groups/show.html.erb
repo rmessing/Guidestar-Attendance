@@ -19,8 +19,8 @@
 	    	<span>TEACHERS:</span>
 	    	<% @group.teachers.each do |teacher| %>
 	    		<a href="<%= teacher_path(teacher.id) %>"><span><%= teacher.fname %> <%= teacher.lname %></span></a>
-	    		<% end %>
-	    <% end %><br><br>
+	    	<% end %><br><br>
+	    <% end %>
 		
 		<% if @group.children.length != 0 %>
 			<span>CHILDREN:</span>	

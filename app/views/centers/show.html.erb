@@ -2,7 +2,9 @@
 
 <div class="container">
 	<div class="profile">
-		<% if current_center.admin? %>
+		<% if @center.admin == true %>
+			<h1>Super Administrator Profile</h1>
+		<% elsif current_center.admin?%>
 			<h1>Client Profile</h1>
 		<% else %>
 			<h1>Home Office Profile</h1>
@@ -12,8 +14,8 @@
 		<span>USERNAME:</span>  <%= @center.username %><br><br>
 		<span>EMAIL:</span>  <%= @center.email %><br><br>
 
-		<span>LOCATIONS:</span>
-				<% if @center.locations.length != 0 %>	
+		<% if @center.locations.length != 0 %>
+			<span>BRANCHES:</span>	
 			<% @center.locations.each do |location| %>
 				<a href="<%= location_path(location.id) %>"><span><%= location.name %></span></a>
 			<% end %>

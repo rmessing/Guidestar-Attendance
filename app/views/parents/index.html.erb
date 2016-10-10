@@ -4,9 +4,9 @@
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<% if current_center.admin? %>
-				  <h1><%= @center.name %></h1>
-				  <h1 class="half_size"> Parents </h1>
-				  <% else %>
+				 <h1> Parents </h1>
+				 <h1 class="half_size"><%= @center.name %></h1> 
+			<% else %>
 				  <h1> All Parents </h1>
 			<% end %>
 
@@ -14,7 +14,7 @@
 			<%= will_paginate %>
 			  <% @parents.each do |parent| %>
 				    <li>
-				    	<div class="center_name">
+				    	<div class="center_name", id="push_right">
 							<h4><%= parent.fname %>
 								<%= parent.lname %></h4>
 						</div>

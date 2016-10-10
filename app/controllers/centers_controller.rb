@@ -7,12 +7,6 @@ class CentersController < ApplicationController
 
   def show
       @center = Center.find(params[:id])
-
-      # Confirms only superadmin may view the superadmin profile.
-      if !current_center.admin? && @center.admin?
-         flash[:danger] = "Not authorized to view profile."
-         redirect_to center_log_in_path
-      end
   end
 
   def new

@@ -10,8 +10,6 @@
 			<%= f.label :Class_Name %>
 			<%= f.text_field :name, class: 'form-control' %>
 			<%= f.hidden_field :center_id, :value => @center.id %>
-			<%= f.label :Teacher %>
-			<%= f.collection_select :teacher_id, @teachers, :id, :teacher_full_name, prompt: true %>
 			<%= f.label :Location %>
 			<%= f.collection_select :location_id, @locations, :id, :name, prompt: true %>
 

@@ -6,23 +6,26 @@
 			<% if current_center.admin? %>
 				  <h1> Classes </h1>
 				  <h1 class="half_size"><%= @center.name %></h1>
-				  <% else %>
+			<% else %>
 				  <h1> All Classes </h1>
 			<% end %>
 			<ul class="objects">
 			<%= will_paginate %>
 			  <% @groups.each do |group| %>
-				    <li>
-				      	<div class="center_name">
-							<h4><%= group.name %></h4>
-					  	</div>
-						<div class="center_links">
-							<%= link_to "View", group_path(group.id), method: :get %> |
-							<%= link_to "Update", controller: "groups", action: "edit", id: group.id %> |
-							<%= link_to "Delete", group_path(group.id), method: :delete, data: {confirm: "Are you sure?"} %> |
-							<%= link_to "Add/Remove Teacher", controller: "group_teachers", action: "show", id: group.id %><br>
-						</div>
-					</li>
+				  	<div class="div_width2">
+					    <li>
+					      	<div class="center_name">
+					      		<% location = Location.find(group.location_id) %>
+								<h4><%= group.name %> - <%= location.name %>  </h4>
+						  	</div>
+							<div class="center_links">
+								<%= link_to "View", group_path(group.id), method: :get %> |
+								<%= link_to "Update", controller: "groups", action: "edit", id: group.id %> |
+								<%= link_to "Delete", group_path(group.id), method: :delete, data: {confirm: "Are you sure?"} %> |
+								<%= link_to "Add/Remove Teacher", controller: "group_teachers", action: "show", id: group.id %><br>
+							</div>
+						</li>
+					</div>
 			  <% end %>
 			</ul>
 		</div>
