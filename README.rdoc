@@ -1,8 +1,8 @@
 README for Guidestar-Attendance
 
-Guidestar-Attendance is a business application contracted by a day care industry consultant. There are 125,000 child care facilities in the US, most of which are relatively small day care centers, too small to afford the day care software applications currently on the market. Guidestar-Attendance is targeting the smaller child care facilities with an inexpensive, easy to use interface. Guidestar-Attendance is an attendance tracking solution. The demand for attandance tracking is driven by the need for day care centers to know precisely when a child is on premises in the event a child is injured and legal issues arise. 
+Guidestar-Attendance is a business application contracted by a day care industry consultant. There are 125,000 child care facilities in the US, most of which are relatively small day care centers, too small to afford the day care software applications currently on the market. Guidestar-Attendance is targeting the smaller child care facilities with an inexpensive, easy to use interface. Guidestar-Attendance is an attendance tracking solution. The demand for attendance tracking is driven by the need for day care centers to know precisely when a child is on premises in the event a child is injured and legal issues arise. 
 
-There are 7 object models and 2 join tables in the db:  centers, children, groups (classes), handoffs (child pickup/dropoff events), locations, parents, teachers, families (child/parent join table), group_teachers (group/teacher join table).  A center (day care facility) admin cannot see the data from other centers.  A center can create/update/delete its own objects only.  Only the super administrator can create/update/delete centers.  The super administrator also has all the powers of a center administrator.
+There are 7 object models and 2 join tables in the db:  centers, children, groups (classes), handoffs (child pickup/dropoff events), locations, parents, teachers, families (child/parent join table), group_teachers (group/teacher join table).  A center (day care facility) admin cannot see the data from other centers.  A center can create/update/delete its own objects only.  Only the super administrator (the consultant) can create/update/delete centers (the consultant's clients).  The super administrator also has all CRUD powers of a center administrator.
 
 Coding Progress:  All super administrator and center administrator CRUD functions have been coded.  Teachers and Administrators have password reset functionality.  Adding and deleting join table rows for assigning/removing teachers to/from classes and adding/removing parents to/from child accounts are coded.  Coding handoff functionality, child pickup/dropoff attendance events, will complete the application.
 
@@ -11,14 +11,14 @@ Demo Instructions: Go to https://attend-by-guidestar.herokuapp.com to demo the a
 super administrator login
 username: "fpurposes" | password: "hire_him"
 
-parent, teacher and center (client) administrator logins
+parent, teacher and administrator logins
 username: "dsmart" | password: "12345678"
 
 A super administrator is an instance object of the center model with "true" in the admin field.  Each center has only one login therefore acts as its own admin.  A parent cannot login until a teacher or center administrator logs in first.  This prevents parents from logging in remotely and entering fraudulent attendance information.
 
 The teacher's only function is to login passing control to the parent log in.  If a teacher is not available, the center administrator can log in and pass control to the parent log in or conduct administrative functions.  
 
-Attendance: when a parent or other child escort arrives at the day care center, they first log into Guidestar-Attendance. A list of the children assigned to the escort is displayed. The escort records either a child dropoff or pickup event. The parent logs off, automatically redirecting the app to the parent log in.
+Attendance (to be coded): when a parent or other child escort arrives at the day care center, they first log into Guidestar-Attendance. A list of the children assigned to the escort is displayed. The escort records either a child dropoff or pickup event. The parent logs off, automatically redirecting the app to parent log in.
 
 Additional Requirements:
 
@@ -29,11 +29,35 @@ Import/Export
 - Allows center administrator the ability to import a spreadsheet of object data to populate the db upon initial install.
 - Allows center administrator the ability to export data from the db into a spreadsheet for use in other applications. 
 
-audit trail: log all actions with timestamp
-report printing
+Other
 
-
+- Audit trail: log all actions with timestamp
+- Report printing
 
 Ruby version 2.3.0 | Rails 4.2.6
 
 System dependencies: PostgreSQl configured for development and production.
+
+Lisence:  the password reset code and coding best practices were originally publlished in a Michael Hartl tutorial, covered by the following open source license.
+
+The MIT License
+
+Copyright (c) 2016 Michael Hartl
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE. 
