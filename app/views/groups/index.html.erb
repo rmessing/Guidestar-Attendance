@@ -1,37 +1,37 @@
 <% provide(:title, 'All Classes') %>
 
-<div class="container">
-	<div class="row">
-		<div class="col-md-6 col-md-offset-3"> 
-			<% if current_center.admin? %>
-				  <h1> Classes </h1>
-				  <h1 class="half_size"><%= @center.name %></h1>
-			<% else %>
-				  <h1> All Classes </h1>
-			<% end %>
-			<ul class="objects">
-			<%= will_paginate %>
-			  <% @groups.each do |group| %>
-				  	<div class="div_width2">
-					    <li>
-					      	<div class="center_name">
-					      		<% if group.location_id %>
-					      			<% location = Location.find(group.location_id) %>
-									<h4><%= group.name %> - <%= location.name %>  </h4>
-								<% else %>
-									<h4><%= group.name %></h4>
-								<% end %>
-						  	</div>
-							<div class="center_links">
-								<%= link_to "View", group_path(group.id), method: :get %> |
-								<%= link_to "Update", controller: "groups", action: "edit", id: group.id %> |
-								<%= link_to "Delete", group_path(group.id), method: :delete, data: {confirm: "Are you sure?"} %> |
-								<%= link_to "Add/Remove Teacher", controller: "group_teachers", action: "show", id: group.id %><br>
-							</div>
-						</li>
+<div class="container-fluid">
+	<% if current_center.admin? %>
+		  <h1> Classes </h1>
+		  <h1 class="half_size"><%= @center.name %></h1>
+	<% else %>
+		  <h1> All Classes </h1>
+	<% end %>
+	<ul class="objects">
+	<%= will_paginate %>
+	  <% @groups.each do |group| %>
+		  <div class="correct_left">
+			    <li>
+			      	<div class="center_name">
+			      		<%= link_to edit_group_path(group.id), method: :get do %>
+		        			 	<i class="glyphicon glyphicon-pencil"></i>
+		        		<% end %>
+		        		<%= link_to group_path(group.id), method: :delete, data: {confirm: "Are you sure?"} do %>
+		        			 	<i class="glyphicon glyphicon-trash"></i>
+		        		<% end %>
+			      		<% if group.location_id %>
+			      			<% location = Location.find(group.location_id) %>
+							<strong><%= group.name %> - <%= location.name %></strong>
+						<% else %>
+							<strong><%= group.name %></strong>
+						<% end %>
+				  	</div>
+					<div class="center_links">
+						<%= link_to "View", group_path(group.id), method: :get %> |
+						<%= link_to "Add/Remove Teacher", controller: "group_teachers", action: "show", id: group.id %><br>
 					</div>
-			  <% end %>
-			</ul>
-		</div>
-	</div>
+				</li>
+		  </div>
+	  <% end %>
+	</ul>
 </div>

@@ -1,35 +1,36 @@
 <% provide(:title, 'All Children') %>
 
-<div class="container">
-	<div class="row">
-		<div class="col-md-6 col-md-offset-3"> 
-			<% if current_center.admin? %>
-				  <h1> Children </h1>
-				  <h1 class="half_size"><%= @center.name %></h1>
-			<% else %>
-				  <h1> All Children </h1>
-			<% end %>
-			<ul class="objects">
-			<%= will_paginate %>
-			  <% @children.each do |child| %>
-			  <div class="div_width2">
-				    <li>
-					    <div class="center_name">
-							<h4><%= child.fname %>
-								<%= child.mname %>
-								<%= child.lname %></h4>
-						</div>
-						<div class="center_links">
-							<%= link_to "View", child_path(child.id), method: :get %> |
-							<%= link_to "Update", controller: "children", action: "edit", id: child.id %> |
-							<%= link_to "Delete", child_path(child.id), method: :delete, data: {confirm: "Are you sure?"} %> |
-							<%= link_to "Add/Remove Adult", controller: "families", action: "show", id: child.id %><br>
-						</div>
-				    </li>
-				    </div>
-			  <% end %>
-			</ul>
-		</div>
-	</div>
+<div class="container-fluid">
+	<% if current_center.admin? %>
+		  <h1> Children </h1>
+		  <h1 class="half_size"><%= @center.name %></h1>
+	<% else %>
+		  <h1> All Children </h1>
+	<% end %>
+	<ul class="objects">
+		<%= will_paginate %>
+	  	<% @children.each do |child| %>
+		  	<div class="correct_left">
+			    <li>
+				    <div class="center_name">
+				    	<%= link_to edit_child_path(child.id), method: :get do %>
+		        			 	<i class="glyphicon glyphicon-pencil"></i>
+		        		<% end %>
+		        		<%= link_to child_path(child.id), method: :delete, data: {confirm: "Are you sure?"} do %>
+		        			 	<i class="glyphicon glyphicon-trash"></i>
+		        		<% end %>
+
+						<strong><%= child.fname %>
+						<%= child.mname %>
+						<%= child.lname %></strong>
+					</div>
+					<div class="center_links">
+						<%= link_to "View", child_path(child.id), method: :get %> |
+						<%= link_to "Add/Remove Adult", controller: "families", action: "show", id: child.id %><br>
+					</div>
+			    </li>
+			</div>
+	  	<% end %>
+	</ul>
 </div>
 

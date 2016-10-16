@@ -2,56 +2,50 @@
 
 <!-- This is the home page for the Super Administrator  The superadmin has the same powers as the Center Admin as well as the ability to create new, edit and delete centers.  The superadmin is a center instance with admin rights, i.e. 'true' in the center.admin field.  All other centers have 'false' in center.admin, however, since they have only one login, each center acts as its own admin. -->
 <div class="container-fluid">
-<!-- 	<div class="row">
-	  <div class="col-md-10 col-md-offset-1"> -->
-		<h1 class="page_title"> Guidestar Administration </h1>
-	 	<h2><%= link_to "Register New Client", new_center_path, class: "half_size" %></h2>
-		<div  class="objects">
-			<ul>
-			  <%= will_paginate %>
-			  <% @centers.each do |center| %>
-			  
-			    <li>
-			    <div class="div_width">
-					<div class="center_name">
-						<%= link_to edit_center_path(center.id), method: :get do %>
-	        			 	<i class="glyphicon glyphicon-pencil"></i>
-	        			<% end %>
-	        			<%= link_to center_path(center.id), method: :delete, data: {confirm: "Are you sure?"} do %>
-	        			 	<i class="glyphicon glyphicon-trash"></i>
-	        			<% end %>
-	        			<%= link_to center_path(center.id), method: :get do %>
-						 	<i><%= center.name %></i>
-						<% end %>
-	        			
-					</div>
-					<div class="center_links">
-						 <% if center.admin? %>
-							<a href="<%= edit_center_path(center.id) %>">Update Profile</a>
-						 <% else %>
-
-							Register: 
-							<%= link_to "Child", controller: "children", action: "new", id: center.id %> |
-							<%= link_to "Adult", controller: "parents", action: "new", id: center.id %> |
-							<%= link_to "Teacher", controller: "teachers", action: "new", id: center.id %> |
-							<%= link_to "Class", controller: "groups", action: "new", id: center.id %> |
-							<%= link_to "Location", controller: "locations", action: "new", id: center.id %>  &diams;
-
-							Manage: 
-							<%= link_to "Child", controller: "children", action: "index", id: center.id %> |
-							<%= link_to "Adult", controller: "parents", action: "index", id: center.id %> |
-							<%= link_to "Teacher", controller: "teachers", action: "index", id: center.id %> |
-							<%= link_to "Class", controller: "groups", action: "index", id: center.id %> |
-							<%= link_to "Location", controller: "locations", action: "index", id: center.id %>
-						<% end %>
-					</div>
+	<h1 class="page_title"> Guidestar Administration </h1>
+ 	<h2><%= link_to "Register New Client", new_center_path, class: "half_size" %></h2> 	
+	<div  class="objects">
+		<ul>
+			<%= will_paginate %>
+			<% @centers.each do |center| %>
+				<li>
+				    <div class="div_width">
+						<div class="super_name">
+							<%= link_to edit_center_path(center.id), method: :get do %>
+		        			 	<i class="glyphicon glyphicon-pencil"></i>
+		        			<% end %>
+		        			<%= link_to center_path(center.id), method: :delete, data: {confirm: "Are you sure?"} do %>
+		        			 	<i class="glyphicon glyphicon-trash"></i>
+		        			<% end %>
+		        			<%= link_to center_path(center.id), method: :get do %>
+							 	<i><%= center.name %></i>
+							<% end %>		
+						</div>
+						<div class="super_links">
+							 <% if !center.admin? %> 
+									<div class="media1">
+										Register: 
+										<%= link_to "Child", controller: "children", action: "new", id: center.id %> |
+										<%= link_to "Adult", controller: "parents", action: "new", id: center.id %> |
+										<%= link_to "Teacher", controller: "teachers", action: "new", id: center.id %> |
+										<%= link_to "Class", controller: "groups", action: "new", id: center.id %> |
+										<%= link_to "Location", controller: "locations", action: "new", id: center.id %>  
+									<span id="diamond">&diams;</span>
+									</div>
+									<div class="media1">
+										Manage: 
+										<%= link_to "Child", controller: "children", action: "index", id: center.id %> |
+										<%= link_to "Adult", controller: "parents", action: "index", id: center.id %> |
+										<%= link_to "Teacher", controller: "teachers", action: "index", id: center.id %> |
+										<%= link_to "Class", controller: "groups", action: "index", id: center.id %> |
+										<%= link_to "Location", controller: "locations", action: "index", id: center.id %>
+									</div>
+							<% end %>
+						</div>
 					</div>		
 			    </li>
-			    
-			  <% end %>
-			</ul>
-		</div>
-<!-- 	  </div>
-	</div> -->
+		 	<% end %>
+		</ul>
+	</div>
 </div>
 

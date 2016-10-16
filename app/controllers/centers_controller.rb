@@ -1,12 +1,13 @@
 class CentersController < ApplicationController
   before_action :superadmin, except: [:admin, :show]
+  before_action :logged_in_center, only: [:admin, :show]
+  before_action :correct_center, only: [:show]
 
   def index
       @centers = Center.paginate(page: params[:page]).order("name")
   end
 
   def show
-      @center = Center.find(params[:id])
   end
 
   def new
@@ -60,14 +61,31 @@ class CentersController < ApplicationController
 
   # Before filters
 
-  # Confirms only superadmin has access to centers.
+  # Confirms only superadmin can create/update/delete center data.
   def superadmin
       if !center_logged_in?
-          flash[:danger] = "Access to previous page was denied."
+          flash[:danger] = "Access is denied."
           redirect_to '/' 
       elsif !current_center.admin?
-          flash[:danger] = "Access to previous page was denied."
+          flash[:danger] = "Access is denied."
           redirect_to admin_path
+      end
+  end
+
+  # Confirms a logged-in center.
+  def logged_in_center
+      unless center_logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to center_log_in_path
+      end
+  end
+
+  # Confirms only current_center or superadmin can see @center profile.
+  def correct_center
+      @center = Center.find(params[:id])
+      unless current_center.admin? || current_center?(@center)
+        flash[:danger] = "Access denied."
+        redirect_to '/'
       end
   end
 end

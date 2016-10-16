@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :confirm_logouts, only: [:new_teacher, :new_center]
+  
 
   def new_parent
 
@@ -34,7 +34,7 @@ class SessionsController < ApplicationController
   end
 
   def new_teacher
-      @nav = "root"
+      @nav = "teacher"
   end
 
   def create_teacher
@@ -57,7 +57,7 @@ class SessionsController < ApplicationController
   end
 
   def new_center
-    @nav = "root2"
+    @nav = "admin"
   end
 
   def create_center
@@ -80,25 +80,6 @@ class SessionsController < ApplicationController
   def destroy_center
     	log_out_center
       flash[:success] = "Center is logged off."
-      redirect_to center_log_in_path
-  end
-
-  private
-
-  #  Before Filter
-
-  #  Layouts depend on which users are logged in.  In case user does not logout 
-  #  properly,  confirm_logouts ensures all users are logged out before app
-  #  recycles.
-  def confirm_logouts
-      if parent_logged_in?
-         log_out_parent
-      end
-      if center_logged_in?  
-         log_out_center 
-      end
-      if teacher_logged_in? 
-         log_out_teacher 
-      end
+      redirect_to "/"
   end
 end

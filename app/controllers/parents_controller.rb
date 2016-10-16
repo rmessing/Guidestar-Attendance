@@ -1,5 +1,6 @@
 class ParentsController < ApplicationController
-  before_action :logged_in_center, except: [:show]
+  before_action :logged_in_center
+  before_action :correct_center, only: [:show, :edit, :update, :destroy]
 
   # If superadmin (current_center.admin?) is logged in, center.id is in params, otherwise the current_center.id is used?
   # .where prevents user from seeing data belonging to centers other than his/her own.
@@ -14,7 +15,6 @@ class ParentsController < ApplicationController
   end
 
   def show
-      @parent = Parent.find(params[:id])
   end
 
   def new
@@ -38,30 +38,24 @@ class ParentsController < ApplicationController
   end
 
   def edit
-      @parent = Parent.find(params[:id])
-      @center = Center.find(@parent.center_id)
   end
 
   def update
-      @parent = Parent.find(params[:id])
       if @parent.update_attributes(parent_params)
          flash[:success] = "Parent #{@parent.fname} #{@parent.lname} is updated."
          redirect_to @parent
       else
-         @center = Center.find(@parent.center_id)
          render :edit
       end
   end
 
   def destroy
-      parent = Parent.find(params[:id])
-      center = parent.center_id
-      if parent.destroy
+      if @parent.destroy
          flash[:success] = "Parent deleted."
       else
          flash[:danger] = "Parent deletion failed."
       end
-      redirect_to parents_path(:id => center)
+      redirect_to parents_path(:id => @center)
   end
 
   private
@@ -76,6 +70,16 @@ class ParentsController < ApplicationController
       unless center_logged_in?
         flash[:danger] = "Please log in."
         redirect_to center_log_in_path
+      end
+  end
+
+  # Confirms only superadmin or current_center has access to @center data.
+  def correct_center
+      @parent = Parent.find(params[:id])
+      @center = Center.find(@parent.center_id)
+      unless current_center.admin? || current_center?(@center)
+        flash[:danger] = "Access denied."
+        redirect_to '/'
       end
   end
 end

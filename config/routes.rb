@@ -44,7 +44,7 @@ Rails.application.routes.draw do
 
   get "/superadmin" => "sessions#new_center"
 
-  root 'sessions#new_teacher'
+  root 'info_pages#home'
 
   resources :handoffs
   resources :centers

@@ -1,8 +1,10 @@
 class ChildrenController < ApplicationController
-  before_action :logged_in_center, except: [:show]
+  before_action :logged_in_center
+  before_action :correct_center, only: [:show, :edit, :update, :destroy]
 
-  # If superadmin (current_center.admin?) is logged in, center.id is in params, otherwise the current_center.id is used?
-  # .where prevents user from seeing data belonging to centers other than his/her own.
+  # If superadmin is logged in (current_center.admin?), center.id is in params, 
+  # otherwise the current_center.id is used? .where filters data to prevent user
+  # from accessing data belonging to centers other than his/her own.
 
   def index
       if current_center.admin?
@@ -14,7 +16,6 @@ class ChildrenController < ApplicationController
   end
 
   def show
-      @child = Child.find(params[:id])
   end
 
   def new
@@ -41,32 +42,26 @@ class ChildrenController < ApplicationController
   end
 
   def edit
-      @child = Child.find(params[:id])
-      @center = Center.find(@child.center_id)
       @groups = Group.order("name").where(:center_id => @center.id)
   end
 
   def update
-      @child = Child.find(params[:id])
       if @child.update_attributes(child_params)
          flash[:success] = "Child #{@child.fname} #{@child.mname} #{@child.lname} is updated."
          redirect_to @child
       else
-         @center = Center.find(@child.center_id)
          @groups = Group.order("name").where(:center_id => @center.id)
          render :edit
       end
   end
 
   def destroy
-      child = Child.find(params[:id])
-      center = child.center_id
-      if child.destroy
+      if @child.destroy
          flash[:success] = "Child deleted."
       else
          flash[:danger] = "Child deletion failed."
       end
-      redirect_to children_path(:id => center)
+      redirect_to children_path(:id => @center)
   end
 
   private
@@ -83,4 +78,15 @@ class ChildrenController < ApplicationController
         redirect_to center_log_in_path
       end
   end
+
+# Confirms only superadmin or current_center has access to @center data.
+  def correct_center
+      @child = Child.find(params[:id])
+      @center = Center.find(@child.center_id)
+      unless current_center.admin? || current_center?(@center)
+        flash[:danger] = "Access denied."
+        redirect_to '/'
+      end
+  end
+
 end

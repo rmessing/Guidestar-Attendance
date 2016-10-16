@@ -138,12 +138,17 @@ input {
 h1 {
 	text-align: center;
 }
+.form_container {
+  width: 25vw;
+  margin: 0 auto;
+}
 /* Objects index */
 
 .objects {
   list-style: none;
   margin: 0;
-
+  text-align: center;
+ 
   li {
     overflow: auto;
     padding: 10px 0;
@@ -152,10 +157,20 @@ h1 {
 }
 .center_name {
   text-align: left;
-  width: 20vw;
+  width: 25vw;
   display: inline-block;
 }
 .center_links {
+  text-align: right;
+  width: 100vw;
+  display: inline;
+}
+.super_name {
+  text-align: left;
+  width: 20vw;
+  display: inline-block;
+}
+.super_links {
   text-align: right;
   width: 100vw;
   display: inline;
@@ -184,20 +199,59 @@ h1 {
 .profile span {
   margin-right: 1vw;
 }
-#push_right {
-  margin-left: 4vw;
-}
 .div_width {
   text-align: left;
   margin-left: 5vw;
+  margin-right: -5vw;
+  width: 75vw;
 }
-.div_width2 {
-  width: 45vw;
-  margin-left: -2vw;
+.correct_left {
+  margin-left: -1.5vw;
+  margin-right: 1.5vw;
 }
-.div_width3 {
-  margin-right: 1vw;
-  margin-left: -1vw;
+.media1  {
+  display: inline;
 }
-
-
+.media2  {
+  display: inline;
+}
+@media all and (max-width: 1200px) {
+  .super_name {
+    text-align: left;
+    width: 50vw;
+    display: block;
+    margin-left: 5vw;
+  }
+  .super_links {
+    text-align: left;
+    /*width: 100vw;*/
+    margin-left: 5vw;
+    margin-right: -5vw;
+  }
+  .div_width {
+    width: 75vw;
+  }
+}
+@media all and (max-width: 999px) {
+  .media1 {
+    display: block;
+    text-align: left;
+  }
+  .media2 {
+    text-align: left;
+    display: block;
+  }
+  .div_width {
+    margin-left: 17vw;
+    margin-right: -17vw;
+    width: 45vw;
+  }
+  .super_name {
+    display: inline;
+    text-align: left;
+    margin-left: -.5vw;
+  }
+  #diamond {
+    display: none;
+  }
+}

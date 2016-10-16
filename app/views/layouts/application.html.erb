@@ -30,11 +30,9 @@
             <% if @nav == "parent" %>
               <%  @nav = nil %>
             <% elsif @nav == "root" %>
-              <%  @nav = nil %>
               <%= render "layouts/root" %>
-            <% elsif @nav == "root2" %>
-              <%  @nav = nil %>
-              <%= render "layouts/root2" %>
+            <% elsif @nav == "teacher" || @nav == "admin" %>
+              <%= render "layouts/login" %>
             <% elsif parent_logged_in? %>
               <%= render "layouts/parent" %>
             <% elsif center_logged_in? %>

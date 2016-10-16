@@ -1,9 +1,10 @@
 class GroupsController < ApplicationController
-  before_action :logged_in_center, except: [:show]
+  before_action :logged_in_center
+  before_action :correct_center, only: [:show, :edit, :update, :destroy]
 
-  # If superadmin(current_center.admin?) is logged in, center.id is in params, otherwise the current_center.id is used?
-  # .where prevents user from seeing data belonging to centers other than his/her own.
-  # A group is a school class composed of several children.
+  # If superadmin is logged in (current_center.admin?), center.id is in params, 
+  # otherwise the current_center.id is used? .where filters data to prevent user
+  # from accessing data belonging to centers other than his/her own.
 
   def index
       if current_center.admin?
@@ -15,7 +16,6 @@ class GroupsController < ApplicationController
   end
 
   def show
-      @group = Group.find(params[:id])
   end
 
   def new
@@ -45,19 +45,15 @@ class GroupsController < ApplicationController
   end
 
   def edit
-      @group = Group.find(params[:id])
-      @center = Center.find(@group.center_id)
       @locations = Location.order("name").where(:center_id => @center.id)
       @teachers = Teacher.order("lname", "fname").where(:center_id => @center.id)
   end
 
   def update
-      @group = Group.find(params[:id])
       if @group.update_attributes(group_params)
          flash[:success] = "#{@group.name} is updated."
          redirect_to @group
       else
-         @center = Center.find(@group.center_id)
          @locations = Location.order("name").where(:center_id => current_center.id)
          @teachers = Teacher.order("lname", "fname").where(:center_id => current_center.id)
          render :edit
@@ -65,14 +61,12 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-      group = Group.find(params[:id])
-      center = group.center_id
-      if group.destroy
+      if @group.destroy
          flash[:success] = "Class deleted."
       else
          flash[:danger] = "Class deletion failed."
       end
-      redirect_to groups_path(:id => center)
+      redirect_to groups_path(:id => @center)
   end
 
   private
@@ -87,6 +81,16 @@ class GroupsController < ApplicationController
       unless center_logged_in?
         flash[:danger] = "Please log in."
         redirect_to center_log_in_path
+      end
+  end
+
+  # Confirms only superadmin or current_center has access to @center data.
+  def correct_center
+      @group = Group.find(params[:id])
+      @center = Center.find(@group.center_id)
+      unless current_center.admin? || current_center?(@center)
+        flash[:danger] = "Access denied."
+        redirect_to '/'
       end
   end
 end

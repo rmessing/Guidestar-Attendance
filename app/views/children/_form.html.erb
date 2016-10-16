@@ -1,5 +1,4 @@
-<div class="row">
-	<div class="col-md-4 col-md-offset-4">
+<div class="form_container">
 		<% if current_center.admin? %>
 		  <h1 class="half_size"><%= @center.name %></h1>
 		<% end %> 
@@ -19,6 +18,5 @@
 		<%= date_field(:child, :birth_date) %>
 		<%= f.submit yield(:button_text), class: "btn btn-primary" %>
 	<% end %>
-	<div>
 </div>
 
