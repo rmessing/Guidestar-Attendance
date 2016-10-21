@@ -1,10 +1,12 @@
 README for Guidestar-Attendance
 
-Guidestar-Attendance is a business application contracted by a day care industry consultant. There are 125,000 child care facilities in the US, most of which are relatively small day care centers, too small to afford the day care software applications currently on the market. Guidestar-Attendance is targeting the smaller child care facilities with an inexpensive, easy to use interface. Guidestar-Attendance is an attendance tracking solution. The demand for attendance tracking is driven by the need for day care centers to know precisely when a child is on premises in the event a child is injured and legal issues arise. 
+Guidestar-Attendance is a business application under contract by a child care industry consultant. Guidestar-Attendance is a child attendance tracking solution. There are 125,000 child care facilities in the US, most of which are relatively small day care centers, too small to afford the day care software applications currently on the market. Guidestar-Attendance is targeting the smaller child care facilities with an inexpensive, easy to use interface. The demand for attendance tracking is driven by the need for day care centers to know precisely when a child is on premises in the event a child is injured and legal issues arise. 
 
-There are 7 object models and 2 join tables in the db:  centers, children, groups (classes), handoffs (child pickup/dropoff events), locations, parents, teachers, families (child/parent join table), group_teachers (group/teacher join table).  A center (day care facility) admin cannot see the data from other centers.  A center can create/update/delete its own objects only.  Only the super administrator (the consultant) can create/update/delete centers (the consultant's clients).  The super administrator also has all CRUD powers of a center administrator.
+The application provides each client (child care facility) the ability to record each drop-off and pick-up event thereby tracking the time span each child was on premises. There are 7 object models and 2 join tables in the db:  centers, children, groups (classes), handoffs (child pickup/dropoff events), locations, parents, teachers, families (child/parent join table),   group_teachers (group/teacher join table).  A center (child care facility) admin cannot see the data from other centers.  A center can create/update/delete its own objects only.  Only the super administrator (the consultant) can create/update/delete centers (the consultant's clients).  The super administrator also has all CRUD powers of a center administrator.
 
-Coding Progress:  All super administrator and center administrator CRUD functions have been coded.  Teachers and Administrators have password reset functionality.  Adding and deleting join table rows for assigning/removing teachers to/from classes and adding/removing parents to/from child accounts are coded.  Coding handoff functionality, child pickup/dropoff attendance events, will complete the application.
+Coding Progress:  All super administrator and center administrator CRUD functions have been coded.  Teachers and Administrators have password reset functionality.  Adding and deleting join table rows for assigning/removing teachers to/from classes and adding/removing parents to/from child accounts are coded.  Before_action code prevents unauthorized users from accessing client data.  
+
+Coding under development:  Programming handoffs, child pick-up and drop-off events and reports will complete the application.  When a parent or other child escort arrives at the day care center, they will first log into Guidestar-Attendance. A list of the children assigned to the escort will be displayed. The escort will record either a child drop-off or pick-up event and will select the children being escorted. The parent logs off, automatically redirecting the app to parent log in for the next parent.
 
 Demo Instructions: Go to https://attend-by-guidestar.herokuapp.com to demo the application using the following credentials: 
 
@@ -16,9 +18,7 @@ username: "dsmart" | password: "12345678"
 
 A super administrator is an instance object of the center model with "true" in the admin field.  Each center has only one login therefore acts as its own admin.  A parent cannot login until a teacher or center administrator logs in first.  This prevents parents from logging in remotely and entering fraudulent attendance information.
 
-The teacher's only function is to login passing control to the parent log in.  If a teacher is not available, the center administrator can log in and pass control to the parent log in or conduct administrative functions.  
-
-Attendance (to be coded): when a parent or other child escort arrives at the day care center, they first log into Guidestar-Attendance. A list of the children assigned to the escort is displayed. The escort records either a child dropoff or pickup event. The parent logs off, automatically redirecting the app to parent log in.
+The teacher's only function is to login passing control to the parent log in page.  If a teacher is not available, the center administrator can log in and pass control to the parent log in.  The administrator log in gives the administrator access to all parent, teacher and class CRUD functions and reports.  
 
 Additional Requirements:
 
@@ -38,7 +38,7 @@ Ruby version 2.3.0 | Rails 4.2.6
 
 System dependencies: PostgreSQl configured for development and production.
 
-Lisence:  the password reset code and coding best practices were originally publlished in a Michael Hartl tutorial, covered by the following open source license.
+License:  the password reset code and several coding best practices were originally published in a Michael Hartl tutorial, covered by the following open source license.
 
 The MIT License
 
