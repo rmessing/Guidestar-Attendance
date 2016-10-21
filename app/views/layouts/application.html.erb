@@ -22,10 +22,15 @@
 <body id="bootstrap-overrides">
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
-        <%= link_to "Guidestar Attendance", '#', id: "logo" %>
-
+        <%= link_to "Guidestar Attendance", '/', id: "logo" %>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <!-- <span class="sr-only">Toggle navigation</span> -->
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
         <!-- Both login status and @nav determines which layout to use. -->
-        <nav>
+        <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <% if @nav == "parent" %>
               <%  @nav = nil %>
@@ -39,7 +44,7 @@
               <%= render "layouts/center" %>
             <% end %>
           </ul>
-        </nav>
+        </div>
       </div> 
     </header> 
 

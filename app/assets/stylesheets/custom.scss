@@ -215,7 +215,11 @@ h1 {
 .media2  {
   display: inline;
 }
-/*@media all and (max-width: 1200px) {
+#object_size h2 {
+  font-size: 2em;
+  color: black;
+}
+@media all and (max-width: 1200px) {
   .super_name {
     text-align: left;
     width: 50vw;
@@ -230,8 +234,8 @@ h1 {
   .div_width {
     width: 75vw;
   }
-}*/
-/*@media all and (max-width: 999px) {
+}
+@media all and (max-width: 999px) {
   .media1 {
     display: block;
     text-align: left;
@@ -253,4 +257,9 @@ h1 {
   #diamond {
     display: none;
   }
-}*/
+}
+@media all and (max-width: 600px) {
+  #object_size h2 {
+  font-size: 1.3em;
+  }
+}
