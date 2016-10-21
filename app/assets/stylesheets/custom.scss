@@ -215,7 +215,7 @@ h1 {
 .media2  {
   display: inline;
 }
-@media all and (max-width: 1200px) {
+/*@media all and (max-width: 1200px) {
   .super_name {
     text-align: left;
     width: 50vw;
@@ -224,15 +224,14 @@ h1 {
   }
   .super_links {
     text-align: left;
-    /*width: 100vw;*/
     margin-left: 5vw;
     margin-right: -5vw;
   }
   .div_width {
     width: 75vw;
   }
-}
-@media all and (max-width: 999px) {
+}*/
+/*@media all and (max-width: 999px) {
   .media1 {
     display: block;
     text-align: left;
@@ -254,4 +253,4 @@ h1 {
   #diamond {
     display: none;
   }
-}
+}*/
