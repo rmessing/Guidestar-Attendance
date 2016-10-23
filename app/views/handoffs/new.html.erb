@@ -1,3 +1,30 @@
-<h1>Handoffs#new</h1>
+<div class="container">
+	<h2> Attendance </h2>
+</div>
 
-<p> This page will display a list of the logged in parent's children with check boxes that are used to indicate which children are being dropped off or picked up. </p>
+<% Time.zone = 'America/New_York' %>
+
+<div class="row">
+	<div class="col-xs-6 col-xs-offset-3">
+	<% if @parent.children.length == 0 %>
+		<i> (Your children are not registered.) </i>
+	<% end %>
+			<%= f.radio_button(:attend, "arrive") %>
+			<%= f.label(:handoff_arrive, "drop-off") %>
+			<%= f.radio_button(:attend, "depart") %>
+			<%= f.label(:handoff_depart, "pick-up") %>
+	<% @parent.children.each do |child| %>
+		<%= form_for @handoff do |f| %>
+			<strong class="font_size_names"><br>
+			<%= child.fname %>
+			<%= child.mname %>
+			<%= child.lname %>
+			</strong><br>
+			<strong>
+
+			<%= f.hidden_field :child_id, :value => child.id %>
+			<%= f.button :submit, :class => 'f_submit'  %>
+			</strong>
+		<% end %>
+	<% end %><br>
+</div>
