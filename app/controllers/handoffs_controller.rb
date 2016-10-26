@@ -10,6 +10,9 @@ class HandoffsController < ApplicationController
   end
 
   def new
+    @handoff = Handoff.new
+    @parent = Parent.find(params[:id])
+    @center = Center.find(@parent.center_id)
   end
 
   def edit
