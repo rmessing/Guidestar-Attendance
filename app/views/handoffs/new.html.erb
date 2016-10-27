@@ -6,22 +6,26 @@
 
 <div class="row">
 	<div class="col-xs-6 col-xs-offset-3">
-	<% if @parent.children.length == 0 %>
-		<i> (Your children are not registered.) </i>
-	<% end %>
 
-	<%= form_for @handoff do |f| %>
-		<%= f.radio_button(:attend, "arrive") %>
-		<%= f.label(:handoff_arrive, "drop-off") %>
-		<%= f.radio_button(:attend, "depart") %>
-		<%= f.label(:handoff_depart, "pick-up") %>
-		<% @parent.children.each do |child| %>
-			<%= render 'form' %>
+		<% if @parent.children.length == 0 %>
+			<i> (Your children are not registered.) </i>
+		<% else %>
+			<%= form_tag handoffs_path do %>
+
+				<%= radio_button_tag(:attend, "arrive") %>
+				<%= label(:handoff_arrive, "drop-off") %>
+				<%= radio_button_tag(:attend, "depart") %>
+				<%= label(:handoff_depart, "pick-up") %>
+
+				<% @parent.children.each do |child| %>
+					<%= form_for @handoff do |h| %>
+						<%= render 'form' %>
+					<% end %>
+				<% end %>
+
+				<%= h.button :submit, :class => 'f_submit' %>
+
+			<% end %>
 		<% end %>
-			<strong>
-			<%= f.hidden_field :child_id, :value => child.id %>
-			<%= f.button :submit, :class => 'f_submit'  %>
-			</strong>
-		
-	<% end %><br>
+	</div>
 </div>

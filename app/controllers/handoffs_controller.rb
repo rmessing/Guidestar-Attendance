@@ -11,7 +11,7 @@ class HandoffsController < ApplicationController
 
   def new
     @handoff = Handoff.new
-    @parent = Parent.find(params[:id])
+    @parent = current_parent
     @center = Center.find(@parent.center_id)
   end
 
@@ -22,6 +22,11 @@ class HandoffsController < ApplicationController
   end
 
   def create
+    params["handoffs"].each do |handoff|
+      if handoff["checkbox"] != ""
+        Handoff.create(handoff_params(handoff))
+      end
+    end
   end
 
   def destroy
@@ -29,6 +34,10 @@ class HandoffsController < ApplicationController
 
 
 private
+
+  def handoff_params(my_params)
+    my_params.permit(:attend, :group_name, :child_id, :center_id, :escort_fname, :escort_lname, :child_fname, :child_mname, :child_lname)
+  end
         # Before filters
 
   # Confirms a logged-in parent.

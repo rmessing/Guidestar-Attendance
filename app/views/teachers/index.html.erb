@@ -7,6 +7,9 @@
 		  <% else %>
 		  <h1> All Teachers </h1>
 	<% end %>
+	<% if @teachers.length == 0 %>
+		  <h2><i>(There are no registered teachers.)</i></h2>
+	<% end %>
 	<ul class="objects">
 	<%= will_paginate %>
 	  <% @teachers.each do |teacher| %>

@@ -157,7 +157,7 @@ h1 {
 }
 .center_name {
   text-align: left;
-  width: 25vw;
+  min-width: 18vw;
   display: inline-block;
 }
 .center_links {
@@ -167,7 +167,7 @@ h1 {
 }
 .super_name {
   text-align: left;
-  width: 20vw;
+  min-width: 18vw;
   display: inline-block;
 }
 .super_links {
@@ -263,6 +263,6 @@ h1 {
   font-size: 1.3em;
   }
   .page_title {
-    font-size: 3.5em;
+    font-size: 3em;
   }
 }

@@ -1,5 +1,18 @@
-			<strong class="font_size_names"><br>
-			<%= child.fname %>
-			<%= child.mname %>
-			<%= child.lname %>
-			</strong><br>
+
+
+<%= check_box_tag(:check) %>
+<strong>
+<%= child.fname %>
+<%= child.mname %>
+<%= child.lname %>
+</strong><br>
+<% group = Group.find(child.group_id) %>
+<%= h.hidden_field :attend %>
+<%= h.hidden_field :group_name, :value => group.name %>
+<%= h.hidden_field :child_id, :value => child.id %>
+<%= h.hidden_field :center_id, :value => @center.id %>
+<%= h.hidden_field :escort_fname, :value => @parent.fname %>
+<%= h.hidden_field :escort_lname, :value => @parent.lname %>
+<%= h.hidden_field :child_fname, :value => child.fname %>
+<%= h.hidden_field :child_mname, :value => child.mname %>
+<%= h.hidden_field :child_lname, :value => child.lname %>

@@ -7,6 +7,9 @@
 		  <% else %>
 		  <h1> Branch Locations </h1>
 	<% end %>
+	<% if @locations.length == 0 %>
+		  <h2><i>(There are no registered branch locations.)</i></h2>
+	<% end %>
 	<ul class="objects">
 		<%= will_paginate %>
 		<% @locations.each do |location| %>

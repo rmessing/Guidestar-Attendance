@@ -7,6 +7,9 @@
 	<% else %>
 		  <h1> All Classes </h1>
 	<% end %>
+	<% if @groups.length == 0 %>
+		<h2><i>(There are no registered classes.)</i></h2>
+	<% end %>
 	<ul class="objects">
 	<%= will_paginate %>
 	  <% @groups.each do |group| %>

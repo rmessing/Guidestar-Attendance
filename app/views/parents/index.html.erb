@@ -7,6 +7,9 @@
 	<% else %>
 		  <h1> All Parents </h1>
 	<% end %>
+	<% if @parents.length == 0 %>
+		  <h2><i>(There are no registered parents.)</i></h2>
+	<% end %>
 
 	<ul class="objects">
 	<%= will_paginate %>
