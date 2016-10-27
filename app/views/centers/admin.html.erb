@@ -9,21 +9,21 @@
 	<h2> <%= link_to "Manage Class-Teacher Relationships", group_teachers_path %></h2>
 
 <div>
-	<div class="row", id="object_size">		
+	<div class="row object_size">		
 			<h2 class="col-xs-2 col-xs-offset-1"> Child </h2>
 			<h2 class="col-xs-2"> Adult </h2>
 			<h2 class="col-xs-2"> Teacher </h2>
 			<h2 class="col-xs-2"> Class </h2>
 			<h2 class="col-xs-2"> Location </h2>
 	</div>
-	<div class="row">
+	<div class="row object_size2">
 			<h2 class="col-xs-2 col-xs-offset-1"><%= link_to "Register", new_child_path %></h2>
 			<h2 class="col-xs-2"><%= link_to "Register", new_parent_path %></h2>
 			<h2 class="col-xs-2"><%= link_to "Register", new_teacher_path %></h2>
 			<h2 class="col-xs-2"><%= link_to "Register", new_group_path %></h2>
 			<h2 class="col-xs-2"><%= link_to "Register", new_location_path %></h2>
 	</div>
-	<div class="row">
+	<div class="row object_size2">
 			<h2 class="col-xs-2 col-xs-offset-1"><%= link_to "Manage", children_path, method: :get %></h2>
 			<h2 class="col-xs-2"><%= link_to "Manage", parents_path, method: :get %></h2>
 			<h2 class="col-xs-2"><%= link_to "Manage", teachers_path, method: :get %></h2>
