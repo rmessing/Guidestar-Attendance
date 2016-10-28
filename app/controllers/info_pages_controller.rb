@@ -1,8 +1,9 @@
 class InfoPagesController < ApplicationController
 
   def home
-  # Layouts are a function of which users are loggin in.  These logouts ensure all users
-  # are logged out when application is started.
+  # Layouts depend on the value of @nav and which users are logged in.  @nav = "root"
+  # sets the correct layout for the apps landing page.  All users must be logged out to ensure proper layouts are rendered.
+   
   	  @nav = "root"
   	  if parent_logged_in?
          log_out_parent
@@ -15,6 +16,8 @@ class InfoPagesController < ApplicationController
       end
   end
 
+  # User help page to be developed.
+  
   def help
   end
 end

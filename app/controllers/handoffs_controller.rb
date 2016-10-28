@@ -1,7 +1,6 @@
 class HandoffsController < ApplicationController
-   # before_action :logged_in_parent, only: [:new, :create]
 
-   # A handoff is an event where a parent drops-off or picks-up the child from daycare.
+   # This controller is under development.
 
   def index
   end

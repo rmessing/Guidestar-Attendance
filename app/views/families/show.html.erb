@@ -11,10 +11,10 @@
 	<div class="row">
 	  <div class="col-xs-6 col-xs-offset-3">
 
-	<!-- If child has no parents in the db yet, "Click to remove adult..." is not displayed and the following nested loop is skipped automatically. Otherwise, all Adults in Child's account are listed as a link for deletion. Only the parent-child relationship is deleted; the parent's profile record is retained.-->
+	<!-- If child has no parents in the db yet, "Click to remove adult..." is not displayed and the following nested loop is skipped automatically. Otherwise, all Adults in Child's account are listed as a link for optional deletion. Only the parent-child relationship is deleted; the parent's and child's profile records are retained.-->
 		
 		<% if @child.parents.length != 0 %>
-			<h3> Click to remove adult from <%= @child.fname %> <%= @child.lname %>:</h3>
+			<h3> Click to remove adult from <%= @child.fname %> <%= @child.lname %></h3>
 		<% end %>
 		
 		<% @child.parents.each do |parent| %>
@@ -29,7 +29,7 @@
 
  	<!-- This is the code for adding an Adult to a Child's account. -->
 
-		<h3><%= "Add an adult to " %><%= @child.fname %>'s account:</h3>
+		<h3><%= "Add an adult to " %><%= @child.fname %>'s account</h3>
 
 		<%= form_for(@family) do |f| %>
 			<%= f.hidden_field :child_id, :value => @child.id %>

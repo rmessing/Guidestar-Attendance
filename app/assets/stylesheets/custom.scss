@@ -220,9 +220,12 @@ h1 {
   color: black;
 }
 .object_size2 h2 {
-  font-size: 1.5em;
-  color: black;
+  font-size: 1.4em;
+  /*color: black;*/
 }
+
+/*Media queries are for admin and superadmin pages.*/
+
 @media all and (max-width: 1200px) {
   .super_name {
     text-align: left;

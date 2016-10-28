@@ -1,5 +1,6 @@
 class Child < ActiveRecord::Base
 	validates :fname, :lname, presence: true, length: { maximum: 30 }
+    #first and last name of child must be unique within their center.
 	validates :mname, uniqueness: { scope: [:fname, :lname, :center_id], case_sensitive: false }
 
 	has_many :handoffs

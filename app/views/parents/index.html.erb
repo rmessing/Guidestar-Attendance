@@ -1,14 +1,14 @@
-<% provide(:title, 'All Parents') %>
+<% provide(:title, 'All Adults') %>
 
 <div class="container">
 	<% if current_center.admin? %>
-		 <h1> Parents </h1>
+		 <h1> Adults </h1>
 		 <h1 class="half_size"><%= @center.name %></h1> 
 	<% else %>
-		  <h1> All Parents </h1>
+		  <h1> All Adults </h1>
 	<% end %>
 	<% if @parents.length == 0 %>
-		  <h2><i>(There are no registered parents.)</i></h2>
+		  <h2><i>(There are no registered adults.)</i></h2>
 	<% end %>
 
 	<ul class="objects">

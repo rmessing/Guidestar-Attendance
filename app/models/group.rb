@@ -1,5 +1,5 @@
 class Group < ActiveRecord::Base
-	# A group is a school class of several children.
+	# A group is a educationa class of several children; name must be unique within its center.
 	validates :name, presence: true, length: { maximum: 30 }, uniqueness: { scope: [:center_id], case_sensitive: false }
 	# validates :location_id, presence: true
 	has_many :children, dependent: :nullify

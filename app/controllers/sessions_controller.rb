@@ -70,6 +70,8 @@ class SessionsController < ApplicationController
          render 'new_center'
          return
       end
+
+  # Superadmin is a center with "true" in center's admin field.
       if center.admin? 
          redirect_to superadmin_path
       else
