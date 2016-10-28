@@ -1,14 +1,14 @@
 README for Guidestar-Attendance
 
 
-Demo Instructions: Go to https://attend-by-guidestar.herokuapp.com  
+Demo Instructions: go to https://attend-by-guidestar.herokuapp.com  
 
 In the navbar click Administrator Log In.  To view the center administration page, use the center administrator login credentials below.  To view the super administration page, use the super administrator login credentials below.
 
 super administrator login
 username: "fpurposes" | password: "hire_him"
 
-center administrator, teacher, parent logins
+center administrator, teacher, parent login
 username: "dsmart" | password: "12345678"
 
 
@@ -18,13 +18,13 @@ Guidestar-Attendance is a business application in development for a child care i
 
 There are 7 object models and 2 join tables in the db:  centers, children, groups (classes), handoffs (child pickup/dropoff events), locations, parents, teachers, families (child/parent join table),  group_teachers (group/teacher join table).  A center admin cannot see the data from other centers.  A center administrator can create/update/delete its own data objects only. 
 
-A super administrator is an instance object of the center model with "true" in the admin field.  Each center has only one login therefore the center acts as its own admin.  The super administrator (the consultant) can perform CRUD actions on all objects for any center.  Only the super administrator can create/update/delete centers (the consultant's clients).   
+A super administrator is an instance object of the center model with "true" in the admin field.  Each center has only one login therefore the center acts as its own admin.  The super administrator (the consultant) can perform CRUD actions on all objects for any center.  Only the super administrator (the consultant) can create/update/delete centers (the consultant's clients).   
 
-When a parent arrives at the day care center to pick-up or drop-off children, the parent logs into Guidestar Attendance.  The app will present a list of the parent's children.  The parent will submit the type of handoff (pick-up or drop-off) and which children are involved.  The parent logs off and a new parent log in page is displayed for the next parent.  To prevent parents from logging in remotely and entering erroneous attendance information, a teacher or administrator must already be logged in.
+When a parent arrives at the day care center to pick-up or drop-off children, the parent logs into Guidestar Attendance.  The app will present a list of the parent's children.  The parent will submit the type of handoff (pick-up or drop-off) and which children are being handed off.  When the parent logs off a new parent log in page is displayed for the next parent.  To prevent parents from logging in remotely and entering erroneous attendance information, a teacher or administrator must already be logged in.
 
-The teacher's sole function is to login in order to give parents access to the parent log in page.  If a teacher is not available, the center's administrator can give access to the parents.  The administrator log in gives the administrator access to all parent, teacher and class CRUD functions and reports.  
+The teacher's sole function is to login in order to give parents access to the parent log in page.  If a teacher is not available, the center's administrator can give access to the parents.  The administrator login gives the administrator access to all child, parent, teacher, location and class CRUD functions and attendance reports.  
 
-Coding completed:  All super administrator and center administrator CRUD functions have been coded.  Teachers and Administrators have password reset functionality.  Adding and deleting join table rows for assigning/removing teachers to/from classes and adding/removing parents to/from child accounts are coded.  Before_actions prevent unauthorized users from accessing another center's data.  
+Coding completed:  All super administrator and center administrator CRUD functions have been coded.  Teachers and Administrators have password reset functionality.  Assigning/removing teachers to/from classes and adding/removing parents to/from child accounts are operational.  Before_actions prevent unauthorized users from accessing another center's data.  
 
 Coding in development:  Child pick-up and drop-off events (handoffs) and reports.  
 
