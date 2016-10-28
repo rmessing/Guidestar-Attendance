@@ -54,7 +54,7 @@ p {
 
 #logo {
   float: left;
-  margin-right: 10px;
+  margin-left: 1vw;
   font-size: 1.7em;
   color: #fff;
   text-transform: uppercase;
@@ -263,7 +263,7 @@ h1 {
   }
 }
 @media all and (max-width: 600px) {
-  #object_size h2 {
+  .object_size h2 {
   font-size: 1.3em;
   }
   .page_title {
