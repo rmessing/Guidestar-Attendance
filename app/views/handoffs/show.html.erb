@@ -1,2 +1,36 @@
 <h1>Handoffs#show</h1>
 <p>Find me in app/views/handoffs/show.html.erb</p>
+
+<!-- Under construction. -->
+
+<div class="container">
+	<h2> Attendance </h2>
+</div>
+
+<% Time.zone = 'America/New_York' %>
+
+<div class="row">
+	<div class="col-xs-6 col-xs-offset-3">
+
+		<% if @parent.children.length == 0 %>
+			<i> (Your children are not registered.) </i>
+		<% else %>
+			<%= form_tag handoffs_path do %>
+
+				<%= radio_button_tag(:attend, "arrive") %>
+				<%= label(:handoff_arrive, "drop-off") %>
+				<%= radio_button_tag(:attend, "depart") %>
+				<%= label(:handoff_depart, "pick-up") %>
+
+				<% @parent.children.each do |child| %>
+					<%= form_for @handoff do |h| %>
+						<%= render 'form' %>
+					<% end %>
+				<% end %>
+
+				<%= h.button :submit, :class => 'f_submit' %>
+
+			<% end %>
+		<% end %>
+	</div>
+</div>
