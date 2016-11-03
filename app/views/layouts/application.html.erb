@@ -2,20 +2,22 @@
 <html>
 <head>
   <title><%= full_title(yield(:title)) %></title>
-
+ 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
   <%= csrf_meta_tags %>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ 
+
   <!--[if lt IE 9]>
   <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
   </script>
@@ -23,36 +25,35 @@
 </head>
 <body id="bootstrap-overrides">
     <header>
-      <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-              <div class="navbar-header">
-                <%= link_to "Guidestar Attendance", '/', id: "logo" %>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                  <!-- <span class="sr-only">Toggle navigation</span> -->
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                
-              </div>
+          <div class="navbar-header">    
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <!-- <span class="sr-only">Toggle navigation</span> -->
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <%= link_to "Guidestar Attendance", '/', id: "logo" %>
+          </div>
             <!-- Login status and @nav determine the navbar layout links. -->
-              <div class="navbar-collapse collapse" id="myNavbar">
-                <ul class="nav navbar-nav pull-right">
-                  <% if @nav == "parent" %>
-                    <%  @nav = nil %>
-                  <% elsif @nav == "root" %>
-                    <%= render "layouts/root" %>
-                  <% elsif @nav == "teacher" || @nav == "admin" %>
-                    <%= render "layouts/login" %>
-                  <% elsif parent_logged_in? %>
-                    <%= render "layouts/parent" %>
-                  <% elsif center_logged_in? %>
-                    <%= render "layouts/center" %>
-                  <% end %>
-                </ul>
-              </div>    
-        </div>
-      </nav> 
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav pull-right">
+              <% if @nav == "parent" %>
+                <%  @nav = nil %>
+              <% elsif @nav == "root" %>
+                <%= render "layouts/root" %>
+              <% elsif @nav == "teacher" || @nav == "admin" %>
+                <%= render "layouts/login" %>
+              <% elsif parent_logged_in? %>
+                <%= render "layouts/parent" %>
+              <% elsif center_logged_in? %>
+                <%= render "layouts/center" %>
+              <% end %>
+            </ul>
+          </div>
+        </div>    
+      </div>
     </header> 
 
     <div class="container">

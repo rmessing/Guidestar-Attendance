@@ -1,18 +1,11 @@
 <!-- Under Construction -->
 
-<%= check_box_tag(:check) %>
-<strong>
-<%= child.fname %>
-<%= child.mname %>
-<%= child.lname %>
-</strong><br>
-<% group = Group.find(child.group_id) %>
-<%= h.hidden_field :attend %>
-<%= h.hidden_field :group_name, :value => group.name %>
-<%= h.hidden_field :child_id, :value => child.id %>
-<%= h.hidden_field :center_id, :value => @center.id %>
-<%= h.hidden_field :escort_fname, :value => @parent.fname %>
-<%= h.hidden_field :escort_lname, :value => @parent.lname %>
-<%= h.hidden_field :child_fname, :value => child.fname %>
-<%= h.hidden_field :child_mname, :value => child.mname %>
-<%= h.hidden_field :child_lname, :value => child.lname %>
+<%= hidden_field_tag :attend %>
+<%= hidden_field_tag :group_name, :value => group.name %>
+<%= hidden_field_tag :child_id, :value => child.id %>
+<%= hidden_field_tag :center_id, :value => @center.id %>
+<%= hidden_field_tag :escort_fname, :value => @parent.fname %>
+<%= hidden_field_tag :escort_lname, :value => @parent.lname %>
+<%= hidden_field_tag :child_fname, :value => child.fname %>
+<%= hidden_field_tag :child_mname, :value => child.mname %>
+<%= hidden_field_tag :child_lname, :value => child.lname %>

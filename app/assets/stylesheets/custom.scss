@@ -54,7 +54,7 @@ p {
 
 #logo {
   float: left;
-  margin-left: 1vw;
+  margin-left: 2vw;
   font-size: 1.7em;
   color: #fff;
   text-transform: uppercase;
@@ -64,7 +64,7 @@ p {
 }
 
 #logo:hover {
-  color: #fff;
+  color: grey;
   text-decoration: none;
 }
 /* footer */
@@ -220,8 +220,8 @@ h1 {
   color: black;
 }
 .object_size2 h2 {
-  font-size: 1.4em;
-  /*color: black;*/
+  font-size: 1.3em;
+
 }
 
 /*Media queries are for admin and superadmin pages.*/
@@ -242,7 +242,7 @@ h1 {
     width: 75vw;
   }
 }
-@media all and (max-width: 999px) {
+@media all and (max-width: 993px) {
   .media1 {
     display: block;
     text-align: left;
@@ -264,12 +264,19 @@ h1 {
   #diamond {
     display: none;
   }
+   .object_size h2 {
+    font-size: 1.5em;
+  }
 }
-@media all and (max-width: 600px) {
-  .object_size h2 {
-  font-size: 1.3em;
-  }
+@media all and (max-width: 448px) {
   .page_title {
-    font-size: 3em;
+    font-size: 3.5em;
   }
+  .object_size h2 {
+    font-size: 1.3em;
+  }
+  .object_size2 h2 {
+    font-size: 1em;
+
+}
 }

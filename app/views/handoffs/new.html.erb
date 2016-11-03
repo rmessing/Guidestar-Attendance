@@ -1,1 +1,54 @@
+<% provide(:title, 'Handoffs') %>
+
 <h1>The attendance functions are not available at this time.</h1>
+
+
+<!-- Under construction. -->
+
+<div class="container">
+	<h1> Attendance </h1>
+</div>
+
+<% Time.zone = 'America/New_York' %>
+
+<div class="row">
+	<div class="col-xs-6 col-xs-offset-3">
+
+		<% if @parent.children.length == 0 %>
+			<h2><i>(Your children are not registered.)</i></h2>
+		<% else %> 
+			
+			<%= form_tag(controller: "handoffs", action: "create", method: "post") %>
+
+				<%= radio_button_tag(:attend, "arrive") %>
+				<%= label(:handoff_arrive, "drop-off") %>
+				<%= radio_button_tag(:attend, "depart") %>
+				<%= label(:handoff_depart, "pick-up") %>
+
+				<% @parent.children.each do |child| %>
+					<%= check_box_tag "handoff[][check]" %>
+					<strong>
+					<%= child.fname %>
+					<%= child.mname %>
+					<%= child.lname %>
+					</strong><br>
+
+					<% group = Group.find(child.group_id) %>
+
+					<%= hidden_field_tag "handoff[][attend]" %>
+					<%= hidden_field_tag "handoff[][group_name]", :value => group.name %>
+					<%= hidden_field_tag "handoff[][child_id]", :value => child.id %>
+					<%= hidden_field_tag "handoff[][center_id]", :value => @center.id %>
+					<%= hidden_field_tag "handoff[][escort_fname]", :value => @parent.fname %>
+					<%= hidden_field_tag "handoff[][escort_lname]", :value => @parent.lname %>
+					<%= hidden_field_tag "handoff[][child_fname]", :value => child.fname %>
+					<%= hidden_field_tag "handoff[][child_mname]", :value => child.mname %>
+					<%= hidden_field_tag "handoff[][child_lname]", :value => child.lname %>
+				<% end %>
+
+				<%= button_to :submit, :class => 'f_submit' %>
+
+			
+		<% end %>
+	</div>
+</div>

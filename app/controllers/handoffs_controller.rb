@@ -21,9 +21,10 @@ class HandoffsController < ApplicationController
   end
 
   def create
-    params["handoffs"].each do |handoff|
-      if handoff["checkbox"] != ""
-        Handoff.create(handoff_params(handoff))
+    params["handoff"].each do |handoff|
+      if params[:handoff["check"]] != ""
+      @handoff = Handoff.new
+      @handoff.save
       end
     end
   end
@@ -34,8 +35,8 @@ class HandoffsController < ApplicationController
 
 private
 
-  def handoff_params(my_params)
-    my_params.permit(:attend, :group_name, :child_id, :center_id, :escort_fname, :escort_lname, :child_fname, :child_mname, :child_lname)
+  def handoff_params
+    params.require(:handoff).permit(:attend, :group_name, :child_id, :center_id, :escort_fname, :escort_lname, :child_fname, :child_mname, :child_lname)
   end
         # Before filters
 
