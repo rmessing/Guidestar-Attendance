@@ -39,10 +39,18 @@ class HandoffsController < ApplicationController
        flash[:danger] = "Select at least one child or logoff."
        redirect_to (:back)
        return
-    elsif validate_check == 1
+    end
+    if validate_check == 1 && params[:attend_type] == "arrive"
        flash[:info] = "#{validate_check} child was checked in."
-    else
+    end
+    if validate_check == 1 && params[:attend_type] == "depart"
+       flash[:info] = "#{validate_check} child was checked out."
+    end
+    if validate_check > 1 && params[:attend_type] == "arrive"
        flash[:info] = "#{validate_check} children were checked in."
+    end
+    if validate_check > 1 && params[:attend_type] == "depart"
+       flash[:info] = "#{validate_check} children were checked out."
     end
     redirect_to parent_log_in_path
   end
