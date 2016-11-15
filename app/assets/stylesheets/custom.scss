@@ -15,6 +15,9 @@ section {
 textarea {
   resize: vertical;
 }
+.check_align {
+  text-align: center;
+}
 
 .center {
   text-align: center;
@@ -61,10 +64,6 @@ p {
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
-}
-
-#logo:hover {
-  color: grey;
   text-decoration: none;
 }
 /* footer */

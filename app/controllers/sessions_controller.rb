@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
          redirect_to root_path
       end
       @nav = "parent"
+      log_out_parent
   end
 
   def create_parent
