@@ -2,23 +2,14 @@ class HandoffsController < ApplicationController
   
    # This controller is under development.
 
-  
-  def index
-  end
 
-  def show
+  def index
   end
 
   def new
     @handoff = Handoff.new
     @parent = current_parent
     @center = Center.find(@parent.center_id)
-  end
-
-  def edit
-  end
-
-  def update
   end
 
   def create
@@ -53,9 +44,6 @@ class HandoffsController < ApplicationController
        flash[:info] = "#{validate_check} children were checked out."
     end
     redirect_to parent_log_in_path
-  end
-
-  def destroy
   end
 
 

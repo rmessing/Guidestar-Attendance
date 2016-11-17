@@ -3,6 +3,7 @@ class CentersController < ApplicationController
   before_action :logged_in_center, only: [:admin, :show]
   before_action :correct_center, only: [:show]
 
+# The superadmin home page is rendered by the center index view.
   def index
       @centers = Center.paginate(page: params[:page]).order("name")
   end
@@ -14,10 +15,8 @@ class CentersController < ApplicationController
       @center = Center.new
   end
 
+# The center admin home page is rendered by the admin view.
   def admin
-  end
-
-  def superadmin
   end
 
   def create

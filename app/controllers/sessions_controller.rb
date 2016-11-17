@@ -39,7 +39,6 @@ class SessionsController < ApplicationController
   end
 
   def create_teacher
-     # raise params.inspect
       teacher = Teacher.find_by(username: params[:session][:username])
       if teacher && teacher.authenticate(params[:session][:password])
          flash[:success] = "Welcome #{teacher.fname} #{teacher.lname}."

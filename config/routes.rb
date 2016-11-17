@@ -46,14 +46,14 @@ Rails.application.routes.draw do
 
   root 'info_pages#home'
 
-  resources :handoffs
+  resources :handoffs, only: [:index, :new, :create]
   resources :centers
   resources :parents
   resources :children
-  resources :families
+  resources :families, only: [:index, :show, :create, :destroy]
   resources :groups
   resources :teachers
-  resources :group_teachers
+  resources :group_teachers, only: [:index, :show, :create, :destroy]
   resources :locations
   resources :centers_password_resets, only: [:new, :create, :edit, :update]
   resources :teachers_password_resets, only: [:new, :create, :edit, :update]
