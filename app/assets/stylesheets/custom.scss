@@ -162,11 +162,11 @@ h1 {
 .center_name {
   text-align: left;
   min-width: 18vw;
+  max-width: 150px;
   display: inline-block;
 }
 .center_links {
   text-align: right;
-  width: 100vw;
   display: inline;
 }
 .super_name {
@@ -212,6 +212,8 @@ h1 {
 .correct_left {
   margin-left: -1.5vw;
   margin-right: 1.5vw;
+/*  width: 30vw;
+  text-align: center;*/
 }
 .media1  {
   display: inline;

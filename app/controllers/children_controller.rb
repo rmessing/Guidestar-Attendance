@@ -27,6 +27,12 @@ class ChildrenController < ApplicationController
          @center = current_center
          @groups = Group.order("name").where(:center_id => current_center.id)
       end
+      if @center.children.length == 100
+         flash.now[:danger] = "You've reached your limit of 100 registered children."
+         redirect_to (:back)
+      elsif @center.children.length > 94
+         flash.now[:warning] = "WARNING: #{@center.children.length} children are registered - the limit is 100 registered children."
+      end
   end
 
   def create

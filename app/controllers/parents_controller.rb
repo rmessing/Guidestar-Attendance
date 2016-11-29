@@ -24,6 +24,12 @@ class ParentsController < ApplicationController
       else
          @center = current_center
       end
+      if @center.parents.length == 100
+         flash.now[:danger] = "You've reached your limit of 100 registered adults."
+         redirect_to (:back)
+      elsif @center.parents.length > 94
+         flash.now[:warning] = "WARNING: #{@center.parents.length} adults are registered - the limit is 100 registered adults."
+      end
   end
 
   def create
