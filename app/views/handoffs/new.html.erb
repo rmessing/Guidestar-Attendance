@@ -4,14 +4,17 @@
 	<h1 class="well page_title"> Child Attendance </h1><br><br>
 </div>
 
-<% Time.zone = 'America/New_York' %>
-
 <div class="row">
 	<div class="col-xs-6 col-xs-offset-3">
-		<% if @parent.children.length == 0 %>
+
+	<!-- Upon login, notifies parents if their children are not in the db. -->
+		<% if @parent.children.length == 0 %>   
 			<h2><i>(Your children are not registered.)</i></h2>
 		<% else %> 		
+
 			<%= form_tag(controller: "handoffs", action: "create", method: "post") %>
+
+	<!-- Parent indicates if picking up or dropping off children. -->
 				<div class="check_align">
 					<div class="center_admin">
 						<%= label(:handoff_arrive, "drop-off") %>&nbsp;&nbsp;&nbsp;
@@ -23,6 +26,8 @@
 					</div>
 				</div>
 				<hr>
+	<!-- Displays parent's children-parent checks which children are present -->
+	<!-- An array of attributes per child is passed to the controllor in params -->
 				<% @parent.children.each do |child| %>	
 					<%= hidden_field_tag "handoff[][check]", 0 %>
 					

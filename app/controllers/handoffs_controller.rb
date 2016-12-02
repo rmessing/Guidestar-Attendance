@@ -1,7 +1,4 @@
 class HandoffsController < ApplicationController
-  
-   # This controller is under development.
-
 
   def index
   end
@@ -13,13 +10,13 @@ class HandoffsController < ApplicationController
   end
 
   def create
-    validate_check = 0
-    if params[:attend_type] == nil
+    validate_check = 0                 #used to determine if singular, plural or nil
+    if params[:attend_type] == nil     #ensures user clicks the radio button
        flash[:danger] = "Select Drop-off or Pick-up."
        redirect_to (:back)
        return
     end 
-    params[:handoff].each do |handoff|     
+    params[:handoff].each do |handoff| #performs save for each activated checkbox
       if handoff[:check] == "1"
          validate_check += 1
          @attendance = Handoff.new(attend: params[:attend_type], child_id: handoff[:child_id], child_fname: handoff[:child_fname], child_mname: handoff[:child_mname], child_lname: handoff[:child_lname], center_id: handoff[:center_id], escort_fname: handoff[:escort_fname], escort_lname: handoff[:escort_lname], group_name: handoff[:group_name])
