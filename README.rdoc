@@ -1,7 +1,9 @@
 README for Guidestar-Attendance
 
 
-Demo Instructions: go to https://attend-by-guidestar.herokuapp.com  
+Demo Instructions: 
+
+go to https://attend-by-guidestar.herokuapp.com  
 
 In the navbar click Administrator Log In.  To view the center administration page, use the center administrator login credentials below.  To view the super administration page, use the super administrator login credentials below.
 
