@@ -227,7 +227,23 @@ h1 {
 }
 .object_size2 h2 {
   font-size: 1.3em;
-
+}
+.report {
+  width: 90vw;
+  height: 3.5vh;
+  border-style: solid;
+  border-width: 2px;
+  font-size: 1em;
+  background-color: lightgrey;
+  margin: 0 auto;
+}
+  
+.report span {
+  width: 10vw;
+  padding: 0 4px 0 1px;
+  border-right-style: solid;
+  text-align: center;
+  
 }
 
 /*Media queries are for admin and superadmin pages.*/

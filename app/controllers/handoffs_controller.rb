@@ -1,6 +1,12 @@
 class HandoffsController < ApplicationController
 
   def index
+      if current_center.admin?
+         @center = Center.find(params[:id])
+         @handoffs = Handoff.order("created_at").where(:center_id => @center.id)  
+      else
+         @handoffs = Handoff.order("created_at").where(:center_id => current_center.id)
+      end
   end
 
   def new
