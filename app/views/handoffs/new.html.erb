@@ -1,7 +1,7 @@
 <% provide(:title, 'Handoffs') %>
 
 <div class="container-fluid">
-	<h1 class="well page_title"> Child Attendance </h1><br><br>
+	<h1 class="well page_title"> Child Attendance </h1>
 </div>
 
 <div class="row">
@@ -25,7 +25,7 @@
 						<%= radio_button_tag(:attend_type, "depart") %>		
 					</div>
 				</div>
-				<hr>
+				
 	<!-- Displays parent's children-parent checks which children are present -->
 	<!-- An array of attributes per child is passed to the controllor in params -->
 				<% @parent.children.each do |child| %>	
@@ -39,8 +39,12 @@
 					</div>
 					
 					<% group = Group.find(child.group_id) %>
+				
+					<% location = Location.find(group.location_id) %>
+					
 					<%= hidden_field_tag "handoff[][attend]" %>
 					<%= hidden_field_tag "handoff[][group_name]", group.name %>
+					<%= hidden_field_tag "handoff[][location_name]", location.name %>
 					<%= hidden_field_tag "handoff[][child_id]", child.id %>
 					<%= hidden_field_tag "handoff[][center_id]", @center.id %>
 					<%= hidden_field_tag "handoff[][escort_fname]", @parent.fname %>
@@ -48,6 +52,7 @@
 					<%= hidden_field_tag "handoff[][child_fname]", child.fname %>
 					<%= hidden_field_tag "handoff[][child_mname]", child.mname %>
 					<%= hidden_field_tag "handoff[][child_lname]", child.lname %>
+					
 				<% end %>
 				<br>
 				<%= submit_tag  type="submit", value: "Click to submit", class: "btn btn-primary" %>

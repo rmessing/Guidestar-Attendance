@@ -243,7 +243,12 @@ h1 {
   padding: 0 4px 0 1px;
   border-right-style: solid;
   text-align: center;
-  
+}
+.fields {
+  width: 15vw;
+  display: inline-block;
+  border-radius: 25%;
+
 }
 
 /*Media queries are for admin and superadmin pages.*/

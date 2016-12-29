@@ -3,15 +3,15 @@
 
 <div class="center jumbotron">
 	<h1><%= "#{@center.name}" %></h1>
-	<h1 class="half_size">parent log in</h1>
+	<h1 class="half_size">adult log in</h1>
 </div>
 
 <div class="row">
   <div class="col-xs-6 col-xs-offset-3">
     <%= form_for(:session, url: parent_log_in_path) do |f| %>
-      <%= f.label :parent_username %>
+      <%= f.label :adult_username %>
       <%= f.text_field :username, placeholder: "6+ characters", class: 'form-control' %>
-      <%= f.label :parent_password %>
+      <%= f.label :adult_password %>
       <%= f.password_field :password, placeholder: "8+ characters", class: 'form-control' %>
       <%= f.submit "Log in", class: "btn btn-primary" %>
     <% end %>

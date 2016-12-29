@@ -6,6 +6,7 @@
 			<h1>Super Administrator Profile</h1>
 		<% elsif current_center.admin?%>
 			<h1>Client Profile</h1>
+			<h3><%= link_to "Attendance Report", controller: "handoffs", action: "index", id: @center.id %></h3><hr>
 		<% else %>
 			<h1>Home Office Profile</h1>
 		<% end %>	

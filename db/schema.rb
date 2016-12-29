@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928200952) do
+ActiveRecord::Schema.define(version: 20161227185308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,8 +76,9 @@ ActiveRecord::Schema.define(version: 20160928200952) do
     t.string   "escort_fname"
     t.string   "escort_lname"
     t.string   "group_name"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "location_name"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -96,6 +97,15 @@ ActiveRecord::Schema.define(version: 20160928200952) do
     t.datetime "updated_at",      null: false
     t.string   "username"
     t.string   "password_digest"
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.string   "class_name"
+    t.string   "child_name"
+    t.string   "adult_name"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "location_name"
   end
 
   create_table "teachers", force: :cascade do |t|

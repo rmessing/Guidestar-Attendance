@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
 
   def destroy_parent
       log_out_parent
-  	  flash[:success] = "Parent is logged off."
+  	  flash[:success] = "Adult is logged off."
       redirect_to parent_log_in_path 
   end
 

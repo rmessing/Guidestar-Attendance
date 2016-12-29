@@ -1,0 +1,34 @@
+<h1>Advanced Search</h1>
+
+<br><br>
+
+<div style="width: 19vw; margin: 0 auto;">
+
+<%= form_for @search, html: {class: "pure-form"} do |s| %>
+
+	<div class="fields">
+		<%= s.label :Child %>
+		<%= s.text_field :child_name, placeholder: " First name" %>
+	</div><br>
+
+	<div class="fields">
+		<%= s.label :Adult %>
+		<%= s.text_field :adult_name, placeholder: " Last name" %>
+	</div><br>
+
+	<div class="fields">
+		<%= s.label :class %>
+		<%= s.select :class_name, options_for_select(@groups), :prompt => true %>
+	</div><br>
+
+ 	<div class="fields">
+		<%= s.label :Location %>
+		<%= s.select :location_name, options_for_select(@locations), :prompt => true %>
+	</div><br>
+
+	<div class="fields">
+		<%= s.submit "Search", class: "pure-button-primary" %>	
+	</div>
+
+<% end %>
+</div>

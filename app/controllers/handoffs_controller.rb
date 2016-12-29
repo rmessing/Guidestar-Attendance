@@ -1,11 +1,23 @@
 class HandoffsController < ApplicationController
 
   def index
+        @search = Search.new
+    
       if current_center.admin?
          @center = Center.find(params[:id])
-         @handoffs = Handoff.order("created_at").where(:center_id => @center.id)  
+         @groups = Group.all.where(:center_id => @center.id).uniq.pluck(:name)
+         @locations = Location.all.where(:center_id => @center.id).uniq.pluck(:name)
       else
-         @handoffs = Handoff.order("created_at").where(:center_id => current_center.id)
+         @center = current_center
+         @groups = Group.all.where(:center_id => @center.id).uniq.pluck(:name)
+         @locations = Location.all.where(:center_id => @center.id).uniq.pluck(:name)
+      end
+      if current_center.admin?
+         @center = Center.find(params[:id])
+         @handoffs = Handoff.order("created_at").where(:center_id => @center.id).search(params[:search])
+      else
+         @center = current_center
+         @handoffs = Handoff.order("created_at").where(:center_id => @center.id).search(params[:search])
       end
   end
 
@@ -25,7 +37,7 @@ class HandoffsController < ApplicationController
     params[:handoff].each do |handoff| #performs save for each activated checkbox
       if handoff[:check] == "1"
          validate_check += 1
-         @attendance = Handoff.new(attend: params[:attend_type], child_id: handoff[:child_id], child_fname: handoff[:child_fname], child_mname: handoff[:child_mname], child_lname: handoff[:child_lname], center_id: handoff[:center_id], escort_fname: handoff[:escort_fname], escort_lname: handoff[:escort_lname], group_name: handoff[:group_name])
+         @attendance = Handoff.new(attend: params[:attend_type], child_id: handoff[:child_id], child_fname: handoff[:child_fname], child_mname: handoff[:child_mname], child_lname: handoff[:child_lname], center_id: handoff[:center_id], escort_fname: handoff[:escort_fname], escort_lname: handoff[:escort_lname], location_name: handoff[:location_name], group_name: handoff[:group_name])
          @attendance.save
       end
     end
