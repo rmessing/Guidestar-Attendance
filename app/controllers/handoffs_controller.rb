@@ -1,24 +1,16 @@
 class HandoffsController < ApplicationController
 
   def index
-        @search = Search.new
-    
-      if current_center.admin?
-         @center = Center.find(params[:id])
-         @groups = Group.all.where(:center_id => @center.id).uniq.pluck(:name)
-         @locations = Location.all.where(:center_id => @center.id).uniq.pluck(:name)
-      else
-         @center = current_center
-         @groups = Group.all.where(:center_id => @center.id).uniq.pluck(:name)
-         @locations = Location.all.where(:center_id => @center.id).uniq.pluck(:name)
-      end
-      if current_center.admin?
-         @center = Center.find(params[:id])
-         @handoffs = Handoff.order("created_at").where(:center_id => @center.id).search(params[:search])
-      else
-         @center = current_center
-         @handoffs = Handoff.order("created_at").where(:center_id => @center.id).search(params[:search])
-      end
+    @search = Search.new
+  
+    if current_center.admin?
+       @center = Center.find(session[:id])
+    else
+       @center = current_center
+    end
+    @groups = Group.all.where(:center_id => @center.id).uniq.pluck(:name)
+    @locations = Location.all.where(:center_id => @center.id).uniq.pluck(:name)
+    @handoffs = Handoff.order("created_at").where(:center_id => @center.id)
   end
 
   def new

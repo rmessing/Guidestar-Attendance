@@ -9,7 +9,8 @@
 			<h3><%= link_to "Attendance Report", controller: "handoffs", action: "index", id: @center.id %></h3><hr>
 		<% else %>
 			<h1>Home Office Profile</h1>
-		<% end %>	
+		<% end %>
+
 		<span>NAME:</span>  <%= @center.name %><br><br>
 		<span>DIRECTOR:</span>  <%= @center.dirfname %> <%= @center.dirlname %><br><br>
 		<span>USERNAME:</span>  <%= @center.username %><br><br>

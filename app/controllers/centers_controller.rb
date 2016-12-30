@@ -9,6 +9,7 @@ class CentersController < ApplicationController
   end
 
   def show
+    session[:id] = params[:id]
   end
 
   def new

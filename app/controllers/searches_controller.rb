@@ -16,7 +16,11 @@ class SearchesController < ApplicationController
 
   def show
   	@search = Search.find(params[:id])
-
+    if  current_center.admin?
+        @center = Center.find(session[:id])
+    else
+        @center = current_center
+    end
   end
 
   def create
