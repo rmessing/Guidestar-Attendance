@@ -5,6 +5,7 @@ class InfoPagesController < ApplicationController
   # sets the correct layout for the apps landing page.  All users must be logged out to ensure proper layouts are rendered.
    
   	  @nav = "root"
+      
   	  if parent_logged_in?
          log_out_parent
       end

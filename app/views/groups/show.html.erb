@@ -28,5 +28,8 @@
 				<a href="<%= child_path(child.id) %>"><span><%= child.fname %> <%= child.lname %></span></a>
 				<% end %>
 		<% end %>
+		<br><br><br>
+
+		  <b><i><%= link_to "REGISTER-NEW-CLASS", controller: "groups", action: "new", id: @group.center_id %><i><b>
 	</div>
 </div>

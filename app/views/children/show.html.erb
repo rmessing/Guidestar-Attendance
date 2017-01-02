@@ -1,6 +1,6 @@
 <% provide(:title, "Child Profile") %>
 
-<div class="container">
+<div>
 	<div class="profile">
 		<h1>Child Profile</h1>
 		<span>NAME:</span>  <%= @child.fname %> <%= @child.mname %> <%= @child.lname %><br><br>
@@ -25,7 +25,12 @@
 				<a href="<%= parent_path(parent.id) %>"><span><%= parent.fname %> <%= parent.lname %></span></a>
 			<% end %>
 		<% end %>
+		<br><br><br>
+
+		  <b><i><%= link_to "REGISTER-NEW-CHILD", controller: "children", action: "new", id: @child.center_id %><i><b>
 	</div>
+
+
 </div>
 
 

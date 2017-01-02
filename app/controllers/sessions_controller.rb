@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  
 
   def new_parent
 
@@ -84,4 +83,5 @@ class SessionsController < ApplicationController
       flash[:success] = "Administrator is logged off."
       redirect_to "/"
   end
+
 end

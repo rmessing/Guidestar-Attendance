@@ -19,5 +19,8 @@
 	    		<a href="<%= group_path(group.id) %>"><span><%= group.name %></span></a>
 	    		<% end %>
 	    <% end %>
+	    <br><br><br>
+
+		<b><i><%= link_to "REGISTER-NEW-TEACHER", controller: "teachers", action: "new", id: @teacher.center_id %><i><b>
 	</div>
 </div>
