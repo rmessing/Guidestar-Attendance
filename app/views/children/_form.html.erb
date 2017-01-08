@@ -12,8 +12,8 @@
 		<%= f.label :child_last_name %>
 		<%= f.text_field :lname, class: 'form-control' %>
 		<%= f.hidden_field :center_id, :value => @center.id %>
-		<%= f.label :Select_class %>
-		<%= f.collection_select :group_id, @groups, :id, :name, include_blank: true %>
+		<%= f.label :Select_class_by_location %>
+		<%= f.grouped_collection_select :group_id, @locations, :groups, :name, :id, :name, include_blank: true %>
 		<%= f.label :Birthday %>
 		<%= date_field(:child, :birth_date) %>
 		<%= f.submit yield(:button_text), class: "btn btn-primary" %>

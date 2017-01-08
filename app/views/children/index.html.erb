@@ -12,9 +12,12 @@
 	<% end %>
 	<ul class="objects">
 		<%= will_paginate %>
+	
 	  	<% @children.each do |child| %>
+	  	
 		  	<div class="correct_left">
 			    <li>
+			   
 				    <div class="center_name">
 				    	<%= link_to edit_child_path(child.id), method: :get do %>
 		        			 	<i class="glyphicon glyphicon-pencil"></i>
@@ -27,13 +30,17 @@
 						<%= child.mname %>
 						<%= child.lname %></strong>
 					</div>
+				
 					<div class="center_links">
 						<%= link_to "View", child_path(child.id), method: :get %> |
 						<%= link_to "Add/Remove Adult", controller: "families", action: "show", id: child.id %><br>
 					</div>
+			
 			    </li>
 			</div>
+	
 	  	<% end %>
+	  
 	</ul>
 </div>
 

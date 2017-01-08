@@ -1,6 +1,6 @@
 <% provide(:title, "Child Profile") %>
 
-<div>
+<div class="container">
 	<div class="profile">
 		<h1>Child Profile</h1>
 		<span>NAME:</span>  <%= @child.fname %> <%= @child.mname %> <%= @child.lname %><br><br>
@@ -8,6 +8,11 @@
 		<% if @child.group_id %>
            	<% @group = Group.find(@child.group_id) %>
            	<span>CLASS:</span> <%= @group.name %><br><br>
+      	<% end %>
+
+      	<% if @child.group_id %>
+           	<% @location = Location.find(@group.location_id) %>
+           	<span>LOCATION:</span> <%= @location.name %><br><br>
       	<% end %>
 		
 		<% if current_center.admin? %>
@@ -27,7 +32,7 @@
 		<% end %>
 		<br><br><br>
 
-		  <b><i><%= link_to "REGISTER-NEW-CHILD", controller: "children", action: "new", id: @child.center_id %><i><b>
+		  <b><%= link_to "REGISTER-NEW-CHILD", controller: "children", action: "new", id: @child.center_id %><b>
 	</div>
 
 

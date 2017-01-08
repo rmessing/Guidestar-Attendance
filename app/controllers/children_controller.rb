@@ -23,9 +23,11 @@ class ChildrenController < ApplicationController
       if current_center.admin?
          @center = Center.find(params[:id])
          @groups = Group.order("name").where(:center_id => @center.id)
+         @locations = Location.order("name").where(:center_id => @center.id)
       else
          @center = current_center
          @groups = Group.order("name").where(:center_id => current_center.id)
+         @locations = Location.order("name").where(:center_id => current_center.id)
       end
       if @center.children.length == 100
          flash.now[:danger] = "You've reached your limit of 100 registered children."

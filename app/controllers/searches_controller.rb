@@ -1,21 +1,9 @@
 class SearchesController < ApplicationController
 
-  def new
-  	@search = Search.new
-    
-      if current_center.admin?
-         @center = Center.find(params[:id])
-         @groups = Group.all.where(:center_id => @center.id).uniq.pluck(:name)
-         @locations = Location.all.where(:center_id => @center.id).uniq.pluck(:name)
-      else
-         @center = current_center
-         @groups = Group.all.where(:center_id => @center.id).uniq.pluck(:name)
-         @locations = Location.all.where(:center_id => @center.id).uniq.pluck(:name)
-      end
-  end
-
   def show
+
   	@search = Search.find(params[:id])
+    Search.last.destroy
     if  current_center.admin?
         @center = Center.find(session[:id])
     else
