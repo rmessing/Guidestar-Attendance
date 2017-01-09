@@ -8,11 +8,8 @@
 		<%= f.label :class_Name %>
 		<%= f.text_field :name, class: 'form-control' %>
 		<%= f.hidden_field :center_id, :value => @center.id %>
-		<%  if !@locations.empty? %>
-				<%= f.label :branch_location %>
-				<%= f.collection_select :location_id, @locations, :id, :name, prompt: true %>
-			<% end %>
-
+		<%= f.label :select_location %>	
+		<%= f.collection_select :location_id, @locations, :id, :name, :include_blank => true %>
 		<%= f.submit yield(:button_text), class: "btn btn-primary"  %>
 	<% end %>
 </div>

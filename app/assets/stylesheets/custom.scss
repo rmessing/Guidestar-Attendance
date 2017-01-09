@@ -166,6 +166,7 @@ input {
   text-align: right;
   display: inline;
 }
+
 .super_name {
   text-align: left;
   min-width: 18vw;
@@ -183,6 +184,13 @@ input {
 .center_align {
   width: 84vw;
   text-align: center;
+}
+.object_index {
+  width: 300px; 
+  margin: 0 auto; 
+  padding-left: 10px;
+  text-align: left;
+  color: black;
 }
 .page_title {
   font-size: 4em;

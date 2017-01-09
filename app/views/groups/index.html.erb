@@ -9,32 +9,34 @@
 	<% end %>
 	<% if @groups.length == 0 %>
 		<h2><i>(There are no registered classes.)</i></h2>
-	<% end %>
+	<% end %><br>
 	<ul class="objects">
 	<%= will_paginate %>
 	  <% @groups.each do |group| %>
-		  <div class="correct_left">
-			    <li>
-			      	<div class="center_name">
-			      		<%= link_to edit_group_path(group.id), method: :get do %>
-		        			 	<i class="glyphicon glyphicon-pencil"></i>
-		        		<% end %>
-		        		<%= link_to group_path(group.id), method: :delete, data: {confirm: "Are you sure?"} do %>
-		        			 	<i class="glyphicon glyphicon-trash"></i>
-		        		<% end %>
-			      		<% if group.location_id %>
-			      			<% location = Location.find(group.location_id) %>
-							<strong><%= group.name %> - <%= location.name %></strong>
-						<% else %>
-							<strong><%= group.name %></strong>
-						<% end %>
-				  	</div>
-					<div class="center_links">
-						<%= link_to "View", group_path(group.id), method: :get %> |
-						<%= link_to "Add/Remove Teacher", controller: "group_teachers", action: "show", id: group.id %><br>
-					</div>
-				</li>
-		  </div>
+	    <li>
+	      	<div class="object_index">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	      		<%= link_to edit_group_path(group.id), method: :get do %>
+        			 	<i class="glyphicon glyphicon-pencil"></i>
+        		<% end %>
+        		<%= link_to group_path(group.id), method: :delete, data: {confirm: "Are you sure?"} do %>
+        			 	<i class="glyphicon glyphicon-trash"></i>
+        		<% end %>&nbsp;
+	      		<% if !group.location_id == nil %>
+	      			<% location = Location.find(group.location_id) %>
+	      			<%= link_to group_path(group.id), method: :get do %>
+					 	<strong><%= group.name %> - <%= location.name %></strong>
+					<% end %>
+				<% else %>
+					<%= link_to group_path(group.id), method: :get do %>
+					 	<strong><%= group.name %></strong>
+					<% end %>
+				<% end %>
+		  	</div>
+	<!-- 		<div class="center_links">
+				<%#= link_to "View", group_path(group.id), method: :get %> |
+				<%#= link_to "Add/Remove Teacher", controller: "group_teachers", action: "show", id: group.id %><br>
+			</div> -->
+		</li>
 	  <% end %>
 	</ul>
 </div>

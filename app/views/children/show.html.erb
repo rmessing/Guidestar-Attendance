@@ -6,13 +6,13 @@
 		<span>NAME:</span>  <%= @child.fname %> <%= @child.mname %> <%= @child.lname %><br><br>
 
 		<% if @child.group_id %>
-           	<% @group = Group.find(@child.group_id) %>
-           	<span>CLASS:</span> <%= @group.name %><br><br>
-      	<% end %>
+			<% group = Group.find(@child.group_id) %>
+           	<span>CLASS:</span> <%= group.name %>
+        <% end %><br><br>
 
-      	<% if @child.group_id %>
-           	<% @location = Location.find(@group.location_id) %>
-           	<span>LOCATION:</span> <%= @location.name %><br><br>
+        <% if @child.group_id != nil && group.location_id != nil %>  	
+           	<% location = Location.find(group.location_id) %>
+           	<span>LOCATION:</span> <%= location.name %><br><br>
       	<% end %>
 		
 		<% if current_center.admin? %>

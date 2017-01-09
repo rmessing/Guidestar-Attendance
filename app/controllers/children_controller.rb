@@ -50,7 +50,9 @@ class ChildrenController < ApplicationController
   end
 
   def edit
-      @groups = Group.order("name").where(:center_id => @center.id)
+      @child = Child.find(params[:id])
+      @groups = Group.order("name").where(:center_id => @child.center_id)
+      @locations = Location.order("name").where(:center_id => @child.center_id)
   end
 
   def update

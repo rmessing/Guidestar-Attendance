@@ -10,18 +10,19 @@
 		 	<span>CLIENT:</span> <%= center.name %><br><br>
 	    <% end %>
 
-		<% if @group.location_id %>
+		<% if @group.location_id != nil %>
            	<% location = Location.find(@group.location_id) %>
            	<span>BRANCH:</span> <%= location.name %><br><br>
       	<% end %>
 		
-	    <% if @group.teachers.length != 0 %>
-	    	<span>TEACHERS:</span>
-	    	<% @group.teachers.each do |teacher| %>
-	    		<a href="<%= teacher_path(teacher.id) %>"><span><%= teacher.fname %> <%= teacher.lname %></span></a>
-	    	<% end %><br><br>
-	    <% end %>
-		
+
+	    <%# if @group.teachers.length != 0 %>
+	    	<!-- <span>TEACHERS:</span> -->
+	    	<%# @group.teachers.each do |teacher| %>
+	    		<!-- <a href="<%#= teacher_path(teacher.id) %>"><span><%#= teacher.fname %> <%#= teacher.lname %></span></a> -->
+	    	<!-- <%#end %><br><br> -->
+	    <%# end %>
+
 		<% if @group.children.length != 0 %>
 			<span>CHILDREN:</span>	
 			<% @group.children.each do |child| %>

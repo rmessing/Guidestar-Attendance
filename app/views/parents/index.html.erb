@@ -9,28 +9,27 @@
 	<% end %>
 	<% if @parents.length == 0 %>
 		  <h2><i>(There are no registered adults.)</i></h2>
-	<% end %>
+	<% end %><br>
 
 	<ul class="objects">
 	<%= will_paginate %>
 	  <% @parents.each do |parent| %>
-		  <div class="correct_left">
-			    <li>
-			    	<div class="center_name">
-			    		<%= link_to edit_parent_path(parent.id), method: :get do %>
-		        			 	<i class="glyphicon glyphicon-pencil"></i>
-		        		<% end %>
-		        		<%= link_to parent_path(parent.id), method: :delete, data: {confirm: "Are you sure?"} do %>
-		        			 	<i class="glyphicon glyphicon-trash"></i>
-		        		<% end %>
-						<strong><%= parent.fname %>
-							<%= parent.lname %></strong>
-					</div>
-					<div class="center_links">
-							<%= link_to "View Profile", parent_path(parent.id), method: :get %> 
-					</div>
-			    </li>
-		  </div>
+		    <li>
+		    	<div class="object_index">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    		<%= link_to edit_parent_path(parent.id), method: :get do %>
+	        			 	<i class="glyphicon glyphicon-pencil"></i>
+	        		<% end %>
+	        		<%= link_to parent_path(parent.id), method: :delete, data: {confirm: "Are you sure?"} do %>
+	        			 	<i class="glyphicon glyphicon-trash"></i>
+	        		<% end %>
+	        		<%= link_to parent_path(parent.id), method: :get do %> 
+						<strong><%= parent.fname %> <%= parent.lname %></strong>
+					<% end %>
+				</div>
+			<!-- 	<div class="center_links">
+						<%#= link_to "View Profile", parent_path(parent.id), method: :get %> 
+				</div> -->
+		    </li>
 	  <% end %>
 	</ul>
 </div>
