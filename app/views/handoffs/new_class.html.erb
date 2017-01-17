@@ -1,4 +1,5 @@
-<% provide(:title, 'Adult Attendance') %>
+
+<% provide(:title, 'Class Attendance') %>
 
 <div class="container-fluid">
 	<h1 class="well page_title"> Child Attendance </h1>
@@ -8,8 +9,8 @@
 	<div class="col-xs-6 col-xs-offset-3">
 
 	<!-- Upon login, notifies parents if their children are not in the db. -->
-		<% if @parent.children.length == 0 %>   
-			<h2><i>(Your children are not registered.)</i></h2>
+		<% if @group.children.length == 0 %>   
+			<h2><i>(This class has no registered children.)</i></h2>
 		<% else %> 		
 
 			<%= form_tag(controller: "handoffs", action: "create", method: "post") %>
@@ -28,7 +29,7 @@
 				
 	<!-- Displays parent's children-parent checks which children are present -->
 	<!-- An array of attributes per child is passed to the controllor in params -->
-				<% @parent.children.each do |child| %>	
+				<% @group.children.each do |child| %>	
 					<%= hidden_field_tag "handoff[][check]", 0 %>
 					
 					<div class="check_center">

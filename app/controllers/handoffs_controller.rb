@@ -19,6 +19,19 @@ class HandoffsController < ApplicationController
     @center = Center.find(@parent.center_id)
   end
 
+  def new_class
+    @handoff = Handoff.new
+    @group = Group.find(params[:id])
+    @center = Center.find(@group.center_id)
+  end
+
+  def pick_class
+    # @teacher = Teacher.find(current_teacher.id)
+    @center = Center.find(current_teacher.center_id)
+    # @groups = Group.order("name").where(:center_id => @center.id)
+    @locations = Location.order("name").where(:center_id => @center.id)
+  end
+
   def create
     validate_check = 0                 #used to determine if singular, plural or nil
     if params[:attend_type] == nil     #ensures user clicks the radio button

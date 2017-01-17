@@ -5,13 +5,12 @@ Demo Instructions:
 
 go to https://attend-by-guidestar.herokuapp.com  
 
-In the navbar click Administrator Log In.  To view the center administration page, use the center administrator login credentials below.  To view the super administration page, use the super administrator login credentials below.
+In the navbar click Administrator Log In.  To view the center administration page, use the center administrator login credentials below.  To view the super administration page, send demo request to richard.messing@gmail.com.
 
-super administrator login
-username: "fpurposes" | password: "hire_him"
-
-center administrator, teacher, parent login
+center administrator, staff or adult login
 username: "dsmart" | password: "12345678"
+
+(The object "parent" in the code is viewed by the user as "adult".)
 
 
 Overview:

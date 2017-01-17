@@ -12,7 +12,7 @@
 		<%= f.label :child_last_name %>
 		<%= f.text_field :lname, class: 'form-control' %>
 		<%= f.hidden_field :center_id, :value => @center.id %>
-		<% if !@locations.empty? %>
+		<% if @locations != 1 %>
 			<%= f.label :Select_class_by_location %>
 			<%= f.grouped_collection_select :group_id, @locations, :groups, :name, :id, :name, include_blank: true %>
 		<% else %>

@@ -22,8 +22,11 @@ class CentersController < ApplicationController
 
   def create
       @center = Center.new(center_params)
+       
       if @center.save
          flash[:success] = "#{@center.name} is registered."
+         location = Location.new(name: 'tbd', center_id: @center.id)
+         location.save
          redirect_to @center
       else
          render 'new'

@@ -5,8 +5,8 @@
 	<h1 class="page_title well"> Super Administration </h1>
  	<h2><%= link_to "Register New Client", new_center_path, class: "object_size" %></h2> 	
 	<div  class="objects">
+	<%= will_paginate %>
 		<ul>
-			<%= will_paginate %>
 			<% @centers.each do |center| %>
 				<li>
 				    <div class="div_width">

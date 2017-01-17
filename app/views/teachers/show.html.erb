@@ -1,8 +1,8 @@
-<% provide(:title, "Teacher Profile") %>
+<% provide(:title, "Staff Profile") %>
 
 <div class="container">
 	<div class="profile">
-		<h1>Teacher Profile</h1>
+		<h1>Staff Profile</h1>
 		<span>NAME:</span>  <%= @teacher.fname %> <%= @teacher.lname %><br><br>
 		
 		<% if current_center.admin? %>
@@ -13,14 +13,14 @@
 	    <span>USERNAME:</span> <%= @teacher.username %><br><br>
 	    <span>EMAIL:</span> <%= @teacher.email %><br><br>
 
-	    <% if @teacher.groups.length != 0 %>
-	    	<span>CLASSES:</span>
-	    	<% @teacher.groups.each do |group| %>
-	    		<a href="<%= group_path(group.id) %>"><span><%= group.name %></span></a>
-	    		<% end %>
-	    <% end %>
+	    <%# if @teacher.groups.length != 0 %>
+	    	<!-- <span>CLASSES:</span> -->
+	    	<%# @teacher.groups.each do |group| %>
+	    		<!-- <a href="<%#= group_path(group.id) %>"><span><%#= group.name %></span></a> -->
+	    		<%# end %>
+	    <%# end %>
 	    <br><br><br>
 
-		<b><%= link_to "REGISTER-NEW-TEACHER", controller: "teachers", action: "new", id: @teacher.center_id %><b>
+		<b><%= link_to "REGISTER-NEW-STAFF", controller: "teachers", action: "new", id: @teacher.center_id %><b>
 	</div>
 </div>

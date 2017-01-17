@@ -1,0 +1,12 @@
+<% provide(:title, 'Class Attendance') %>
+
+<div class="container">	
+	<h1>Take Class Attendance</h1>
+	<div>
+		<%= form_tag do %>
+		 	<%= label_tag :Select_class_by_location %>
+			<%= grouped_collection_select :group_id, @locations, :groups, :name, :id, :name, include_blank: true %>
+		 	<%= button_to "display class list", :class => 'btn btn-primary' %>
+		<% end %>
+	</div>
+ </div>

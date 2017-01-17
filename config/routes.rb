@@ -24,11 +24,19 @@ Rails.application.routes.draw do
 
   get 'info_pages/help', as: :help
 
+  get '/handoffs/pick_class' => 'handoffs#pick_class'
+
+  post '/handoffs/pick_class' => 'handoffs#new_class'
+
   get "/parent-log-in" => "sessions#new_parent", as: :parent_log_in
 
   post "/parent-log-in" => "sessions#create_parent"
 
   delete "/parent-log-out" => "sessions#destroy_parent", as: :parent_log_out
+
+  get "/class-log-in" => "sessions#new_class", as: :class_log_in
+
+  post "/class-log-in" => "sessions#create_class"
 
   get "/teacher-log-in" => "sessions#new_teacher", as: :teacher_log_in
 
@@ -46,7 +54,7 @@ Rails.application.routes.draw do
 
   root 'info_pages#home'
 
-  resources :handoffs, only: [:index, :new, :create]
+  resources :handoffs, only: [:index, :new, :create, :pick_class]
   resources :centers
   resources :parents
   resources :children

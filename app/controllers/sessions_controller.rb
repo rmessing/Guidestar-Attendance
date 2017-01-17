@@ -49,6 +49,22 @@ class SessionsController < ApplicationController
       end 
   end
 
+  def new_class
+      @nav = "teacher"
+  end
+
+  def create_class
+      teacher = Teacher.find_by(username: params[:session][:username])
+      if teacher && teacher.authenticate(params[:session][:password])
+         flash[:success] = "Welcome #{teacher.fname} #{teacher.lname}."
+         session[:teacher_id] = teacher.id
+         redirect_to handoffs_pick_class_path
+      else
+         flash[:danger] = "Invalid username/password combination."
+         redirect_to class_log_in_path
+      end 
+  end
+
   def destroy_teacher
   	  log_out_teacher
       flash[:success] = "Teacher is logged off."

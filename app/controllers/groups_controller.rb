@@ -30,9 +30,14 @@ class GroupsController < ApplicationController
          @teachers = Teacher.order("lname", "fname").where(:center_id => current_center.id)
       end
   end
-
   def create
       @group = Group.new(group_params)
+      locations = Location.all.where(:center_id => params[:center_id])
+      if locations.length != 1 && params[:location_id] == "" 
+         flash[:danger] = "The new class is not registrered. Location selection is required."
+         redirect_to (:back)
+         return
+      end
       if @group.save
          flash[:success] = "#{@group.name} is registered."
          redirect_to @group
