@@ -12,6 +12,11 @@ Rails.application.routes.draw do
   post "/groups/new" => "center#index"
   post "/locations/new" => "center#index"
 
+  get "/handoffs/pick_class" => "handoffs#pick_class"
+  post "/handoffs/pick_class" => "handoffs#pick_presence", as: :pick_class
+  get "/handoffs/new_class" => "handoffs#new_class", as: :new_class
+  post "handoffs/new_class" => "handoffs#create"
+
   delete "/families/destroy" => "family#show"
   delete "/group_teachers/destroy" => "group_teacher#show"
 
@@ -23,10 +28,6 @@ Rails.application.routes.draw do
   get 'info_pages/home', as: :home
 
   get 'info_pages/help', as: :help
-
-  get '/handoffs/pick_class' => 'handoffs#pick_class'
-
-  post '/handoffs/pick_class' => 'handoffs#new_class'
 
   get "/parent-log-in" => "sessions#new_parent", as: :parent_log_in
 
@@ -54,7 +55,7 @@ Rails.application.routes.draw do
 
   root 'info_pages#home'
 
-  resources :handoffs, only: [:index, :new, :create, :pick_class]
+  resources :handoffs, only: [:index, :new, :create]
   resources :centers
   resources :parents
   resources :children

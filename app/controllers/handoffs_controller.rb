@@ -26,10 +26,19 @@ class HandoffsController < ApplicationController
   end
 
   def pick_class
-    # @teacher = Teacher.find(current_teacher.id)
     @center = Center.find(current_teacher.center_id)
-    # @groups = Group.order("name").where(:center_id => @center.id)
     @locations = Location.order("name").where(:center_id => @center.id)
+  end
+
+    # detecting no group select error before system abbend.
+  def pick_presence
+    params.inspect
+    if params[:group][:group_id] == ""
+      flash[:info] = "First select your class."
+      redirect_to (:back)
+    else  
+      redirect_to new_class_path(:id => params[:group][:group_id])
+    end
   end
 
   def create
@@ -63,7 +72,11 @@ class HandoffsController < ApplicationController
     if validate_check > 1 && params[:attend_type] == "depart"
        flash[:info] = "#{validate_check} children were checked out."
     end
-    redirect_to parent_log_in_path
+    if parent_logged_in?
+      redirect_to parent_log_in_path
+    else
+      redirect_to class_log_in_path
+    end
   end
 
 

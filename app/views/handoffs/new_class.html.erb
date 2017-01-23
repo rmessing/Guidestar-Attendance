@@ -2,20 +2,20 @@
 <% provide(:title, 'Class Attendance') %>
 
 <div class="container-fluid">
-	<h1 class="well page_title"> Child Attendance </h1>
+	<h1 class="well page_title"> Class Attendance </h1>
 </div>
 
 <div class="row">
 	<div class="col-xs-6 col-xs-offset-3">
 
-	<!-- Upon login, notifies parents if their children are not in the db. -->
+	<!-- Notifies teacher if class list if empty. -->
 		<% if @group.children.length == 0 %>   
 			<h2><i>(This class has no registered children.)</i></h2>
 		<% else %> 		
 
 			<%= form_tag(controller: "handoffs", action: "create", method: "post") %>
 
-	<!-- Parent indicates if picking up or dropping off children. -->
+	<!-- Teacher indicates children are arriving or departing. -->
 				<div class="check_align">
 					<div class="center_admin">
 						<%= label(:handoff_arrive, "drop-off") %>&nbsp;&nbsp;&nbsp;
@@ -27,7 +27,7 @@
 					</div>
 				</div>
 				
-	<!-- Displays parent's children-parent checks which children are present -->
+	<!-- Displays class list; teacher checks the children in attendance -->
 	<!-- An array of attributes per child is passed to the controllor in params -->
 				<% @group.children.each do |child| %>	
 					<%= hidden_field_tag "handoff[][check]", 0 %>
@@ -48,8 +48,8 @@
 					<%= hidden_field_tag "handoff[][location_name]", location.name %>
 					<%= hidden_field_tag "handoff[][child_id]", child.id %>
 					<%= hidden_field_tag "handoff[][center_id]", @center.id %>
-					<%= hidden_field_tag "handoff[][escort_fname]", @parent.fname %>
-					<%= hidden_field_tag "handoff[][escort_lname]", @parent.lname %>
+					<%= hidden_field_tag "handoff[][escort_fname]", current_teacher.fname %>
+					<%= hidden_field_tag "handoff[][escort_lname]", current_teacher.lname %>
 					<%= hidden_field_tag "handoff[][child_fname]", child.fname %>
 					<%= hidden_field_tag "handoff[][child_mname]", child.mname %>
 					<%= hidden_field_tag "handoff[][child_lname]", child.lname %>
