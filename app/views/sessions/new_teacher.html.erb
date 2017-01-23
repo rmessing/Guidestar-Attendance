@@ -8,9 +8,9 @@
 <div class="row">
   <div class="col-xs-6 col-xs-offset-3">
     <%= form_for(:session, url: teacher_log_in_path) do |f| %>
-      <%= f.label :teacher_username %>
+      <%= f.label :staff_username %>
       <%= f.text_field :username, placeholder: "6+ characters", class: 'form-control' %>
-      <%= f.label :teacher_password %>
+      <%= f.label :staff_password %>
       <%= f.password_field :password, placeholder: "8+ characters", class: 'form-control' %>
       <%= link_to "Forgot password?", new_teachers_password_reset_path %>
       <%= f.submit "Log in", class: "btn btn-primary" %>

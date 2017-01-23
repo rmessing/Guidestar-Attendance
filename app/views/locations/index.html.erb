@@ -2,10 +2,10 @@
 
 <div class="container-fluid">
 	<% if current_center.admin? %>
-		  <h1> Branch Locations </h1>
+		  <h1> Locations </h1>
 		  <h1 class="half_size"><%= @center.name %></h1>
 		  <% else %>
-		  <h1> Branch Locations </h1>
+		  <h1> Locations </h1>
 	<% end %><br>
 	<% if @locations.length == 0 %>
 		  <h2><i>(There are no registered branch locations.)</i></h2>

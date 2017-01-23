@@ -6,7 +6,7 @@
 </div>
 
 <div class="row">
-	<div class="col-xs-6 col-xs-offset-3">
+	<div class="col-xs-4 col-xs-offset-4">
 
 	<!-- Notifies teacher if class list if empty. -->
 		<% if @group.children.length == 0 %>   
@@ -16,29 +16,45 @@
 			<%= form_tag(controller: "handoffs", action: "create", method: "post") %>
 
 	<!-- Teacher indicates children are arriving or departing. -->
-				<div class="check_align">
-					<div class="center_admin">
-						<%= label(:handoff_arrive, "drop-off") %>&nbsp;&nbsp;&nbsp;
-						<%= radio_button_tag(:attend_type, "arrive") %>	
-					</div>
-					<div class="center_admin">
-						<%= label(:handoff_depart, "pick-up") %>
-						<%= radio_button_tag(:attend_type, "depart") %>		
-					</div>
-				</div>
+<div class="table-responsive">
+	<table class="table table-condensed check_align">
+		<thead>
+			<tr>
+				<th><%= label(:handoff_arrive, "drop-off") %></th>
+				<th><%= label(:handoff_depart, "pick-up") %></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><%= radio_button_tag(:attend_type, "arrive") %></td>
+				<td><%= radio_button_tag(:attend_type, "depart") %></td>	
+			</tr>
+		</tbody>
+	</table>
+</div>
+			
 				
 	<!-- Displays class list; teacher checks the children in attendance -->
 	<!-- An array of attributes per child is passed to the controllor in params -->
+	
 				<% @group.children.each do |child| %>	
 					<%= hidden_field_tag "handoff[][check]", 0 %>
-					
+		
 					<div class="check_center">
-						<%= check_box_tag "handoff[][check]" %>
-						<%= child.fname %>
-						<%= child.mname %>
-						<%= child.lname %>
+						<div class="table-responsive">
+							<table class="table">
+								<tbody>		
+									<tr>
+										<td><%= check_box_tag "handoff[][check]" %></td>
+										<td><%= child.fname %>
+										<%= child.mname %>
+										<%= child.lname %></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
-					
+		
 					<% group = Group.find(child.group_id) %>
 				
 					<% location = Location.find(group.location_id) %>
@@ -55,7 +71,7 @@
 					<%= hidden_field_tag "handoff[][child_lname]", child.lname %>
 					
 				<% end %>
-				<br>
+				
 				<%= submit_tag  type="submit", value: "Click to submit", class: "btn btn-primary" %>
 		<% end %>
 	</div>

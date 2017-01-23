@@ -29,7 +29,7 @@
 
  	<!-- This is the code for adding an Adult to a Child's account. -->
 
-		<h3><%= "Add an adult to " %><%= @child.fname %>'s account</h3>
+		<h3><%= "Add an adult for " %><%= @child.fname %></h3>
 
 		<%= form_for(@family) do |f| %>
 			<%= f.hidden_field :child_id, :value => @child.id %>
