@@ -1,6 +1,11 @@
-<% if @nav == 'admin' %>
-	  <li><%= link_to "Attendance Log In", teacher_log_in_path %></li>
-<% else %>
-	  <li><%= link_to "Administrator Log In", center_log_in_path %></li>
+<% if @nav == 'center' %>
+	  <li><%= link_to "Adult Portal", teacher_log_in_path %></li>
+	  <li><%= link_to "Class Portal", class_log_in_path %></li>
+<% elsif @nav == 'teacher' %>
+	  <li><%= link_to "Class Portal", class_log_in_path %></li>
+	  <li><%= link_to "Administrator", center_log_in_path %></li>  
+<% else %>  
+	  <li><%= link_to "Adult Portal", teacher_log_in_path %></li>
+	  <li><%= link_to "Administrator", center_log_in_path %></li>  
 <% end %>
-<%  @nav = nil %>
+<% @nav = nil %>

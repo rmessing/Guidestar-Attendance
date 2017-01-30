@@ -1,4 +1,5 @@
 class HandoffsController < ApplicationController
+  before_action :logged_in_parent_or_teacher, only: [:new, :new_class]
 
   def index
     @search = Search.new
@@ -81,14 +82,22 @@ class HandoffsController < ApplicationController
 
 
 private
-        # Before filters
+   # Before filters
 
-  # Confirms a logged-in parent.
-  def logged_in_parent
-    unless parent_logged_in?
+  # Confirms a parent or teacher is logged in.
+  def logged_in_parent_or_teacher
+    unless parent_logged_in? || teacher_logged_in?
       flash[:danger] = "Please log in."
-      redirect_to parent_log_in_path
+        redirect_to '/'
     end
+  end
+
+  # Confirms a logged-in center.
+  def logged_in_center
+      unless center_logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to center_log_in_path
+      end
   end
 
 end

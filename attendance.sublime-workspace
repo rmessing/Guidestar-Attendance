@@ -1,0 +1,466 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"p",
+				"params"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"padding",
+				"padding-right"
+			],
+			[
+				"border-r",
+				"border-radius"
+			],
+			[
+				"he",
+				"max-height"
+			],
+			[
+				"live",
+				"live_count"
+			],
+			[
+				"toda",
+				"todays_output"
+			],
+			[
+				"pase",
+				"parseddata"
+			],
+			[
+				"fac",
+				"factual_response"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "pa",
+		"selected_items":
+		[
+			[
+				"pa",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/richa1/Documents/Projects/attendance/attendance",
+		"/Users/richa1/Documents/Projects/attendance/app/views/centers/admin.html.erb",
+		"/Users/richa1/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/richa1/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/richa1/Documents/Projects/attendance/app/controllers/children_controller.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/controllers/centers_controller.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/children/_form.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/assets/javascripts/children.coffee",
+		"/Users/richa1/Documents/Projects/attendance/app/views/searches/new.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/controllers/sessions_controller.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/centers/index.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/handoffs/index.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/db/migrate/20161227185308_add_location_name_to_searches.rb",
+		"/Users/richa1/Documents/Projects/attendance/db/migrate/20161227181940_add_location_name_to_handoffs.rb",
+		"/Users/richa1/Documents/Projects/attendance/db/migrate/20161227165800_remove_location_name_from_searches.rb",
+		"/Users/richa1/Documents/Projects/attendance/db/migrate/20161227163732_remove_keywords_from_searches.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/layouts/application.html.erb",
+		"/Users/richa1/Documents/NYCDA/W10/D4/myapp/app/views/meals/index.html.erb",
+		"/Users/richa1/Documents/NYCDA/W10/D4/myapp/app/views/meals/edit.html.erb",
+		"/Users/richa1/Documents/NYCDA/W10/D4/myapp/app/views/centers/new.html.erb",
+		"/Users/richa1/Documents/NYCDA/W10/D4/myapp/app/views/centers/index.html.erb",
+		"/Users/richa1/Documents/NYCDA/W10/D4/myapp/app/views/centers/edit.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/handoffs/new.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/handoffs/show.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/centers/superadmin.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/handoffs/_form.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/assets/stylesheets/locations.scss",
+		"/Users/richa1/Documents/NYCDA/W10/D4/rmessing.github.io/css/portfolio.css",
+		"/Users/richa1/Documents/NYCDA/W10/D4/rmessing.github.io/index3.html",
+		"/Users/richa1/Documents/Projects/attendance/app/views/teachers/_form.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/parents/_form.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/locations/_form.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/groups/_form.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/centers/_form.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/models/center.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/assets/stylesheets/custom.scss",
+		"/Users/richa1/Documents/Projects/attendance/app/assets/stylesheets/application.css",
+		"/Users/richa1/Documents/Projects/attendance/app/controllers/locations_controller.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/controllers/centers_password_resets_controller.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/controllers/families_controller.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/controllers/group_teachers_controller.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/controllers/groups_controller.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/controllers/handoffs_controller.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/controllers/parents_controller.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/controllers/teachers_controller.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/controllers/application_controller.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/helpers/sessions_helper.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/models/child.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/models/group.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/models/handoff.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/models/family.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/models/group_teacher.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/models/teacher.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/teachers/new.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/centers/new.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/groups/index.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/groups/new.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/locations/new.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/centers/edit.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/teachers/index.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/parents/index.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/locations/index.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/children/index.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/children/edit.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/groups/edit.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/locations/edit.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/teachers/edit.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/children/new.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/group_teachers/show.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/families/index.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/layouts/_center.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/families/new.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/models/parent.rb",
+		"/Users/richa1/Documents/Projects/attendance/db/migrate/20160916212730_remove_password_from_parents.rb",
+		"/Users/richa1/Documents/Projects/attendance/Gemfile",
+		"/Users/richa1/Documents/Projects/attendance/config.ru",
+		"/Users/richa1/Documents/Projects/attendance/app/models/location.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/mailers/.keep",
+		"/Users/richa1/Documents/Projects/attendance/app/views/layouts/_no_nav.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/layouts/_teacher.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/parents/new.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/parents/edit.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/children/_all_children.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/db/migrate/20160913223218_remove_teacher_id_from_groups.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/parents/_parent_form_html.erb",
+		"/Users/richa1/Desktop/pinpoint.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/layouts/_parent.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/teachers_password_resets/new.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/parents_password_resets/new.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/sessions/new_center.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/sessions/new_parent.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/sessions/new_teacher.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/helpers/application_helper.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/shared/_error_messages.html.erb",
+		"/Users/richa1/Documents/Projects/Day_Care-master-attend/app/controllers/home_controller.rb",
+		"/Users/richa1/Documents/Projects/attendance/db/schema.rb",
+		"/Users/richa1/Documents/Projects/attendance/db/migrate/20160906204057_add_location_idto_groups.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/password_resets/new.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/test/mailers/previews/parent_mailer_preview.rb",
+		"/Users/richa1/Documents/Projects/attendance/config/routes.rb",
+		"/Users/richa1/Documents/Projects/attendance/test/mailers/center_mailer_test.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/controllers/account_activations_controller.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/center_mailer/account_activation.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/teachers/show.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/parents/show.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/db/migrate/20160829205149_create_parents.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/info_pages/news.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/controllers/info_pages_controller.rb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/info_pages/about.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/info_pages/contact.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/info_pages/help.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/app/views/info_pages/home.html.erb",
+		"/Users/richa1/Documents/Projects/attendance/db/migrate/20160829213516_create_teachers.rb",
+		"/Users/richa1/Desktop/untitled.html",
+		"/Users/richa1/Documents/Projects/Day_Care-master-attend/app/controllers/groups_controller.rb",
+		"/Users/richa1/Documents/Projects/Day_Care-master-attend/app/views/parents/show.html.erb",
+		"/Users/richa1/Documents/Projects/Day_Care-master-attend/app/views/handoffs/new.html.erb",
+		"/Users/richa1/Documents/Projects/Day_Care-master-attend/app/controllers/families_controller.rb",
+		"/Users/richa1/Documents/Projects/Day_Care-master-attend/app/controllers/centers_controller.rb",
+		"/Users/richa1/Documents/Projects/Day_Care-master-attend/app/assets/stylesheets/centers.scss",
+		"/Users/richa1/Documents/Projects/Day_Care-master-attend/app/controllers/handoffs_controller.rb",
+		"/Users/richa1/Documents/Projects/Day_Care-master-attend/app/controllers/sessions_controller.rb",
+		"/Users/richa1/Documents/Projects/Day_Care-master-attend/app/controllers/teachers_controller.rb",
+		"/Users/richa1/Documents/Projects/Day_Care-master-attend/app/views/groups/new.html.erb",
+		"/Users/richa1/Documents/Projects/Day_Care-master-attend/app/views/families/new.html.erb",
+		"/Users/richa1/Documents/Projects/Day_Care-master-attend/app/views/centers/show.html.erb",
+		"/Users/richa1/Documents/Projects/Day_Care-master-attend/app/views/home/misc.html.erb",
+		"/Users/richa1/Documents/Projects/Day_Care-master-attend/config/routes.rb"
+	],
+	"find":
+	{
+		"height": 32.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			" table-condensed",
+			"select",
+			"span",
+			"report",
+			"style=\"display: inline-block\"",
+			"left",
+			"field",
+			"[",
+			":",
+			":value",
+			":",
+			"type",
+			"h.hidden_field",
+			"links",
+			";*/\n",
+			"bar",
+			"form",
+			"@media",
+			"nav",
+			"overflow",
+			"flash[",
+			"<h2>",
+			"&nbsp",
+			"<h2>",
+			"&nbsp",
+			"<h2>",
+			"&nbsp",
+			"<h2>",
+			"&nbsp",
+			"</h2>",
+			"<h2>",
+			"&nbsp",
+			"group",
+			"show",
+			"user",
+			"center",
+			"teacher",
+			"Center",
+			"center",
+			"Login",
+			"10px",
+			"{\n",
+			"new",
+			"Formtastic",
+			"head"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"th",
+			"h3",
+			"class=\"radio\"",
+			"class: \"radio\"",
+			"field_tag",
+			"child[",
+			"name=\"[",
+			"value",
+			"name=\"child[",
+			"type=\"hidden\"",
+			"type",
+			"flash.now[",
+			"<span>",
+			"<br><br>",
+			"<span>",
+			"teacher",
+			"parent",
+			"location",
+			"parent",
+			"location",
+			"group",
+			"child",
+			"parent",
+			"Teacher",
+			"Parent",
+			"parent",
+			"teacher",
+			"parent",
+			"teacher",
+			"parent",
+			"ParentPasswordResetsController"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 32.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 272.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 25.0
+	},
+	"pinned_build_system": "",
+	"project": "attendance.sublime-project",
+	"replace":
+	{
+		"height": 60.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"meals",
+				"app/controllers/meals_controller.rb"
+			],
+			[
+				"route",
+				"config/routes.rb"
+			],
+			[
+				"groups",
+				"app/controllers/groups_controller.rb"
+			],
+			[
+				"meals_con",
+				"app/controllers/meals_controller.rb"
+			],
+			[
+				"sch",
+				"db/schema.rb"
+			],
+			[
+				"rou",
+				"config/routes.rb"
+			],
+			[
+				"gem",
+				"Gemfile"
+			],
+			[
+				"schema",
+				"db/schema.rb"
+			],
+			[
+				"seed",
+				"db/seeds.rb"
+			],
+			[
+				"routes",
+				"config/routes.rb"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 223.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

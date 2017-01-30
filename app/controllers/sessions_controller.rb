@@ -1,18 +1,18 @@
 class SessionsController < ApplicationController
 
   def new_parent
-
-    # Prevents login unless teacher or center is already logged in. Requires parent to login while on center premises, to prevent entering fraudulent attendance records remotely.
-      if teacher_logged_in?
-         @center = Center.find(current_teacher.center_id)
-      elsif center_logged_in?
-         @center = current_center
-      else
-         flash[:info] = "Teacher or Administrator login required."
-         redirect_to root_path
+      @nav = "adult"
+      if parent_logged_in?
+        @center = Center.find(current_parent.center_id)
+        log_out_parent
       end
-      @nav = "parent"
-      log_out_parent
+      if center_logged_in?
+        @center = current_center
+        log_out_center
+      end
+      if teacher_logged_in?
+        @center = Center.find(current_teacher.center_id)
+      end
   end
 
   def create_parent
@@ -41,7 +41,7 @@ class SessionsController < ApplicationController
       teacher = Teacher.find_by(username: params[:session][:username])
       if teacher && teacher.authenticate(params[:session][:password])
          flash[:success] = "Welcome #{teacher.fname} #{teacher.lname}."
-         session[:teacher_id] = teacher.id
+         session[:teacher_id] = teacher.id     
          redirect_to parent_log_in_path
       else
          flash[:danger] = "Invalid username/password combination."
@@ -50,14 +50,17 @@ class SessionsController < ApplicationController
   end
 
   def new_class
-      @nav = "teacher"
+      @nav = "class"
+      if center_logged_in?
+        log_out_center
+      end
   end
 
   def create_class
       teacher = Teacher.find_by(username: params[:session][:username])
       if teacher && teacher.authenticate(params[:session][:password])
          flash[:success] = "Welcome #{teacher.fname} #{teacher.lname}."
-         session[:teacher_id] = teacher.id
+         session[:teacher_id] = teacher.id   
          redirect_to handoffs_pick_class_path
       else
          flash[:danger] = "Invalid username/password combination."
@@ -72,7 +75,7 @@ class SessionsController < ApplicationController
   end
 
   def new_center
-    @nav = "admin"
+    @nav = "center"
   end
 
   def create_center
@@ -99,5 +102,7 @@ class SessionsController < ApplicationController
       flash[:success] = "Administrator is logged off."
       redirect_to "/"
   end
+
+  private
 
 end

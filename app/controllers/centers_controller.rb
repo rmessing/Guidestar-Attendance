@@ -18,6 +18,7 @@ class CentersController < ApplicationController
 
 # The center admin home page is rendered by the admin view.
   def admin
+    @nav = "admin"
   end
 
   def create

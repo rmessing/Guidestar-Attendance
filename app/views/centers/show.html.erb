@@ -8,7 +8,7 @@
 			<h1>Client Profile</h1>
 			<h3><%= link_to "Attendance Report", controller: "handoffs", action: "index", id: @center.id %></h3><hr>
 		<% else %>
-			<h1>Home Office Profile</h1>
+			<h1>Center Profile</h1>
 		<% end %>
 
 		<span>NAME:</span>  <%= @center.name %><br><br>

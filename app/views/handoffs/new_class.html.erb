@@ -1,78 +1,78 @@
 
 <% provide(:title, 'Class Attendance') %>
 
-<div class="container-fluid">
-	<h1 class="well page_title"> Class Attendance </h1>
-</div>
 
-<div class="row">
-	<div class="col-xs-4 col-xs-offset-4">
+<h1 class="well page_title"><%= @group.name %></h1>
+<div style="margin: 0 -1vw 0 1vw;">
+	<div class="row">
+		<div class="col-xs-4 col-xs-offset-4">
 
-	<!-- Notifies teacher if class list if empty. -->
-		<% if @group.children.length == 0 %>   
-			<h2><i>(This class has no registered children.)</i></h2>
-		<% else %> 		
+		<!-- Notifies teacher if class list is empty. -->
+			<% if @group.children.length == 0 %>   
+				<h2><i>(This class has no registered children.)</i></h2>
+			<% else %> 		
 
-			<%= form_tag(controller: "handoffs", action: "create", method: "post") %>
+				<%= form_tag(controller: "handoffs", action: "create", method: "post") %>
 
-	<!-- Teacher indicates children are arriving or departing. -->
-<div class="table-responsive">
-	<table class="table table-condensed check_align">
-		<thead>
-			<tr>
-				<th><%= label(:handoff_arrive, "drop-off") %></th>
-				<th><%= label(:handoff_depart, "pick-up") %></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td><%= radio_button_tag(:attend_type, "arrive") %></td>
-				<td><%= radio_button_tag(:attend_type, "depart") %></td>	
-			</tr>
-		</tbody>
-	</table>
-</div>
+		<!-- Teacher indicates children are arriving or departing. -->
+	<div class="table-responsive">
+		<table class="table table-condensed check_align">
+			<thead>
+				<tr>
+					<th><%= label(:handoff_arrive, "drop-off") %></th>
+					<th><%= label(:handoff_depart, "pick-up") %></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><%= radio_button_tag(:attend_type, "arrive") %></td>
+					<td><%= radio_button_tag(:attend_type, "depart") %></td>	
+				</tr>
+			</tbody>
+		</table>
+	</div>
+				
+					
+		<!-- Displays class list; teacher checks the children in attendance -->
+		<!-- An array of attributes per child is passed to the controllor in params -->
+		
+					<% @group.children.each do |child| %>	
+						<%= hidden_field_tag "handoff[][check]", 0 %>
 			
-				
-	<!-- Displays class list; teacher checks the children in attendance -->
-	<!-- An array of attributes per child is passed to the controllor in params -->
-	
-				<% @group.children.each do |child| %>	
-					<%= hidden_field_tag "handoff[][check]", 0 %>
-		
-					<div class="check_center">
-						<div class="table-responsive">
-							<table class="table">
-								<tbody>		
-									<tr>
-										<td><%= check_box_tag "handoff[][check]" %></td>
-										<td><%= child.fname %>
-										<%= child.mname %>
-										<%= child.lname %></td>
-									</tr>
-								</tbody>
-							</table>
+						<div class="check_center">
+							<div class="table-responsive">
+								<table class="table">
+									<tbody>		
+										<tr>
+											<td><%= check_box_tag "handoff[][check]" %></td>
+											<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= child.fname %>
+											<%= child.mname %>
+											<%= child.lname %></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
-					</div>
-		
-					<% group = Group.find(child.group_id) %>
-				
-					<% location = Location.find(group.location_id) %>
+			
+						<% group = Group.find(child.group_id) %>
 					
-					<%= hidden_field_tag "handoff[][attend]" %>
-					<%= hidden_field_tag "handoff[][group_name]", group.name %>
-					<%= hidden_field_tag "handoff[][location_name]", location.name %>
-					<%= hidden_field_tag "handoff[][child_id]", child.id %>
-					<%= hidden_field_tag "handoff[][center_id]", @center.id %>
-					<%= hidden_field_tag "handoff[][escort_fname]", current_teacher.fname %>
-					<%= hidden_field_tag "handoff[][escort_lname]", current_teacher.lname %>
-					<%= hidden_field_tag "handoff[][child_fname]", child.fname %>
-					<%= hidden_field_tag "handoff[][child_mname]", child.mname %>
-					<%= hidden_field_tag "handoff[][child_lname]", child.lname %>
+						<% location = Location.find(group.location_id) %>
+						
+						<%= hidden_field_tag "handoff[][attend]" %>
+						<%= hidden_field_tag "handoff[][group_name]", group.name %>
+						<%= hidden_field_tag "handoff[][location_name]", location.name %>
+						<%= hidden_field_tag "handoff[][child_id]", child.id %>
+						<%= hidden_field_tag "handoff[][center_id]", @center.id %>
+						<%= hidden_field_tag "handoff[][escort_fname]", current_teacher.fname %>
+						<%= hidden_field_tag "handoff[][escort_lname]", current_teacher.lname %>
+						<%= hidden_field_tag "handoff[][child_fname]", child.fname %>
+						<%= hidden_field_tag "handoff[][child_mname]", child.mname %>
+						<%= hidden_field_tag "handoff[][child_lname]", child.lname %>
+						
+					<% end %>
 					
-				<% end %>
-				
-				<%= submit_tag  type="submit", value: "Click to submit", class: "btn btn-primary" %>
-		<% end %>
+					<%= submit_tag  type="submit", value: "Click to submit", class: "btn btn-primary" %>
+			<% end %>
+		</div>
 	</div>
 </div>

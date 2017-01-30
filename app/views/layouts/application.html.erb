@@ -46,12 +46,14 @@
                 <%  @nav = nil %>
               <% elsif @nav == "root" %>
                 <%= render "layouts/root" %>
-              <% elsif @nav == "teacher" || @nav == "admin" %>
+              <% elsif @nav == "teacher" || @nav == "class" || @nav == "center"%>
                 <%= render "layouts/login" %>
               <% elsif parent_logged_in? %>
                 <%= render "layouts/parent" %>
               <% elsif center_logged_in? %>
                 <%= render "layouts/center" %>
+              <% elsif teacher_logged_in? && !parent_logged_in? %>
+                <%= render "layouts/teacher" %>
               <% end %>
             </ul>
           </div>

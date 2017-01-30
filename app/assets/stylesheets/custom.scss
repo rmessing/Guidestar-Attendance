@@ -61,7 +61,7 @@ p {
 
 #logo {
   float: left;
-  margin-left: 2vw;
+  /*margin-left: 2vw;*/
   font-size: 1.7em;
   color: #fff;
   text-transform: uppercase;
@@ -307,6 +307,10 @@ input {
   }
   .object_size2 h2 {
     font-size: 1em;
-
+  }
 }
+@media all and (max-width: 770px) {
+  #logo {
+    margin-left: 2vw;
+  }
 }

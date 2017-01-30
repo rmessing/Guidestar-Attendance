@@ -2,7 +2,8 @@
 <% if current_center.admin? %>
 	 <li class="active"><%= link_to "Super Administrator", superadmin_path %></li>
 <% else %>
-	 <!-- <li><%#= link_to "Parent Log In", parent_log_in_path %></li> -->
+	 <li><%= link_to "Adult Portal", parent_log_in_path %></li>
+	 <li><%= link_to "Class Portal", class_log_in_path %></li>
 	 <li class="active"><%= link_to "Administrator", admin_path %></li>
 <% end %>	
 <li><%= link_to "Log off", center_log_out_path, method: :delete %></li>
