@@ -70,7 +70,7 @@ class SessionsController < ApplicationController
 
   def destroy_teacher
   	  log_out_teacher
-      flash[:success] = "Teacher is logged off."
+      flash[:success] = "Staff is logged off."
       redirect_to "/"
   end
 

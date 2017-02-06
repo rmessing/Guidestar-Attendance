@@ -37,13 +37,13 @@
 				<% @parent.children.each do |child| %>	
 					<%= hidden_field_tag "handoff[][check]", 0 %>
 					
-					<div class="check_center">
+					<div>
 						<div class="table-responsive">
-							<table class="table">
+							<table class="table table-condensed">
 								<tbody>			
 									<tr>
 										<td><%= check_box_tag "handoff[][check]" %></td>
-										<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= child.fname %>
+										<td class="check_center"><%= child.fname %>
 										<%= child.mname %>
 										<%= child.lname %></td>
 									</tr>
