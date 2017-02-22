@@ -7,8 +7,6 @@
 
 <p><%= link_to 'Back', handoffs_path %></p>
 
-<% @handoffs = @search.search_handoffs.where(:center_id => @center.id) %>
-
 <% if @handoffs.empty? %>
 	<p> No records found.</p>
 <% else %>	

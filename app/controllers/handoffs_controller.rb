@@ -2,8 +2,9 @@ class HandoffsController < ApplicationController
   before_action :logged_in_parent_or_teacher, only: [:new, :new_class]
 
   def index
+    
     @search = Search.new
-  
+
     if current_center.admin?
        @center = Center.find(session[:id])
     else
@@ -11,7 +12,7 @@ class HandoffsController < ApplicationController
     end
     @groups = Group.all.where(:center_id => @center.id).uniq.pluck(:name)
     @locations = Location.all.where(:center_id => @center.id).uniq.pluck(:name)
-    @handoffs = Handoff.order("created_at").where(:center_id => @center.id)
+    @handoffs = Handoff.order("created_at").where(:center_id => @center.id).where('created_at >= ?', 1.week.ago)
   end
 
   def new
@@ -33,7 +34,6 @@ class HandoffsController < ApplicationController
 
     # detecting no group select error before system abbend.
   def pick_presence
-    params.inspect
     if params[:group][:group_id] == ""
       flash[:info] = "First select your class."
       redirect_to (:back)

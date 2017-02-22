@@ -17,10 +17,10 @@
 <%= form_for @search, html: {class: "pure-form"} do |s| %>
 
 	<div class="fields">		
-		<%= s.text_field :child_name, placeholder: " Child last name" %>
+		<small><%= s.text_field :child_name, placeholder: " Child last name" %></small>
 	</div>
 	<div class="fields">	
-		<%= s.text_field :adult_name, placeholder: " Adult last name" %>
+		<small><%= s.text_field :adult_name, placeholder: " Adult last name" %></small>
 	</div>
 	<div class="fields">	
 		<%= s.select :class_name, options_for_select(@groups), :include_blank => "Select class" %>
@@ -28,7 +28,14 @@
  	<div class="fields">	
 		<%= s.select :location_name, options_for_select(@locations), :include_blank => 'Select location' %>
 	</div>
-
+	<div class="fields">
+		<%= s.label "End date" %>
+		<small><%= s.date_field :date_to, :value => Time.now.strftime('%Y-%m-%d') %></small>
+	</div>
+	<div class="fields">	
+		<%= s.label "Start date" %>
+		<small><%= s.date_field :date_from, :value => 7.days.ago.to_date.strftime('%Y-%m-%d') %></small>
+	</div>
 	<div class="fields">
 		<small><%= s.button(type: 'submit') do %>
 		  <span class="glyphicon glyphicon-search"></span>	
