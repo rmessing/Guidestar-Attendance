@@ -5,13 +5,13 @@ class SearchesController < ApplicationController
 
     # Delete search filter from db to avoid wasting storage
     Search.last.destroy
-    
+
     if  current_center.admin?
         @center = Center.find(session[:id])
     else
         @center = current_center
     end
-
+    @locations = Location.all.where(:center_id => @center.id)
     @handoffs = @search.search_handoffs.where(:center_id => @center.id)
 
     # Filter attendance search by date range
@@ -28,12 +28,6 @@ class SearchesController < ApplicationController
 
   def search_params
   	  params.require(:search).permit(:class_name, :child_name, :adult_name, :location_name, :date_from, :date_to)
-  end
-
-  def parsed_date(date_string)
-    DateTime.parse(date_string)
-  rescue ArgumentError, TypeError
-    # default
   end
 
 end

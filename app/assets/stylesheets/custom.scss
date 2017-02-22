@@ -253,8 +253,11 @@ input {
   text-align: center;
 }
 .fields {
-  width: 11.5vw;
+  width: 9vw;
   display: inline-block;
+}
+.corners {
+  border-radius: 0px;
 }
 
 /*Media queries are for admin and superadmin pages.*/

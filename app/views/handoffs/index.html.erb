@@ -23,18 +23,20 @@
 		<small><%= s.text_field :adult_name, placeholder: " Adult last name" %></small>
 	</div>
 	<div class="fields">	
-		<%= s.select :class_name, options_for_select(@groups), :include_blank => "Select class" %>
+		<small><%= s.select :class_name, options_for_select(@groups), :include_blank => "Select class", class: 'corners' %></small>
 	</div>
- 	<div class="fields">	
-		<%= s.select :location_name, options_for_select(@locations), :include_blank => 'Select location' %>
+	<% if @locations.length != 1 %>
+	 	<div class="fields">	
+			<small><%= s.select :location_name, options_for_select(@locations), :include_blank => 'Select location', class: 'corners' %></small>
+		</div>
+	<% end %>
+	<div class="fields">	
+		<%= s.label "From" %>
+		<small><%= s.date_field :date_from, :value => 7.days.ago.to_date.strftime('%Y-%m-%d') %></small>
 	</div>
 	<div class="fields">
-		<%= s.label "End date" %>
+		<%= s.label "To" %>
 		<small><%= s.date_field :date_to, :value => Time.now.strftime('%Y-%m-%d') %></small>
-	</div>
-	<div class="fields">	
-		<%= s.label "Start date" %>
-		<small><%= s.date_field :date_from, :value => 7.days.ago.to_date.strftime('%Y-%m-%d') %></small>
 	</div>
 	<div class="fields">
 		<small><%= s.button(type: 'submit') do %>

@@ -8,8 +8,10 @@
 				<th>Date & Time</th>
 				<th>Arrive/Depart</th>
 				<th>Class</th>
-				<th>Location</th>
-				<th>Adult</th>			
+				<th>Adult</th>
+				<% if @locations.length != 1 %>
+					<th>Location</th>
+				<% end %>			
 			</tr>
 		</thead>
 		<tbody>				
@@ -21,8 +23,10 @@
 					<td><%= handoff.created_at.strftime("%Y/%m/%d - %H:%M") %></td>
 					<td><%= handoff.attend %></td>
 					<td><%= handoff.group_name %></td>
-					<td><%= handoff.location_name %></td>
-					<td><%= handoff.escort_fname %> <%= handoff.escort_lname %></td>		
+					<td><%= handoff.escort_fname %> <%= handoff.escort_lname %></td>
+					<% if @locations.length != 1 %>
+						<td><%= handoff.location_name %></td>
+					<% end %>		
 				</tr>
 			<% end %>
 		</tbody>
