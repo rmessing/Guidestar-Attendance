@@ -67,7 +67,9 @@ Rails.application.routes.draw do
   resources :centers_password_resets, only: [:new, :create, :edit, :update]
   resources :teachers_password_resets, only: [:new, :create, :edit, :update]
   resources :searches, only: [:new, :show, :create, :destroy]
-
+  resources :handoffs do
+    post :delete_selected, :on => :collection
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

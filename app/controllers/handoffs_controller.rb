@@ -2,7 +2,7 @@ class HandoffsController < ApplicationController
   before_action :logged_in_parent_or_teacher, only: [:new, :new_class]
 
   def index
-    
+
     @search = Search.new
 
     if current_center.admin?
@@ -80,6 +80,22 @@ class HandoffsController < ApplicationController
     end
   end
 
+def delete_selected
+  how_many = 0
+  params[:ids].each do |id|
+    handoff = Handoff.find(id)
+    handoff.destroy
+    how_many += 1
+  end unless params[:ids].blank?
+  if how_many == 1
+    flash[:notice] = "#{how_many} attendance record was deleted successfully!"
+  elsif how_many > 1 
+    flash[:notice] = "#{how_many} attendance records were deleted successfully!"
+  else
+    flash[:alert] = "No attendance records were deleted."
+  end
+  redirect_to handoffs_path 
+end
 
 private
    # Before filters

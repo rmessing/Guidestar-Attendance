@@ -7,13 +7,6 @@
 	<h3><%= @center.name %></h3><hr>
 <% end %>
 
-<%#= form_tag handoffs_path, :method => 'get' do %>
-	<%#= text_field_tag :search, params[:search], placeholder: "  Child first name", class: "fields" %>
-	<%#= submit_tag "Search", class: "fields" %>
-<%# end %>
-
-<!-- <%#= link_to "Advanced Search", controller: "searches", action: "new", id: @center.id %><hr> -->
-
 <%= form_for @search, html: {class: "pure-form"} do |s| %>
 
 	<div class="fields">		
