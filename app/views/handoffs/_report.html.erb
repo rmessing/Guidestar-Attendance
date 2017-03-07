@@ -1,4 +1,19 @@
-<%= form_for('Handoff', :as => 'handoffs', :url => delete_selected_handoffs_path) do |f| %>
+<script type="text/javascript">
+      function selectAll(){
+        $("input:checkbox").each(function(){
+        	if ($(this).prop('checked'))
+        		$(this).prop('checked', false);
+        	else
+          		$(this).prop('checked', true);
+        });
+
+        return false;
+      }
+</script>
+
+<small><button onclick="selectAll()">Select all</button></small>
+
+<%= form_for('Handoff', :as => 'handoffs', :url => delete_selected_handoffs_path, :data => {:confirm => :are_you_sure }) do |f| %>
 
 	<small><%= f.submit 'Delete selected', :class => 'btn-danger fields' %></small>
 	

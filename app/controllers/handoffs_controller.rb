@@ -61,16 +61,16 @@ class HandoffsController < ApplicationController
        redirect_to (:back)
        return
     end
-    if validate_check == 1 && params[:attend_type] == "arrive"
+    if validate_check == 1 && params[:attend_type] == "Arrive"
        flash[:info] = "#{validate_check} child was checked in."
     end
-    if validate_check == 1 && params[:attend_type] == "depart"
+    if validate_check == 1 && params[:attend_type] == "Depart"
        flash[:info] = "#{validate_check} child was checked out."
     end
-    if validate_check > 1 && params[:attend_type] == "arrive"
+    if validate_check > 1 && params[:attend_type] == "Arrive"
        flash[:info] = "#{validate_check} children were checked in."
     end
-    if validate_check > 1 && params[:attend_type] == "depart"
+    if validate_check > 1 && params[:attend_type] == "Depart"
        flash[:info] = "#{validate_check} children were checked out."
     end
     if parent_logged_in?
