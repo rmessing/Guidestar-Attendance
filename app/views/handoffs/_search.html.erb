@@ -1,0 +1,37 @@
+
+<%= form_for @search, html: {class: "pure-form"} do |s| %>
+	<div class="fields">
+		<h4>Search by:</h4>
+	</div>
+	<div class="fields">
+		<%= s.label "Child last name" %>		
+		<%= s.text_field :child_name, placeholder: " " %>
+	</div>
+	<div class="fields">
+		<%= s.label "Adult last name" %>
+		<%= s.text_field :adult_name, placeholder: " " %>
+	</div>
+	<div class="fields">
+		<%= s.label "Class" %>	
+		<%= s.select :class_name, options_for_select(@groups), prompt:true, class: 'corners' %>
+	</div>
+	<% if @locations.length != 1 %>
+	 	<div class="fields">
+	 		<%= s.label "Location" %>	
+			<%= s.select :location_name, options_for_select(@locations), prompt: true, class: 'corners' %>
+		</div>
+	<% end %>
+	<div class="fields">	
+		<%= s.label "From" %>
+		<%= s.date_field :date_from, :value => 7.days.ago.to_date.strftime('%Y-%m-%d') %>
+	</div>
+	<div class="fields">
+		<%= s.label "To" %>
+		<%= s.date_field :date_to, :value => Time.now.strftime('%Y-%m-%d') %>
+	</div>
+	<div class="fields">
+		<%= s.button(type: 'submit') do %>
+		  <span class="glyphicon glyphicon-search"></span>	
+		<% end %>
+	</div>
+<% end %>

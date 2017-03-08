@@ -94,7 +94,7 @@ def delete_selected
   else
     flash[:alert] = "No attendance records were deleted."
   end
-  redirect_to handoffs_path 
+  redirect_to :back 
 end
 
 private
