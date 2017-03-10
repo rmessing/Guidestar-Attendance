@@ -6,10 +6,44 @@
 <% if current_center.admin? %>
 	<h3><%= @center.name %></h3><hr>
 <% end %>
-<hr>
-<%= render "search" %>
 <br>
+<!-- <%#= render "search" %> -->
+
+<%= form_for @search, html: {class: "pure-form"} do |s| %>
+	<div class="table-responsive">
+		<table  class="table">
+			<thead>
+				<tr>
+					<th>Child last name</th>
+					<th>Adult last name</th>
+					<th>Class</th>
+					<% if @locations.length != 1 %>
+			 			<th>Location</th>	
+					<% end %>
+					<th>From</th>
+					<th>To</th>
+					<th>Search</th>
+				</tr>
+			</thead>
+			<body>			
+				<tr>
+					<td><%= s.text_field :child_name, placeholder: " " %></td>
+					<td><%= s.text_field :adult_name, placeholder: " " %></td>
+					<td><%= s.select :class_name, options_for_select(@groups), prompt: "Select", class: 'corners' %></td>
+					<% if @locations.length != 1 %>	
+						<td><%= s.select :location_name, options_for_select(@locations), prompt: "Select", class: 'corners' %></td>
+					<% end %>
+					<td><%= s.date_field :date_from, :value => 7.days.ago.to_date.strftime('%Y-%m-%d') %></td>
+					<td><%= s.date_field :date_to, :value => Time.now.strftime('%Y-%m-%d') %></td>
+					<td><%= s.button(type: 'submit') do %>
+				  		<span class="glyphicon glyphicon-search"></span>
+				  		<% end %></td>
+				</tr>
+			</body>
+		</table>
+	</div>
+<% end %>
+
 <% if !@handoffs.empty? %>
 	<%= render "report" %>
 <% end %>
-

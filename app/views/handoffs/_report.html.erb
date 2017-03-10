@@ -3,10 +3,8 @@
         $("input:checkbox").each(function(){
         	if ($(this).prop('checked'))
         		$(this).prop('checked', false);
-
         	else
           		$(this).prop('checked', true);
-
         });
 
         return false;
@@ -24,18 +22,18 @@
       }
 </script>
 
-<!-- <small><button onclick="selectAll()">Select all</button></small> -->
-
-
 <%= form_for('Handoff', :as => 'handoffs', :url => delete_selected_handoffs_path, :data => {:confirm => :are_you_sure }) do |f| %>
-	
-	<input type="checkbox", class='fields', onclick="selectAll()", onchange="this.checked=!this.checked;"></input>
+		
+	<div class="fields", style="margin: 0 -30px -20px 30px">
+		<span><strong style="font-size: 16px">Select all</strong></span>
+	</div>
+	<div style="margin: -22px 0 22px 0">
+		<input type="checkbox", onclick="selectAll()", onchange="this.checked=!this.checked;"></input>	
+	</div>
+	<div class="fields", style="margin: -45px -110px 45px 110px; position: absolute; width: 8vw; font-size: 1vw">
+		<%= f.submit 'Delete selected', :class => 'btn-primary' %>
+	</div>
 
-	<span style="margin: 0 30px 0 -90px">Select all</span>
-
-	<small><%= f.submit 'Delete selected', :class => 'btn-danger fields' %></small><br><br>
-	
-	<!-- <div class="clear">&nbsp;</div> -->
 	<div class="table-responsive">
 		<table  class="table table-condensed table-striped">
 			<thead>
