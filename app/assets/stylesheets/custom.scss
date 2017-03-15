@@ -32,7 +32,14 @@ textarea {
 .center {
   text-align: center;
 }
-
+.filters th {
+  text-align: center;
+  font-size: 16px;
+}
+.filters td {
+  text-align: center;
+  font-size: 15px;
+}
 .center h1 {
   margin-bottom: 10px;
 }
@@ -168,12 +175,12 @@ input {
 }
 .center_name {
   text-align: left;
-  min-width: 18vw;
-  max-width: 150px;
+  /*min-width: 18vw;*/
+  width: 250px;
   display: inline-block;
 }
 .center_links {
-  text-align: right;
+  /*text-align: right;*/
   display: inline;
 }
 
@@ -196,11 +203,10 @@ input {
   text-align: center;
 }
 .object_index {
-  width: 300px; 
+  width: 250px; 
   margin: 0 auto; 
-  padding-left: 10px;
+  padding-left: 35px;
   text-align: left;
-  color: black;
 }
 .page_title {
   font-size: 4em;
@@ -322,5 +328,10 @@ input {
 @media all and (max-width: 770px) {
   #logo {
     margin-left: 2vw;
+  }
+}
+@media all and (max-width: 520px) {
+  .center_links {
+    display: block;
   }
 }

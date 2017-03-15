@@ -9,26 +9,29 @@
 	<% end %><br>
 	<% if @locations.length == 0 %>
 		  <h2><i>(There are no registered branch locations.)</i></h2>
-	<% end %>
-	<ul class="objects">
+	<% end %><br>
+
+	<div class="objects">
 		<%= will_paginate %>
-		<% @locations.each do |location| %>
-	    	<li>
-			    <div class="object_index">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			    	<%= link_to edit_location_path(location.id), method: :get do %>
-	        			 	<i class="glyphicon glyphicon-pencil"></i>
-	        		<% end %>
-	        		<%= link_to location_path(location.id), method: :delete, data: {confirm: "Are you sure?"} do %>
-	        			 	<i class="glyphicon glyphicon-trash"></i>
-	        		<% end %>
-	        		<%= link_to location_path(location.id), method: :get do %>
-					<strong><%= location.name %></strong>
-					<% end %>
-				</div>
-<!-- 				<div class="center_links">
-					<%#= link_to "View Profile", location_path(location.id), method: :get %>
-				</div> -->
-	    	</li>
-		<% end %>
-	</ul>
+		<ul>
+			<% @locations.each do |location| %>
+		    	<li>
+				    <div class="object_index">
+				    	<%= link_to edit_location_path(location.id), method: :get do %>
+		        			 	<i class="glyphicon glyphicon-pencil"></i>
+		        		<% end %>
+		        		<%= link_to location_path(location.id), method: :delete, data: {confirm: "Are you sure?"} do %>
+		        			 	<i class="glyphicon glyphicon-trash"></i>
+		        		<% end %>&nbsp;
+		        		<%= link_to location_path(location.id), method: :get do %>
+						<strong><%= location.name %></strong>
+						<% end %>
+					</div>
+	<!-- 				<div class="center_links">
+						<%#= link_to "View Profile", location_path(location.id), method: :get %>
+					</div> -->
+		    	</li>
+			<% end %>
+		</ul>
+	</div>
 </div>

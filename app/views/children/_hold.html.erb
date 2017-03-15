@@ -2,7 +2,6 @@
 		<% if current_center.admin? %>
 		  <h1 class="half_size"><%= @center.name %></h1>
 		<% end %> 
-		<br>
 
 	<%= form_for(@child) do |f| %>
 	  <%= render 'shared/error_messages', object: @child %>
@@ -13,10 +12,17 @@
 		<%= f.label :child_last_name %>
 		<%= f.text_field :lname, class: 'form-control' %>
 		<%= f.hidden_field :center_id, :value => @center.id %>
+		<% if @locations != 1 %>
+			<%= f.label :Select_location %>	
+			<%= f.select :name, options_for_select(@locations), prompt: true, class: 'form-control' %>
+			<%= f.label :Select_class %>
+			<%= f.grouped_collection_select :group_id, @locations, :groups, :name, :id, :name, include_blank: true %>
+		<% else %>
+			<%= f.label :Select_class %>
+			<%= f.collection_select :group_id, @groups, :id, :name, include_blank: true %>
+		<% end %>
 		<%= f.label :Birthday %>
 		<%= date_field(:child, :birth_date) %>
-		<%= f.label :Class_by_location %>
-		<%= f.grouped_collection_select :group_id, @locations, :groups, :name, :id, :name, prompt: true %>
 		<%= f.submit yield(:button_text), class: "btn btn-primary" %>
 	<% end %>
 </div>

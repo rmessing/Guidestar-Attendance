@@ -37,7 +37,7 @@
 	<div class="table-responsive">
 		<table  class="table table-condensed table-striped">
 			<thead>
-				<tr>
+				<tr Class='filters'>
 					<th class="select-row">&nbsp;&nbsp;</th>				
 					<th>First name</th>
 					<th>Middle name</th>
@@ -53,7 +53,7 @@
 			</thead>
 			<tbody>				
 				<% @handoffs.each do |handoff| %> 
-					<tr>
+					<tr class='filters'>
 						<td><%= check_box_tag 'ids[]', handoff.id, false, :onclick => "toggleHighlight(this)" %></td>
 						<td><%= handoff.child_fname %></td>
 						<td><%= handoff.child_mname %></td>

@@ -2,41 +2,44 @@
 
 <% Time.zone = 'America/New_York' %>
 
-<h1 class="well">Attendance Records</h1>
+<div class="well">
+	<h1 style="color: blue;">ATTENDANCE &nbsp; RECORDS</h1>
+	<h2>advanced search</h2>
+</div>
 <% if current_center.admin? %>
-	<h3><%= @center.name %></h3><hr>
+	<h3><b><%= @center.name %></b></h3><hr>
+<% else %>
+	<br><br>
 <% end %>
-<br>
 <!-- <%#= render "search" %> -->
-
 <%= form_for @search, html: {class: "pure-form"} do |s| %>
 	<div class="table-responsive">
 		<table  class="table">
 			<thead>
-				<tr>
-					<th>Child last name</th>
-					<th>Adult last name</th>
-					<th>Class</th>
+				<tr class='filters'>
+					<th>child last name</th>
+					<th>adult last name</th>
+					<th>class</th>
 					<% if @locations.length != 1 %>
-			 			<th>Location</th>	
+			 			<th>location</th>	
 					<% end %>
-					<th>From</th>
-					<th>To</th>
-					<th>Search</th>
+					<th>from</th>
+					<th>to</th>
+					<th></th>
 				</tr>
 			</thead>
 			<body>			
 				<tr>
 					<td><%= s.text_field :child_name, placeholder: " " %></td>
 					<td><%= s.text_field :adult_name, placeholder: " " %></td>
-					<td><%= s.select :class_name, options_for_select(@groups), prompt: "Select", class: 'corners' %></td>
+					<td><%= s.select :class_name, options_for_select(@groups), prompt: "select", class: 'corners' %></td>
 					<% if @locations.length != 1 %>	
-						<td><%= s.select :location_name, options_for_select(@locations), prompt: "Select", class: 'corners' %></td>
+						<td><%= s.select :location_name, options_for_select(@locations), prompt: "select", class: 'corners' %></td>
 					<% end %>
 					<td><%= s.date_field :date_from, :value => 7.days.ago.to_date.strftime('%Y-%m-%d') %></td>
 					<td><%= s.date_field :date_to, :value => Time.now.strftime('%Y-%m-%d') %></td>
 					<td><%= s.button(type: 'submit') do %>
-				  		<span class="glyphicon glyphicon-search"></span>
+				  		<span class="glyphicon glyphicon-search"></span> search
 				  		<% end %></td>
 				</tr>
 			</body>

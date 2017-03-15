@@ -26,7 +26,7 @@ class CentersController < ApplicationController
        
       if @center.save
          flash[:success] = "#{@center.name} is registered."
-         location = Location.new(name: 'tbd', center_id: @center.id)
+         location = Location.new(name: 'Center', center_id: @center.id)
          location.save
          redirect_to @center
       else

@@ -3,34 +3,37 @@
 <div class="container-fluid">
 	<% if current_center.admin? %>
 		  <h1> Staff </h1>
-		  <h1 class="half_size"><%= @center.name %></h1>	  
+		  <h1 class="half_size"><%= @center.name %></h1>
 		  <% else %>
 		  <h1> All Staff </h1>
 	<% end %>
 	<% if @teachers.length == 0 %>
 		  <h2><i>(There are no registered staff.)</i></h2>
 	<% end %><br>
-	<ul class="objects">
+
+	<div class="objects">
 	<%= will_paginate %>
-	  <% @teachers.each do |teacher| %>
-	    <li>
-	    	<div class="object_index">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		    	<%= link_to edit_teacher_path(teacher.id), method: :get do %>
-        			 	<i class="glyphicon glyphicon-pencil"></i>
-        		<% end %>
-        		<%= link_to teacher_path(teacher.id), method: :delete, data: {confirm: "Are you sure?"} do %>
-        			 	<i class="glyphicon glyphicon-trash"></i>
-        		<% end %>&nbsp;
-        		<%= link_to teacher_path(teacher.id), method: :get do %>
-					<strong><%= teacher.fname %> <%= teacher.lname %></strong>
-				<% end %>
-			</div>
-<!-- 					<div class="center_links">
-				<%#= link_to "View Profile", teacher_path(teacher.id), method: :get %>
-			</div> -->
-	    </li>
-	  <% end %>
-	</ul>
+		<ul>
+		  <% @teachers.each do |teacher| %>
+		    <li>
+		    	<div class="object_index">
+			    	<%= link_to edit_teacher_path(teacher.id), method: :get do %>
+	        			 	<i class="glyphicon glyphicon-pencil"></i>
+	        		<% end %>
+	        		<%= link_to teacher_path(teacher.id), method: :delete, data: {confirm: "Are you sure?"} do %>
+	        			 	<i class="glyphicon glyphicon-trash"></i>
+	        		<% end %>&nbsp;
+	        		<%= link_to teacher_path(teacher.id), method: :get do %>
+						<strong><%= teacher.fname %> <%= teacher.lname %></strong>
+					<% end %>
+				</div>
+	<!-- 					<div class="center_links">
+					<%#= link_to "View Profile", teacher_path(teacher.id), method: :get %>
+				</div> -->
+		    </li>
+		  <% end %>
+		</ul>
+	</div>
 </div>
 
 

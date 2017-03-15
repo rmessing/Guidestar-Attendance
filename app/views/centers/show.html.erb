@@ -9,7 +9,7 @@
 			<h3><%= link_to "Attendance Report", controller: "handoffs", action: "index", id: @center.id %></h3><hr>
 		<% else %>
 			<h1>Center Profile</h1>
-		<% end %>
+		<% end %><br>
 
 		<span>NAME:</span>  <%= @center.name %><br><br>
 		<span>DIRECTOR:</span>  <%= @center.dirfname %> <%= @center.dirlname %><br><br>
@@ -17,7 +17,7 @@
 		<span>EMAIL:</span>  <%= @center.email %><br><br>
 
 		<% if @center.locations.length != 0 %>
-			<span>BRANCHES:</span>	
+			<span>Locations:</span>	
 			<% @center.locations.each do |location| %>
 				<a href="<%= location_path(location.id) %>"><span><%= location.name %></span></a>
 			<% end %>

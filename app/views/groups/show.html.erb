@@ -2,7 +2,7 @@
 
 <div class="container">
 	<div class="profile">
-		<h1>Class Profile</h1>
+		<h1>Class Profile</h1><br>
 		<span>NAME:</span>  <%= @group.name %></h2><br><br>
 
 		<% if current_center.admin? %>
@@ -12,7 +12,9 @@
 
 		<% if @group.location_id != nil %>
            	<% location = Location.find(@group.location_id) %>
-           	<span>BRANCH:</span> <%= location.name %><br><br>
+           	<span>LOCATION:</span> <%= location.name %><br><br>
+        <% else %>
+        	<span>LOCATION:</span> <%= "Center" %><br><br>
       	<% end %>
 		
 

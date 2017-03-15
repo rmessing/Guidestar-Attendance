@@ -10,11 +10,13 @@ class GroupsController < ApplicationController
       if current_center.admin?
          @center = Center.find(params[:id])
          @groups = Group.paginate(page: params[:page]).order("name").where(:center_id => @center.id)  
+         @locations = Location.paginate(page: params[:page]).order("name").where(:center_id => @center.id)  
       else
          @groups = Group.paginate(page: params[:page]).order("name").where(:center_id => current_center.id)
+         @locations = Location.paginate(page: params[:page]).order("name").where(:center_id => current_center.id)
       end
   end
-
+  
   def show
   end
 
