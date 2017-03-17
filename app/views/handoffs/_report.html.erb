@@ -1,12 +1,18 @@
 <script type="text/javascript">
       function selectAll(){
-        $("input:checkbox").each(function(){
+        $("input:checkbox").each(function(){ 
         	if ($(this).prop('checked'))
-        		$(this).prop('checked', false);
+        	{
+        		$(this).prop('checked', false)
+        		this.parentNode.parentNode.style.backgroundColor="white";
+        	}
         	else
-          		$(this).prop('checked', true);
+          	{	
+          		$(this).prop('checked', true)
+          		this.parentNode.parentNode.style.backgroundColor="yellow";
+          	}
+        document.getElementById("all").parentNode.parentNode.style.backgroundColor = "white";
         });
-
         return false;
       }
       function toggleHighlight(checkedBox){
@@ -28,7 +34,7 @@
 		<span><strong style="font-size: 16px">Select all</strong></span>
 	</div>
 	<div style="margin: -22px 0 22px 0">
-		<input type="checkbox", onclick="selectAll()", onchange="this.checked=!this.checked;"></input>	
+		<input type="checkbox", onclick="selectAll()", id="all", onchange="this.checked=!this.checked;"></input>	
 	</div>
 	<div class="fields", style="margin: -42px -110px 42px 110px; position: absolute; width: 8vw; font-size: 1vw">
 		<small><%= f.submit 'Delete selected', :class => 'btn-danger' %></small>
