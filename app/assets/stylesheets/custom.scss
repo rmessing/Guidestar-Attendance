@@ -269,6 +269,17 @@ input {
 .corners {
   border-radius: 0px;
 }
+.sort-arrow th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+.sort-arrow th .asc {
+  background-image: url(/images/up_arrow.png);
+}
+.sort-arrow th .desc {
+  background-image: url(/images/down_arrow.png);
+}
 
 /*Media queries are for admin and superadmin pages.*/
 

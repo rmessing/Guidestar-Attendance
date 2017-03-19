@@ -28,19 +28,19 @@
 					<th></th>
 				</tr>
 			</thead>
-			<body>			
+			<body class='form-group'>			
 				<tr>
-					<td><%= s.text_field :child_name, placeholder: " " %></td>
+					<td><%= s.text_field :child_name %></td>
 					<td><%= s.text_field :adult_name, placeholder: " " %></td>
-					<td><%= s.select :class_name, options_for_select(@groups), prompt: "select", class: 'corners' %></td>
+					<td><%= s.select :class_name, options_for_select(@groups), prompt: "select" %></td>
 					<% if @locations.length != 1 %>	
-						<td><%= s.select :location_name, options_for_select(@locations), prompt: "select", class: 'corners' %></td>
+						<td><%= s.select :location_name, options_for_select(@locations), prompt: "select" %></td>
 					<% end %>
 					<td><%= s.date_field :date_from, :value => 7.days.ago.to_date.strftime('%Y-%m-%d') %></td>
 					<td><%= s.date_field :date_to, :value => Time.now.strftime('%Y-%m-%d') %></td>
-					<td><%= s.button(type: 'submit') do %>
-				  		<span class="glyphicon glyphicon-search"></span> search
-				  		<% end %></td>
+					<td style='width: 100px;'><small><%= s.button(type: 'submit', class: 'btn-success') do %>
+				  		<span class="glyphicon glyphicon-search"></span> Search
+				  		<% end %></small></td>
 				</tr>
 			</body>
 		</table>

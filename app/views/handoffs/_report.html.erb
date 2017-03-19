@@ -30,6 +30,7 @@
 
 <%= form_for('Handoff', :as => 'handoffs', :url => delete_selected_handoffs_path, :data => {:confirm => :are_you_sure }) do |f| %>
 		
+<div>		
 	<div class="fields", style="margin: 0 -30px -20px 30px">
 		<strong style="font-size: 16px; width: 80px;">Select all</strong>
 	</div>
@@ -39,21 +40,22 @@
 	<div class="fields", style="margin: -42px -110px 42px 110px; position: absolute; width: 85px; font-size: 12px">
 		<small><%= f.submit 'Delete selected', :class => 'btn-danger' %></small>
 	</div>
+</div>
 
 	<div class="table-responsive">
 		<table  class="table table-condensed table-striped">
 			<thead>
 				<tr Class='filters'>
 					<th class="select-row">&nbsp;&nbsp;</th>				
-					<th>First name</th>
-					<th>Middle name</th>
-					<th>Last name</th>
-					<th>Date & Time</th>
-					<th>Arrive/Depart</th>
-					<th>Class</th>
-					<th>Adult</th>
+					<th><%= sortable "child_fname", "First name" %></th>
+					<th><%= sortable "child_mname", "Middle name" %></th>
+					<th><%= sortable "child_lname", "Last name" %></th>
+					<th><%= sortable "created_at", "Date & Time" %></th>
+					<th><%= sortable "attend", "Arrive/Depart" %></th>
+					<th><%= sortable "group_name", "Class" %></th>
+					<th><%= sortable "escort_lname", "Adult" %></th>
 					<% if @locations.length != 1 %>
-						<th>Location</th>
+						<th><%= sortable "location_name", "Location" %></th>
 					<% end %>			
 				</tr>
 			</thead>
