@@ -16,7 +16,7 @@
 		<%= f.label :Birthday %>
 		<%= date_field(:child, :birth_date) %>
 		<%= f.label :Class_by_location %>
-		<%= f.grouped_collection_select :group_id, @locations, :groups, :name, :id, :name, prompt: true %>
+		<%= f.grouped_collection_select(:group_id, @locations, :groups, :name, :id, :name, prompt: true) %>
 		<%= f.submit yield(:button_text), class: "btn btn-primary" %>
 	<% end %>
 </div>

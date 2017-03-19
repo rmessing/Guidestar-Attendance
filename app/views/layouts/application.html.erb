@@ -40,8 +40,8 @@
             <%= link_to "Guidestar Attendance", '/', id: "logo" %>
           </div>
             <!-- Login status and @nav determine the navbar layout links. -->
-          <div class="collapse navbar-collapse">
-            &nbsp;&nbsp;<ul class="nav navbar-nav pull-right">
+          <div class="collapse navbar-collapse", style="margin: 0 -12px 0 12px">
+            <ul class="nav navbar-nav pull-right">
               <% if @nav == "parent" %>
                 <%  @nav = nil %>
               <% elsif @nav == "root" %>

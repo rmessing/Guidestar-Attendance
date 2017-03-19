@@ -22,11 +22,11 @@ class ChildrenController < ApplicationController
       @child = Child.new
       if current_center.admin?
          @center = Center.find(params[:id])
-         @groups = Group.order("name").where(:center_id => @center.id)
+         # @groups = Group.order("name").where(:center_id => @center.id)
          @locations = Location.order("name").where(:center_id => @center.id)
       else
          @center = current_center
-         @groups = Group.order("name").where(:center_id => current_center.id)
+         # @groups = Group.order("name").where(:center_id => current_center.id)
          @locations = Location.order("name").where(:center_id => current_center.id)
       end
       if @center.children.length == 100
@@ -50,7 +50,7 @@ class ChildrenController < ApplicationController
   end
 
   def edit
-      @groups = Group.order("name").where(:center_id => @center.id)
+      # @groups = Group.order("name").where(:center_id => current_center.id)
       @locations = Location.order("name").where(:center_id => @center.id)
   end
 

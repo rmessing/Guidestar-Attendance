@@ -1,18 +1,18 @@
 <script type="text/javascript">
+	  var unSelect = false;
       function selectAll(){
         $("input:checkbox").each(function(){ 
-        	if ($(this).prop('checked'))
-        	{
+        	if (unSelect) {
         		$(this).prop('checked', false)
         		this.parentNode.parentNode.style.backgroundColor="white";
         	}
-        	else
-          	{	
-          		$(this).prop('checked', true)
-          		this.parentNode.parentNode.style.backgroundColor="yellow";
-          	}
-        document.getElementById("all").parentNode.parentNode.style.backgroundColor = "white";
+        	else {
+	        	$(this).prop('checked', true)
+	        	this.parentNode.parentNode.style.backgroundColor="yellow";
+	        }
         });
+        document.getElementById("all").parentNode.parentNode.style.backgroundColor = "white";
+        unSelect = !unSelect;
         return false;
       }
       function toggleHighlight(checkedBox){
@@ -31,12 +31,12 @@
 <%= form_for('Handoff', :as => 'handoffs', :url => delete_selected_handoffs_path, :data => {:confirm => :are_you_sure }) do |f| %>
 		
 	<div class="fields", style="margin: 0 -30px -20px 30px">
-		<span><strong style="font-size: 16px">Select all</strong></span>
+		<strong style="font-size: 16px; width: 80px;">Select all</strong>
 	</div>
-	<div style="margin: -22px 0 22px 0">
-		<input type="checkbox", onclick="selectAll()", id="all", onchange="this.checked=!this.checked;"></input>	
+	<div style="margin: -22px 0 22px 0;">
+		<span><input type="checkbox", onclick="selectAll()", id="all"></input></span>	
 	</div>
-	<div class="fields", style="margin: -42px -110px 42px 110px; position: absolute; width: 8vw; font-size: 1vw">
+	<div class="fields", style="margin: -42px -110px 42px 110px; position: absolute; width: 85px; font-size: 12px">
 		<small><%= f.submit 'Delete selected', :class => 'btn-danger' %></small>
 	</div>
 
