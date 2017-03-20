@@ -30,17 +30,17 @@
 
 <%= form_for('Handoff', :as => 'handoffs', :url => delete_selected_handoffs_path, :data => {:confirm => :are_you_sure }) do |f| %>
 		
-<div>		
-	<div class="fields", style="margin: 0 -30px -20px 30px">
-		<strong style="font-size: 16px; width: 80px;">Select all</strong>
+
+	<div style='display: inline-block; width: 10px; margin-left: 6px;'>
+		<input type="checkbox", onclick="selectAll()", id="all"></input>	
 	</div>
-	<div style="margin: -22px 0 22px 0;">
-		<span><input type="checkbox", onclick="selectAll()", id="all"></input></span>	
+	<div class="fields", style='margin-left: 15px;'>
+		<b style="font-size: 16px;">Select all</b>
 	</div>
-	<div class="fields", style="margin: -42px -110px 42px 110px; position: absolute; width: 85px; font-size: 12px">
-		<small><%= f.submit 'Delete selected', :class => 'btn-danger' %></small>
+	<div style="display: inline-block; position: fixed; margin: -5px -50px 5px 50px">
+		<%= f.submit 'Delete selected', :class => 'btn btn-danger' %>
 	</div>
-</div>
+<br><br>
 
 	<div class="table-responsive">
 		<table  class="table table-condensed table-striped">
