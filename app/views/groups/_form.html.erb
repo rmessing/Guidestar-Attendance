@@ -9,13 +9,8 @@
 		<%= f.label :class_Name %>
 		<%= f.text_field :name, class: 'form-control' %>
 		<%= f.hidden_field :center_id, :value => @center.id %>
-		<% if @locations.length == 1 %>
-			<%= f.hidden_field :location_id, :value => @locations.first.id %>
-		<% else %> 
-			<%= f.label :location %>	
-			<%= f.collection_select :location_id, @locations, :id, :name, :prompt => true %>
-		<% end %>
-
+		<%= f.label :location %>	
+		<%= f.collection_select :location_id, @locations, :id, :name, :prompt => true %>
 		<%= f.submit yield(:button_text), class: "btn btn-primary"  %>
 	<% end %>
 </div>

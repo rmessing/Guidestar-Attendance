@@ -10,14 +10,14 @@ class Center < ActiveRecord::Base
   has_secure_password
   validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
 
-  has_many :teachers
-  has_many :locations
-  has_many :parents 
-  has_many :children
-  has_many :groups
-  has_many :handoffs
-  has_many :families
-  has_many :group_teachers
+  has_many :teachers, dependent: :destroy
+  has_many :locations, dependent: :destroy
+  has_many :parents, dependent: :destroy
+  has_many :children, dependent: :destroy
+  has_many :groups, dependent: :destroy
+  has_many :handoffs, dependent: :destroy
+  has_many :families, dependent: :destroy
+  has_many :group_teachers, dependent: :destroy
 
   # Sets the password reset attributes.
   def create_reset_digest

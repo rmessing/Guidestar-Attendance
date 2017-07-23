@@ -3,12 +3,13 @@
 <div class="container">
 	<div class="profile">
 		<h1>Adult Profile</h1><br>
-		<span>NAME:</span>  <%= @parent.fname %> <%= @parent.lname %><br><br>
-		
+
 		<% if current_center.admin? %>
 			<% center = Center.find(@parent.center_id) %>
 		  	<span>CLIENT:</span> <%= center.name %><br><br> 
 	    <% end %>
+	    
+		<span>NAME:</span>  <%= @parent.fname %> <%= @parent.lname %><br><br>
 
 	    <span>USERNAME:</span> <%= @parent.username %><br><br>
 	    <span>EMAIL:</span> <%= @parent.email %><br><br>
@@ -17,7 +18,7 @@
 			 <span>CHILDREN:</span>
 			 <% @parent.children.each do |child| %>
 				<a href="<%= child_path(child.id) %>"><span><%= child.fname %> <%= child.mname %> <%= child.lname %></span></a>
-			<% end %>
+			 <% end %>
 		<% end %>
 		<br><br><br>
 

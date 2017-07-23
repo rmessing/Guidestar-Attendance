@@ -3,13 +3,13 @@
 <div class="container">
 	<div class="profile">
 		<h1>Location Profile</h1><br>
-		<span>NAME:</span><%= @location.name %><br><br>
 
 		<% if current_center.admin? %>
 			<% center = Center.find(@location.center_id) %>
 		  	<span>CLIENT:</span> <%= center.name %><br><br>
 	    <% end %>
-		
+
+		<span>NAME:</span><%= @location.name %><br><br>
 		
 		<% if @location.groups.length != 0 %>
 			<span>CLASSES:</span>	

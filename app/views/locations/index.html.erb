@@ -15,22 +15,21 @@
 		<%= will_paginate %>
 		<ul>
 			<% @locations.each do |location| %>
-		    	<li>
-				    <div class="object_index">
-				    	<%= link_to edit_location_path(location.id), method: :get do %>
-		        			 	<i class="glyphicon glyphicon-pencil"></i>
-		        		<% end %>
-		        		<%= link_to location_path(location.id), method: :delete, data: {confirm: "Are you sure?"} do %>
-		        			 	<i class="glyphicon glyphicon-trash"></i>
-		        		<% end %>&nbsp;
-		        		<%= link_to location_path(location.id), method: :get do %>
-						<strong><%= location.name %></strong>
-						<% end %>
-					</div>
-	<!-- 				<div class="center_links">
-						<%#= link_to "View Profile", location_path(location.id), method: :get %>
-					</div> -->
-		    	</li>
+				<% if location.name != 'Center' %>
+			    	<li>
+					    <div class="object_index">
+					    	<%= link_to edit_location_path(location.id), method: :get do %>
+			        			 	<i class="glyphicon glyphicon-pencil"></i>
+			        		<% end %>
+			        		<%= link_to location_path(location.id), method: :delete, data: {confirm: "Are you sure?"} do %>
+			        			 	<i class="glyphicon glyphicon-trash"></i>
+			        		<% end %>&nbsp;
+			        		<%= link_to location_path(location.id), method: :get do %>
+							<strong><%= location.name %></strong>
+							<% end %>
+						</div>
+			    	</li>
+			    <% end %>
 			<% end %>
 		</ul>
 	</div>

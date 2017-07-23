@@ -3,13 +3,14 @@
 <div class="container">
 	<div class="profile">
 		<h1>Staff Profile</h1><br>
-		<span>NAME:</span>  <%= @teacher.fname %> <%= @teacher.lname %><br><br>
-		
+
 		<% if current_center.admin? %>
 			<% center = Center.find(@teacher.center_id) %>
 		  	<span>CLIENT:</span> <%= center.name %><br><br>
 	    <% end %>
 
+		<span>NAME:</span>  <%= @teacher.fname %> <%= @teacher.lname %><br><br>
+		
 	    <span>USERNAME:</span> <%= @teacher.username %><br><br>
 	    <span>EMAIL:</span> <%= @teacher.email %><br><br>
 

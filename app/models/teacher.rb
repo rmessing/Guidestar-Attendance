@@ -11,7 +11,7 @@ class Teacher < ActiveRecord::Base
   has_secure_password
   validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
 
-  has_many :group_teachers
+  has_many :group_teachers, dependent: :destroy
   has_many :groups, :through => :group_teachers
   belongs_to :center
 

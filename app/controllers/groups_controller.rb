@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_action :logged_in_center
   before_action :correct_center, only: [:show, :edit, :update, :destroy]
-
+  
   # If superadmin is logged in (current_center.admin?), center.id is in params, 
   # otherwise the current_center.id is used? .where filters data to prevent user
   # from accessing data belonging to centers other than his/her own.
@@ -25,18 +25,18 @@ class GroupsController < ApplicationController
       if current_center.admin?
          @center = Center.find(params[:id])
          @locations = Location.order("name").where(:center_id => @center.id)
-         @teachers = Teacher.order("lname", "fname").where(:center_id => @center.id)
+         #@teachers = Teacher.order("lname", "fname").where(:center_id => @center.id)
       else
          @center = current_center
          @locations = Location.order("name").where(:center_id => current_center.id)
-         @teachers = Teacher.order("lname", "fname").where(:center_id => current_center.id)
+         #@teachers = Teacher.order("lname", "fname").where(:center_id => current_center.id)
       end
   end
   def create
       @group = Group.new(group_params)
       locations = Location.all.where(:center_id => params[:center_id])
       if locations.length != 1 && params[:location_id] == "" 
-         flash[:danger] = "The new class is not registrered. Location selection is required."
+         flash[:danger] = "The new class is not registered. Location selection is required."
          redirect_to (:back)
          return
       end
@@ -46,14 +46,14 @@ class GroupsController < ApplicationController
       else
          @center = Center.find(@group.center_id)
          @locations = Location.order("name").where(:center_id => @center.id)
-         @teachers = Teacher.order("lname", "fname").where(:center_id => @center.id)
+         #@teachers = Teacher.order("lname", "fname").where(:center_id => @center.id)
          render :new
       end
   end
 
   def edit
       @locations = Location.order("name").where(:center_id => @center.id)
-      @teachers = Teacher.order("lname", "fname").where(:center_id => @center.id)
+      #@teachers = Teacher.order("lname", "fname").where(:center_id => @center.id)
   end
 
   def update
@@ -62,8 +62,9 @@ class GroupsController < ApplicationController
          redirect_to @group
       else
          @locations = Location.order("name").where(:center_id => current_center.id)
-         @teachers = Teacher.order("lname", "fname").where(:center_id => current_center.id)
-         render :edit
+         #@teachers = Teacher.order("lname", "fname").where(:center_id => current_center.id)
+         flash[:danger] = "Class name #{@group.name} taken at selected location."
+         redirect_to :back
       end
   end
 

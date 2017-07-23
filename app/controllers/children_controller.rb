@@ -20,13 +20,14 @@ class ChildrenController < ApplicationController
 
   def new
       @child = Child.new
+      # @childs_group = "Select class"
       if current_center.admin?
          @center = Center.find(params[:id])
-         # @groups = Group.order("name").where(:center_id => @center.id)
+         @groups = Group.order("name").where(:center_id => @center.id)
          @locations = Location.order("name").where(:center_id => @center.id)
       else
          @center = current_center
-         # @groups = Group.order("name").where(:center_id => current_center.id)
+         @groups = Group.order("name").where(:center_id => current_center.id)
          @locations = Location.order("name").where(:center_id => current_center.id)
       end
       if @center.children.length == 100
@@ -35,6 +36,11 @@ class ChildrenController < ApplicationController
       elsif @center.children.length > 94
          flash.now[:warning] = "WARNING: #{@center.children.length} children are registered - the limit is 100 registered children."
       end
+  end
+
+  def edit
+      @groups = Group.order("name").where(:location_id => childs_group.location_id)
+      @locations = Location.order("name").where(:center_id => @center.id)
   end
 
   def create
@@ -47,11 +53,6 @@ class ChildrenController < ApplicationController
          @groups = Group.order("name").where(:center_id => @center.id)
          render :new
       end 
-  end
-
-  def edit
-      # @groups = Group.order("name").where(:center_id => current_center.id)
-      @locations = Location.order("name").where(:center_id => @center.id)
   end
 
   def update
@@ -75,7 +76,7 @@ class ChildrenController < ApplicationController
 
   private
   def child_params
-      params.require(:child).permit(:fname, :mname, :lname, :center_id, :group_id, :birth_date)
+      params.require(:child).permit(:fname, :mname, :lname, :center_id, :birth_date, :group_id)
   end
 
 # Before filters

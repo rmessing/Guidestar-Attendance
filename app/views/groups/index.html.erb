@@ -9,6 +9,9 @@
 	<% end %><br>
 
 	<div class="objects">
+	<% if @groups.length == 0 %>
+		<h2><i>(There are no registered classes.)</i></h2>
+	<% end %>
 	<%= will_paginate %>
 		<ul>
 		  <% @locations.each do |location| %>
